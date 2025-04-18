@@ -1,96 +1,134 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sian の 情思漫畫</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background-color: #fdfcf8;
-      background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
-      color: #333;
       margin: 0;
-      padding: 2em;
-      max-width: 960px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #fdfaf4;
+      color: #333;
+      display: flex;
     }
-    header {
-      text-align: center;
-      margin-bottom: 2em;
+
+    /* 左邊導航欄 */
+    .sidebar {
+      background-color: #f5f3ee;
+      width: 220px;
+      min-height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     }
-    .logo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    h1 {
-      font-size: 2em;
-      margin: 0.2em 0;
-      color: #774f38;
-    }
-    h2 {
-      color: #aa6c39;
+
+    .sidebar h2 {
       font-size: 1.2em;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 0.2em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
     }
-    .section {
+
+    .sidebar a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #5a5a5a;
+    }
+
+    .sidebar a:hover {
+      color: #c67878;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 40px 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 120px;
+      border-radius: 50%;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .lang-section {
       margin-bottom: 2em;
     }
+
     ul {
-      line-height: 1.8;
+      padding-left: 1.5em;
     }
-    a {
-      color: #337777;
-      text-decoration: none;
+
+    /* 背景小圖點綴 */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#fceef2 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.2;
+      z-index: -1;
     }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      margin-top: 3em;
-      color: #888;
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Sian Logo" class="logo" />
+  <div class="sidebar">
+    <h2>選單 Menu</h2>
+    <a href="#">🏠 首頁 / Home</a>
+    <a href="#about">👩 關於我 / About Me</a>
+    <a href="#works">🎨 漫畫作品 / Comics</a>
+  </div>
+
+  <div class="main-content">
+    <img src="Sian_logo.png" alt="Sian Logo" class="logo">
     <h1>Sian の 情思漫畫</h1>
     <h2>Sian's Comic Confessions with Asperger's Life</h2>
-  </header>
 
-  <section class="section">
-    <h2>關於我｜About Me</h2>
-    <p>這是我從生活點滴記下的內心世界。</p>
-    <p>我是 Sian，是成人確診有亞斯伯格症的創作者。</p>
-    <p>我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。</p>
-    <p>如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。</p>
-    <br />
-    <p>These comics reflect the world I see from my inner lens.</p>
-    <p>I’m Sian, an adult diagnosed with Asperger's Syndrome.</p>
-    <p>I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
-  </section>
+    <div class="lang-section" id="about">
+      <h2>關於我｜About Me</h2>
+      <p>這是我從生活點滴記下的內心世界。</p>
+      <p>我是 Sian，是成人確診有亞斯伯格症的創作者。</p>
+      <p>我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。</p>
+      <p>如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。</p>
 
-  <section class="section">
-    <h2>漫畫作品｜Comic Works</h2>
-    <ul>
-      <li><a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">中文版 Part 1</a></li>
-      <li><a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">English Version Part 1</a></li>
-      <li><a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">中文版 Part 2</a></li>
-      <li><a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">English Version Part 2</a></li>
-    </ul>
-  </section>
+      <p>These comics reflect the world I see from my inner lens.<br>
+      I’m Sian, an adult diagnosed with Asperger's Syndrome.<br>
+      I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
+    </div>
 
-  <footer>
-    感謝你的來訪，願你在這裡找到一點溫柔的理解。<br />
-    Thank you for visiting. May you find a little gentle understanding here.
-  </footer>
+    <div class="lang-section" id="works">
+      <h2>漫畫作品｜Comic Works</h2>
+      <ul>
+        <li><a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">中文版 Part 1</a></li>
+        <li><a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">English Version Part 1</a></li>
+        <li><a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">中文版 Part 2</a></li>
+        <li><a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">English Version Part 2</a></li>
+      </ul>
+    </div>
+
+    <p style="text-align: center;">感謝你的來訪，願你在這裡找到一點溫柔的理解。<br>
+    Thank you for visiting. May you find a little gentle understanding here.</p>
+  </div>
 </body>
 </html>
