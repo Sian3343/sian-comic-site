@@ -6,10 +6,6 @@
   <title>Sian の 情思漫畫</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -19,25 +15,18 @@
       background-position: center;
       background-attachment: fixed;
       color: #333;
+      min-height: 100vh;
     }
 
-    .hamburger {
-      display: none;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 999;
-      background: rgba(255,255,255,0.8);
-      padding: 8px 12px;
-      border-radius: 5px;
+    .container {
+      display: flex;
+      flex-direction: row;
     }
 
     nav.sidebar {
       background-color: #ECFFFF;
       width: 220px;
-      height: 100vh;
+      min-height: 100vh;
       padding: 20px;
       box-shadow: 2px 0 5px rgba(0,0,0,0.1);
       position: fixed;
@@ -71,9 +60,10 @@
     }
 
     main.main-content {
+      flex-grow: 1;
       padding: 40px 30px;
       max-width: 900px;
-      margin-left: 220px;
+      margin: auto;
     }
 
     .logo {
@@ -108,79 +98,95 @@
       z-index: -1;
     }
 
-    /* 響應式設計 */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 999;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
     @media (max-width: 768px) {
       .hamburger {
         display: block;
       }
 
-      nav.sidebar {
-        height: 100%;
+      .container {
+        flex-direction: column;
       }
 
       main.main-content {
-        margin-left: 0;
         padding: 20px;
+        margin-left: 0;
+      }
+    }
+
+    @media (min-width: 769px) {
+      nav.sidebar.active + main.main-content {
+        margin-left: 220px;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- 漢堡按鈕 -->
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <!-- 側邊欄 -->
-  <nav class="sidebar" id="sidebar">
-    <img src="logo.png" alt="Sian 的 Logo" style="width: 220px; height: 108px;">
-    <h2>選單 Menu</h2>
-    <a href="#" onclick="closeMenu()">🏠 首頁 / Home</a>
-    <a href="#about" onclick="closeMenu()">👩 關於我 / About Me</a>
-    <a href="#works" onclick="closeMenu()">🎨 漫畫作品 / Comics</a>
-  </nav>
+  <div class="container">
+    <nav class="sidebar" id="sidebar">
+      <img src="logo.png" alt="Sian 的 Logo" style="width: 220px; height: 108px;">
+      <h2>選單 Menu</h2>
+      <a href="#" onclick="closeMenu()">🏠 首頁 / Home</a>
+      <a href="#about" onclick="closeMenu()">👩 關於我 / About Me</a>
+      <a href="#works" onclick="closeMenu()">🎨 漫畫作品 / Comics</a>
+    </nav>
 
-  <!-- 主要內容 -->
-  <main class="main-content">
-    <img src="sian_logo.png" alt="Sian Logo" class="logo">
+    <main class="main-content">
+      <img src="sian_logo.png" alt="Sian Logo" class="logo">
 
-    <header>
-      <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
-      <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
-      <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
-    </header>
+      <header>
+        <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
+        <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
+        <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
+      </header>
 
-    <h1>Sian の 情思漫畫</h1>
-    <h2>Sian's Comic Confessions with Asperger's Life</h2>
+      <h1>Sian の 情思漫畫</h1>
+      <h2>Sian's Comic Confessions with Asperger's Life</h2>
 
-    <div class="lang-section" id="about">
-      <h2>關於我｜About Me</h2>
-      <p>這是我從生活點滴記下的內心世界。</p>
-      <p>我是 Sian，是成人確診有亞斯伯格症的創作者。</p>
-      <p>我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。</p>
-      <p>如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。</p>
+      <div class="lang-section" id="about">
+        <h2>關於我｜About Me</h2>
+        <p>這是我從生活點滴記下的內心世界。</p>
+        <p>我是 Sian，是成人確診有亞斯伯格症的創作者。</p>
+        <p>我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。</p>
+        <p>如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。</p>
+        <p>These comics reflect the world I see from my inner lens.<br>
+        I’m Sian, an adult diagnosed with Asperger's Syndrome.<br>
+        I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
+      </div>
 
-      <p>These comics reflect the world I see from my inner lens.<br>
-      I’m Sian, an adult diagnosed with Asperger's Syndrome.<br>
-      I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
-    </div>
+      <div class="lang-section" id="works">
+        <h2>漫畫作品｜Comic Works</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">中文版 Part 1</a></li>
+          <li><a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">English Version Part 1</a></li>
+          <li><a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">中文版 Part 2</a></li>
+          <li><a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">English Version Part 2</a></li>
+        </ul>
+      </div>
 
-    <div class="lang-section" id="works">
-      <h2>漫畫作品｜Comic Works</h2>
-      <ul>
-        <li><a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">中文版 Part 1</a></li>
-        <li><a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">English Version Part 1</a></li>
-        <li><a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">中文版 Part 2</a></li>
-        <li><a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">English Version Part 2</a></li>
-      </ul>
-    </div>
-
-    <p style="text-align: center;">感謝你的來訪，願你在這裡找到一點溫柔的理解。<br>
-    Thank you for visiting. May you find a little gentle understanding here.</p>
-  </main>
+      <p style="text-align: center;">感謝你的來訪，願你在這裡找到一點溫柔的理解。<br>
+      Thank you for visiting. May you find a little gentle understanding here.</p>
+    </main>
+  </div>
 
   <script>
     function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
     }
 
     function closeMenu() {
