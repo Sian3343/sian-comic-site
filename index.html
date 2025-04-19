@@ -6,50 +6,62 @@
   <title>Sian の 情思漫畫</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-        font-family: "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        background-image: url('background.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-        color: #333;
-        display: flex;
-        min-height: 100vh;
-      }
+      font-family: "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      color: #333;
+      min-height: 100vh;
+    }
 
-    /* 左邊導航欄 */
-    .sidebar {
+    nav.sidebar {
       background-color: #ECFFFF;
       width: 220px;
       min-height: 100vh;
       padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);}
-  
-    .sidebar h2 {
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 998;
+    }
+
+    nav.sidebar.active {
+      transform: translateX(0);
+    }
+
+    nav.sidebar h2 {
       font-size: 1.2em;
       margin-bottom: 1em;
       border-bottom: 1px solid #ccc;
       padding-bottom: 0.3em;
     }
 
-    .sidebar a {
+    nav.sidebar a {
       display: block;
       margin: 10px 0;
       text-decoration: none;
       color: #5a5a5a;
     }
 
-    .sidebar a:hover {
+    nav.sidebar a:hover {
       color: #c67878;
     }
 
-    .main-content {
-      flex-grow: 1;
+    main.main-content {
+      margin-left: 220px;
       padding: 40px 30px;
       max-width: 900px;
-      margin: auto;
     }
 
     .logo {
@@ -71,7 +83,11 @@
       padding-left: 1.5em;
     }
 
-    /* 背景小圖點綴 */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     body::before {
       content: "";
       position: fixed;
@@ -85,36 +101,87 @@
       z-index: -1;
     }
 
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 999;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 997;
+      display: none;
+    }
+
+    .sidebar.active ~ .overlay {
+      display: block;
+    }
+
     @media (max-width: 768px) {
-      .sidebar {
-        display: none;
+      .hamburger {
+        display: block;
       }
 
-      .main-content {
+      nav.sidebar {
+        width: 70%;
+        max-width: 260px;
+      }
+
+      main.main-content {
+        margin-left: 0;
         padding: 20px;
+      }
+
+      header img {
+        width: 30%;
+        height: auto;
+        margin: 5px;
+      }
+
+      .logo {
+        width: 90px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-        <h1><img src="logo.png"
-alt="" style="width: 220px; height: 108px;"></h1>
+  <!-- 漢堡按鈕 -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- 側邊欄 -->
+  <nav class="sidebar" id="sidebar">
+    <img src="logo.png" alt="Sian 的 Logo" style="width: 100%; height: auto;">
     <h2>選單 Menu</h2>
-    <a href="#">🏠 首頁 / Home</a>
-    <a href="#about">👩 關於我 / About Me</a>
-    <a href="#works">🎨 漫畫作品 / Comics</a>
-  </div>
+    <a href="#" onclick="closeMenu()">🏠 首頁 / Home</a>
+    <a href="#about" onclick="closeMenu()">👩 關於我 / About Me</a>
+    <a href="#works" onclick="closeMenu()">🎨 漫畫作品 / Comics</a>
+  </nav>
 
-  <div class="main-content">         
-<img src="sian_logo.png?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=0bb214&amp;_nc_ohc=XXvKxN1M0UcAX8z0vs3&amp;_nc_ht=scontent-lhr8-1.xx&amp;oh=00_AfBfRRqUwK1bDQwG0WZGphBBsEnbbI4TIKMAhXp58tcZIA&amp;oe=6633FCB1"
+  <!-- 半透明背景 -->
+  <div class="overlay" onclick="closeMenu()"></div>
 
-      alt="Sian Logo" class="logo">
-    <h1><img src="logo-1.png" alt="" style="width: 93px; height: 90px;"><img src="banner.png"
+  <!-- 主要內容 -->
+  <main class="main-content">         
+    <img src="sian_logo.png" alt="Sian Logo" class="logo">
 
-        alt="" style="width: 246px; height: 131px;"><img src="logo-2.png"
+    <header>
+      <img src="logo-1.png" alt="圖標1">
+      <img src="banner.png" alt="標題橫幅">
+      <img src="logo-2.png" alt="圖標2">
+    </header>
 
-        alt="" style="width: 92px; height: 94px;"></h1>
     <h1>Sian の 情思漫畫</h1>
     <h2>Sian's Comic Confessions with Asperger's Life</h2>
 
@@ -142,6 +209,16 @@ alt="" style="width: 220px; height: 108px;"></h1>
 
     <p style="text-align: center;">感謝你的來訪，願你在這裡找到一點溫柔的理解。<br>
     Thank you for visiting. May you find a little gentle understanding here.</p>
-  </div>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+    }
+  </script>
 </body>
 </html>
