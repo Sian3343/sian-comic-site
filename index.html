@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sian 漫畫記錄 Asperger's 的日常</title>
-  <link rel="icon" href="favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sian の 情思漫畫</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <!-- GoatCounter 統計追蹤碼 -->
+  <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -108,31 +113,6 @@
       border-radius: 5px;
     }
 
-    .comic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .comic-grid a {
-      text-align: center;
-      text-decoration: none;
-      color: #444;
-    }
-
-    .comic-grid img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .comic-grid span {
-      display: block;
-      margin-top: 6px;
-    }
-
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -144,24 +124,25 @@
     }
   </style>
 </head>
+
 <body>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
   <nav class="sidebar" id="sidebar">
-    <img src="logo.png" alt="Sian 的 Logo" style="width: 220px; height: 108px;" />
+    <img src="logo.png" alt="Sian 的 Logo" style="width: 220px; height: 108px;">
     <h2>選單 Menu</h2>
     <a href="#" onclick="closeMenu()">🏠 首頁 / Home</a>
     <a href="#about" onclick="closeMenu()">👩 關於我 / About Me</a>
     <a href="#works" onclick="closeMenu()">🎨 漫畫作品 / Comics</a>
   </nav>
 
-  <main class="main-content">
-    <img src="sian_logo.png" alt="Sian Logo" class="logo" />
+  <main class="main-content">         
+    <img src="sian_logo.png" alt="Sian Logo" class="logo">
 
     <header>
-      <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;" />
-      <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;" />
-      <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;" />
+      <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
+      <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
+      <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
     </header>
 
     <h1>Sian の 情思漫畫</h1>
@@ -181,24 +162,12 @@
 
     <div class="lang-section" id="works">
       <h2>漫畫作品｜Comic Works</h2>
-      <div class="comic-grid">
-        <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">
-          <img src="front cover C.jpg" alt="中文版 Part 1" />
-          <span>中文版 Part 1</span>
-        </a>
-        <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">
-          <img src="front cover E.jpg" alt="English Version Part 1" />
-          <span>English Version Part 1</span>
-        </a>
-        <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">
-          <img src="front cover C2.jpg" alt="中文版 Part 2" />
-          <span>中文版 Part 2</span>
-        </a>
-        <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">
-          <img src="front cover CE.jpg" alt="English Version Part 2" />
-          <span>English Version Part 2</span>
-        </a>
-      </div>
+      <ul>
+        <li><a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">中文版 Part 1</a></li>
+        <li><a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">English Version Part 1</a></li>
+        <li><a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">中文版 Part 2</a></li>
+        <li><a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">English Version Part 2</a></li>
+      </ul>
     </div>
 
     <p style="text-align: center;">感謝你的來訪，願你在這裡找到一點溫柔的理解。<br>
