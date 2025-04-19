@@ -3,72 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sian 的漫畫 Flipbook</title>
+  <title>Sian 情思漫畫｜Flipbook</title>
   <style>
     body {
       margin: 0;
-      font-family: "Noto Sans TC", "Helvetica Neue", sans-serif;
-      background-color: #fcefee;
+      font-family: "Noto Sans TC", sans-serif;
+      background: #f2f2f2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-    }
-
-    header {
-      width: 100%;
-      background-color: #9f5b7c;
-      color: white;
-      text-align: center;
+      justify-content: center;
       padding: 1em;
     }
 
-    .flipbook-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2em;
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5em;
     }
 
-    .comic-page {
-      max-width: 90vw;
-      max-height: 80vh;
-      border: 6px solid #ccc;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    #flipbook-container {
+      max-width: 100%;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
     }
 
-    .buttons {
+    #comicImage {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .nav-buttons {
       margin-top: 1em;
+      text-align: center;
     }
 
     button {
       background-color: #9f5b7c;
       color: white;
       border: none;
-      padding: 0.6em 1.2em;
+      padding: 0.5em 1.5em;
       margin: 0 1em;
-      border-radius: 6px;
       font-size: 1em;
       cursor: pointer;
-      transition: 0.3s;
+      border-radius: 6px;
+      transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #7c3c5a;
+      background-color: #7c4561;
     }
 
     .back-link {
       margin-top: 2em;
+      text-align: center;
     }
 
     .back-link a {
-      color: #9f5b7c;
       text-decoration: none;
-      font-weight: bold;
+      color: #666;
+      font-size: 0.95em;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       button {
         padding: 0.5em 1em;
         font-size: 0.9em;
@@ -77,48 +78,39 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sian の 情思漫畫 Flipbook</h1>
-    <p>📖 左右翻頁睇漫畫～</p>
-  </header>
+  <h1>Sian 情思漫畫｜翻頁瀏覽</h1>
 
-  <div class="flipbook-container">
-    <img id="comicImage" src="images/01.jpg" alt="Comic Page" class="comic-page">
-    <div class="buttons">
-      <button onclick="prevPage()">上一頁</button>
-      <button onclick="nextPage()">下一頁</button>
-    </div>
+  <div id="flipbook-container">
+    <img id="comicImage" src="images/01.jpg" alt="Comic Page" loading="lazy" />
+  </div>
 
-    <div class="back-link">
-      <a href="index.html">← 返回主頁</a>
-    </div>
+  <div class="nav-buttons">
+    <button onclick="prevPage()">← 上一頁</button>
+    <button onclick="nextPage()">下一頁 →</button>
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">🔙 返回主頁</a>
   </div>
 
   <script>
-    const images = [
-      "images/01.jpg",
-      "images/02.jpg",
-      "images/03.jpg",
-      "images/04.jpg"
-    ];
-    let currentPage = 0;
+    const totalPages = 10; // 📝 你圖總數，例如有10張圖就寫10
+    let currentPage = 1;
 
     function showPage(index) {
-      const img = document.getElementById("comicImage");
-      if (index >= 0 && index < images.length) {
-        img.src = images[index];
-        currentPage = index;
-      }
+      const filename = index.toString().padStart(2, "0") + ".jpg";
+      document.getElementById("comicImage").src = "images/" + filename;
+      currentPage = index;
     }
 
     function nextPage() {
-      if (currentPage < images.length - 1) {
+      if (currentPage < totalPages) {
         showPage(currentPage + 1);
       }
     }
 
     function prevPage() {
-      if (currentPage > 0) {
+      if (currentPage > 1) {
         showPage(currentPage - 1);
       }
     }
