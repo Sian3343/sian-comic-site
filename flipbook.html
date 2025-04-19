@@ -1,119 +1,35 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sian 情思漫畫｜Flipbook</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1em;
+<script>
+  const totalPages = 158;
+  const images = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    const num = i.toString().padStart(3, '0'); // 加 0 變成 001, 002 ...
+    images.push(`images/${num}.jpg`);
+  }
+
+  let currentPage = 0;
+
+  function showPage(index) {
+    const imgElement = document.getElementById('comic-image');
+    imgElement.src = images[index];
+    document.getElementById('page-number').textContent = `第 ${index + 1} 頁 / 共 ${images.length} 頁`;
+  }
+
+  function nextPage() {
+    if (currentPage < images.length - 1) {
+      currentPage++;
+      showPage(currentPage);
     }
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 0.5em;
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
     }
+  }
 
-    #flipbook-container {
-      max-width: 100%;
-      width: 100%;
-      max-width: 600px;
-      position: relative;
-    }
-
-    #comicImage {
-      width: 100%;
-      height: auto;
-      border: 2px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      display: block;
-      margin: 0 auto;
-    }
-
-    .nav-buttons {
-      margin-top: 1em;
-      text-align: center;
-    }
-
-    button {
-      background-color: #9f5b7c;
-      color: white;
-      border: none;
-      padding: 0.5em 1.5em;
-      margin: 0 1em;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #7c4561;
-    }
-
-    .back-link {
-      margin-top: 2em;
-      text-align: center;
-    }
-
-    .back-link a {
-      text-decoration: none;
-      color: #666;
-      font-size: 0.95em;
-    }
-
-    @media (max-width: 768px) {
-      button {
-        padding: 0.5em 1em;
-        font-size: 0.9em;
-      }
-    }
-  </style>
-</head>
-<body>
-  <h1>Sian 情思漫畫｜翻頁瀏覽</h1>
-
-  <div id="flipbook-container">
-    <img id="comicImage" src="images/01.jpg" alt="Comic Page" loading="lazy" />
-  </div>
-
-  <div class="nav-buttons">
-    <button onclick="prevPage()">← 上一頁</button>
-    <button onclick="nextPage()">下一頁 →</button>
-  </div>
-
-  <div class="back-link">
-    <a href="index.html">🔙 返回主頁</a>
-  </div>
-
-  <script>
-    const totalPages = 10; // 📝 你圖總數，例如有10張圖就寫10
-    let currentPage = 1;
-
-    function showPage(index) {
-      const filename = index.toString().padStart(2, "0") + ".jpg";
-      document.getElementById("comicImage").src = "images/" + filename;
-      currentPage = index;
-    }
-
-    function nextPage() {
-      if (currentPage < totalPages) {
-        showPage(currentPage + 1);
-      }
-    }
-
-    function prevPage() {
-      if (currentPage > 1) {
-        showPage(currentPage - 1);
-      }
-    }
-  </script>
-</body>
-</html>
+  window.onload = function () {
+    showPage(currentPage);
+  };
+</script>
