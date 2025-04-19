@@ -3,99 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sian 的漫畫</title>
+  <title>Sian 漫畫記錄 Asperger's 的日常</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Turn.js -->
   <script src="https://cdn.jsdelivr.net/npm/turn.js@4.1.0/lib/turn.min.js"></script>
+
   <style>
-    /* 這是你現有的 CSS 代碼 */
-    
-    /* 這裡是翻書效果的 CSS */
-    .book-container {
+    body {
+      background-color: #fdf6f0;
+      font-family: "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #444;
+      margin-top: 20px;
+    }
+
+    .flipbook {
+      width: 90%;
+      max-width: 800px;
+      height: 600px;
+      margin: 30px auto;
+    }
+
+    .flipbook div {
       width: 100%;
-      height: 400px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .book {
-      width: 80%;
       height: 100%;
-      margin: 0 auto;
-      position: relative;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transform-style: preserve-3d;
-      transform: perspective(1500px);
-      transition: transform 1s ease;
     }
 
-    .page {
-      width: 50%;
-      height: 100%;
-      position: absolute;
-      background-color: #fff;
-      border-radius: 5px;
-      box-sizing: border-box;
-      overflow: hidden;
-      transition: transform 0.5s;
-    }
-
-    .page img {
+    .flipbook img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .book-container:hover .book {
-      transform: rotateY(-180deg);
-    }
-
-    .book-container:hover .book .page {
-      transform: rotateY(-180deg);
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #999;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <!-- 這是你的頁首部分，包含標題和導航 -->
-    <h1>Sian 的漫畫世界</h1>
-  </header>
+  <h1>Sian 漫畫記錄 Asperger's 的日常</h1>
 
-  <section id="about-me">
-    <!-- 關於我區域 -->
-    <h2>關於我</h2>
-    <p>這是關於我內容的描述，介紹我的背景和我的漫畫。</p>
-  </section>
-
-  <main>
-    <div class="book-container">
-      <div class="book">
-        <div class="page">
-          <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20C.jpg" alt="中文版 Part 1">
-        </div>
-        <div class="page">
-          <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20E.jpg" alt="English Version Part 1">
-        </div>
-        <div class="page">
-          <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20C2.jpg" alt="中文版 Part 2">
-        </div>
-        <div class="page">
-          <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20CE.jpg" alt="English Version Part 2">
-        </div>
-      </div>
-    </div>
-  </main>
+  <div class="flipbook">
+    <!-- 替換以下圖片 URL 為你實際圖片 -->
+    <div><img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/main/front%20cover%20C.jpg" alt="中文版 Part 1 封面"></div>
+    <div><img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/main/front%20cover%20C2.jpg" alt="中文版 Part 2 封面"></div>
+    <div><img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/main/front%20cover%20E.jpg" alt="English Part 1 封面"></div>
+    <div><img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/main/front%20cover%20CE.jpg" alt="English Part 2 封面"></div>
+  </div>
 
   <footer>
-    <!-- 這是你的頁尾部分 -->
-    <p>© 2025 Sian</p>
+    © 2025 Sian
   </footer>
 
+  <!-- 啟用翻書效果 -->
   <script>
-    // 啟動 Turn.js 翻書效果
-    $(document).ready(function() {
-      $(".book").turn({
+    $(document).ready(function () {
+      $(".flipbook").turn({
         width: 800,
-        height: 400,
+        height: 600,
         autoCenter: true
       });
     });
