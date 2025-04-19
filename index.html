@@ -4,228 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sian の 情思漫畫</title>
+  <link rel="icon" href="logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #fff8f4;
       color: #333;
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
     }
 
-    nav.sidebar {
-      background-color: #ECFFFF;
-      width: 220px;
-      min-height: 100vh;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      position: fixed;
-      top: 0;
-      left: 0;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-      z-index: 998;
+    header {
+      text-align: center;
+      padding: 30px 15px 10px;
     }
 
-    nav.sidebar.active {
-      transform: translateX(0);
-    }
-
-    nav.sidebar h2 {
-      font-size: 1.2em;
-      margin-bottom: 1em;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3em;
-    }
-
-    nav.sidebar a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: #5a5a5a;
-    }
-
-    nav.sidebar a:hover {
-      color: #c67878;
-    }
-
-    main.main-content {
-      flex-grow: 1;
-      padding: 40px 30px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .logo {
-      display: block;
-      margin: 0 auto 20px;
+    header img.logo {
       width: 120px;
       border-radius: 50%;
+      margin-bottom: 10px;
     }
 
-    h1, h2 {
-      text-align: center;
+    h1 {
+      font-size: 1.8em;
+      margin: 0.2em 0;
     }
 
-    .lang-section {
-      margin-bottom: 2em;
+    h2 {
+      font-size: 1.2em;
+      margin: 0;
+      color: #666;
     }
 
-    ul {
-      padding-left: 1.5em;
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(#fceef2 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.2;
-      z-index: -1;
-    }
-
-    .hamburger {
-      display: none;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 999;
-      background: rgba(255,255,255,0.8);
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-
-      main.main-content {
-        padding: 20px;
-      }
-    }
-
-    /* 封面圖區塊 */
-    .comic-gallery {
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      justify-items: center;
+      margin-top: 30px;
     }
 
-    .comic-card {
-      width: 100%;
-      max-width: 180px;
+    .gallery-item {
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .comic-card img {
-      width: 100%;
       border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .comic-card:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gallery-item p {
+      padding: 10px;
+      margin: 0;
+      font-weight: bold;
+      background-color: #fdf2f2;
+      font-size: 0.95em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #ffeef0;
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4em;
+      }
+      h2 {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 漢堡按鈕 -->
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-  <!-- 側邊欄 -->
-  <nav class="sidebar" id="sidebar">
-    <img src="logo.png" alt="Sian 的 Logo" style="width: 220px; height: 108px;">
-    <h2>選單 Menu</h2>
-    <a href="#" onclick="closeMenu()">🏠 首頁 / Home</a>
-    <a href="#about" onclick="closeMenu()">👩 關於我 / About Me</a>
-    <a href="#works" onclick="closeMenu()">🎨 漫畫作品 / Comics</a>
-  </nav>
-
-  <!-- 主要內容 -->
-  <main class="main-content">
-    <img src="sian_logo.png" alt="Sian Logo" class="logo">
-
-    <header>
-      <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
-      <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
-      <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
-    </header>
-
+  <header>
+    <img src="logo.png" alt="Sian Logo" class="logo">
     <h1>Sian の 情思漫畫</h1>
-    <h2>Sian's Comic Confessions with Asperger's Life</h2>
+    <h2>Comic Confessions from Asperger’s Life</h2>
+  </header>
 
-    <div class="lang-section" id="about">
-      <h2>關於我｜About Me</h2>
-      <p>這是我從生活點滴記下的內心世界。</p>
-      <p>我是 Sian，是成人確診有亞斯伯格症的創作者。</p>
-      <p>我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。</p>
-      <p>如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。</p>
-
-      <p>These comics reflect the world I see from my inner lens.<br>
-      I’m Sian, an adult diagnosed with Asperger's Syndrome.<br>
-      I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
-    </div>
-
-    <div class="lang-section" id="works">
-      <h2>漫畫作品｜Comic Works</h2>
-      <div class="comic-gallery">
-        <div class="comic-card">
-          <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">
-            <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20C.jpg" alt="中文版 Part 1">
-            <p>中文版 Part 1</p>
-          </a>
-        </div>
-        <div class="comic-card">
-          <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">
-            <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20E.jpg" alt="English Version Part 1">
-            <p>English Version Part 1</p>
-          </a>
-        </div>
-        <div class="comic-card">
-          <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">
-            <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20C2.jpg" alt="中文版 Part 2">
-            <p>中文版 Part 2</p>
-          </a>
-        </div>
-        <div class="comic-card">
-          <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">
-            <img src="https://raw.githubusercontent.com/Sian3343/sian-comic-site/refs/heads/main/front%20cover%20CE.jpg" alt="English Version Part 2">
-            <p>English Version Part 2</p>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <p style="text-align: center;">感謝你的來訪，願你在這裡找到一點溫柔的理解。<br>
-    Thank you for visiting. May you find a little gentle understanding here.</p>
+  <main>
+    <section class="gallery">
+      <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" class="gallery-item" target="_blank">
+        <img src="front cover C.jpg" alt="中文版 Part 1">
+        <p>中文版 Part 1</p>
+      </a>
+      <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" class="gallery-item" target="_blank">
+        <img src="front cover E.jpg" alt="English Version Part 1">
+        <p>English Version Part 1</p>
+      </a>
+      <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" class="gallery-item" target="_blank">
+        <img src="front cover C2.jpg" alt="中文版 Part 2">
+        <p>中文版 Part 2</p>
+      </a>
+      <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" class="gallery-item" target="_blank">
+        <img src="front cover CE.jpg" alt="English Version Part 2">
+        <p>English Version Part 2</p>
+      </a>
+    </section>
   </main>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-
-    function closeMenu() {
-      document.getElementById("sidebar").classList.remove("active");
-    }
-  </script>
+  <footer>
+    © 2025 Sian. 漫畫記錄 Asperger's 的日常
+  </footer>
 </body>
 </html>
