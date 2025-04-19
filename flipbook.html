@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sian 的漫畫翻書版</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 20px;
+      text-align: center;
+      color: #444;
+    }
+
+    .flipbook-container {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      height: auto;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      height: auto;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .page.active {
+      display: block;
+    }
+.page {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.page.flip {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 20px;
+    }
+
+    .controls button {
+      background-color: #ffd8df;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #fca5b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>📖 中文版 Part 1：漫畫翻書版</h1>
+  <div class="flipbook-container">
+    <img src="https://scontent-lhr6-1.xx.fbcdn.net/v/t1.6435-9/42990425_1511257575642344_1758140193988149248_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cf85f3&_nc_ohc=CLgf4IyzBxwQ7kNvwEUBm1T&_nc_oc=AdnVitDOeVgj3uk5_M6lOH3wYAdBZlTGkjQodiAZn96qPvoYyJPPO7hQU1NrldV0N-PZZLcIiFWPVWCwPxvk-qCI&_nc_zt=23&_nc_ht=scontent-lhr6-1.xx&_nc_gid=Fkz5Uki_QixVcHLvYDrXYA&oh=00_AfFyTT6dMsz41o-CsbRgUTvvD7ZmeR7-RcZ5scmw0GeYpg&oe=682B245C" class="page active" alt="page 1">
+    <img src="https://scontent-lhr8-1.xx.fbcdn.net/v/t1.6435-9/43115261_1511257628975672_2319585860883841024_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=cf85f3&_nc_ohc=a2_95yo4VtEQ7kNvwGZphPO&_nc_oc=Adl5Rt63Q03lpw8OJeoeCPNFZUyQ7d6Z2Rz8IM9VJoo1o4uK1R5hBPCU8sZLOpIVI_xpE3CVaQMTeS9bGNN8FnKH&_nc_zt=23&_nc_ht=scontent-lhr8-1.xx&_nc_gid=MFoP3TmnJXkX2Jd83_kGVg&oh=00_AfG-EFcUY-CedSnbdOi5vilA5Gp-SAY_x_M0_AHtoYNnJw&oe=682B2BA0" class="page" alt="page 2">
+  </div>
+  <div class="controls">
+    <button onclick="prevPage()">← 上一頁</button>
+    <button onclick="nextPage()">下一頁 →</button>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle('active', i === index);
+      });
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+  </script>
+</body>
+</html>
