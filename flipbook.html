@@ -101,40 +101,40 @@
     <a href="index.html">🔙 返回主頁</a>
   </div>
 
-  <script>
-    const totalPages = 158;
-    const images = [];
+ <script>
+  const totalPages = 158;
+  const images = [];
 
-    for (let i = 1; i <= totalPages; i++) {
-      const num = i.toString().padStart(3, '0');
-      images.push(`images/${num}.jpg`);
-    }
+  for (let i = 1; i <= totalPages; i++) {
+    const num = i.toString().padStart(2, '0'); // 由 2 位數組成 01, 02, 03...
+    images.push(`images/${num}.jpg`);
+  }
 
-    let currentPage = 0;
+  let currentPage = 0;
 
-    function showPage(index) {
-      const imgElement = document.getElementById('comicImage');
-      imgElement.src = images[index];
-      document.getElementById('page-number').textContent = `第 ${index + 1} 頁 / 共 ${images.length} 頁`;
-    }
+  function showPage(index) {
+    const imgElement = document.getElementById('comicImage'); // 改番正確 ID
+    imgElement.src = images[index];
+  }
 
-    function nextPage() {
-      if (currentPage < images.length - 1) {
-        currentPage++;
-        showPage(currentPage);
-      }
-    }
-
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        showPage(currentPage);
-      }
-    }
-
-    window.onload = function () {
+  function nextPage() {
+    if (currentPage < images.length - 1) {
+      currentPage++;
       showPage(currentPage);
-    };
-  </script>
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  }
+
+  window.onload = function () {
+    showPage(currentPage);
+  };
+</script>
+
 </body>
 </html>
