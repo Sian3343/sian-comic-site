@@ -1,103 +1,125 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sian 的漫畫翻書版</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sian 的漫畫 Flipbook</title>
   <style>
     body {
       margin: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      background-color: #fdf6f0;
+      font-family: "Noto Sans TC", "Helvetica Neue", sans-serif;
+      background-color: #fcefee;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
     }
 
-    h1 {
-      margin-top: 20px;
+    header {
+      width: 100%;
+      background-color: #9f5b7c;
+      color: white;
       text-align: center;
-      color: #444;
+      padding: 1em;
     }
 
     .flipbook-container {
-      position: relative;
-      width: 90%;
-      max-width: 600px;
-      height: auto;
-      margin: 20px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .page {
-      display: none;
-      width: 100%;
-      height: auto;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    .controls {
       display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 600px;
-      padding: 10px 20px;
+      flex-direction: column;
+      align-items: center;
+      padding: 2em;
     }
 
-    .controls button {
-      background-color: #ffd8df;
+    .comic-page {
+      max-width: 90vw;
+      max-height: 80vh;
+      border: 6px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .buttons {
+      margin-top: 1em;
+    }
+
+    button {
+      background-color: #9f5b7c;
+      color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
+      padding: 0.6em 1.2em;
+      margin: 0 1em;
+      border-radius: 6px;
+      font-size: 1em;
       cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
 
-    .controls button:hover {
-      background-color: #fca5b3;
+    button:hover {
+      background-color: #7c3c5a;
+    }
+
+    .back-link {
+      margin-top: 2em;
+    }
+
+    .back-link a {
+      color: #9f5b7c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      button {
+        padding: 0.5em 1em;
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>📖 中文版 Part 1：漫畫翻書版</h1>
+  <header>
+    <h1>Sian の 情思漫畫 Flipbook</h1>
+    <p>📖 左右翻頁睇漫畫～</p>
+  </header>
+
   <div class="flipbook-container">
-    <img src="images/01.jpg" class="page active" alt="page 1">
-    <img src="images/02.jpg" class="page" alt="page 2">
-    <img src="images/03.jpg" class="page" alt="page 3">
-  </div>
-  <div class="controls">
-    <button onclick="prevPage()">← 上一頁</button>
-    <button onclick="nextPage()">下一頁 →</button>
+    <img id="comicImage" src="images/01.jpg" alt="Comic Page" class="comic-page">
+    <div class="buttons">
+      <button onclick="prevPage()">上一頁</button>
+      <button onclick="nextPage()">下一頁</button>
+    </div>
+
+    <div class="back-link">
+      <a href="index.html">← 返回主頁</a>
+    </div>
   </div>
 
   <script>
-    const pages = document.querySelectorAll('.page');
+    const images = [
+      "images/01.jpg",
+      "images/02.jpg",
+      "images/03.jpg",
+      "images/04.jpg"
+    ];
     let currentPage = 0;
 
     function showPage(index) {
-      pages.forEach((page, i) => {
-        page.classList.toggle('active', i === index);
-      });
-    }
-
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        showPage(currentPage);
+      const img = document.getElementById("comicImage");
+      if (index >= 0 && index < images.length) {
+        img.src = images[index];
+        currentPage = index;
       }
     }
 
     function nextPage() {
-      if (currentPage < pages.length - 1) {
-        currentPage++;
-        showPage(currentPage);
+      if (currentPage < images.length - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
       }
     }
   </script>
