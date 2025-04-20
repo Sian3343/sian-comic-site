@@ -22,6 +22,14 @@
       color: #444;
     }
 
+    .part-selector {
+      margin: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .flipbook-container {
       position: relative;
       width: 90%;
@@ -52,7 +60,8 @@
       padding: 10px 20px;
     }
 
-    .controls button {
+    .controls button,
+    .part-selector button {
       background-color: #ffd8df;
       border: none;
       padding: 10px 15px;
@@ -62,40 +71,20 @@
       transition: background 0.3s ease;
     }
 
-    .controls button:hover {
+    .controls button:hover,
+    .part-selector button:hover {
       background-color: #fca5b3;
-    }
-
-    .lang-switcher {
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .lang-switcher button {
-      background-color: #ffe8ec;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .lang-switcher button:hover {
-      background-color: #fbb6c2;
     }
   </style>
 </head>
 <body>
   <h1>📖 Sian 的漫畫翻書版</h1>
 
-  <div class="lang-switcher">
-    <button onclick="switchBook('images')">中文版 Part 1</button>
-    <button onclick="switchBook('images2')">中文版 Part 2</button>
-    <button onclick="switchBook('images-en')">English Part 1</button>
-    <button onclick="switchBook('images-en2')">English Part 2</button>
+  <div class="part-selector">
+    <button onclick="switchPart('images')">中文版 Part 1</button>
+    <button onclick="switchPart('images2')">中文版 Part 2</button>
+    <button onclick="switchPart('images-en')">English Part 1</button>
+    <button onclick="switchPart('images-en2')">English Part 2</button>
   </div>
 
   <div class="flipbook-container" id="flipbook"></div>
@@ -111,36 +100,27 @@
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
-    let currentFolder = "images";
 
-    // 每個資料夾的頁數
-    const pageCounts = {
-      "images": 158,
-      "images-en": 158,
-      "images2": 90,
-      "images-en2": 90
-    };
-
-    function padNumber(num) {
-      return num.toString().padStart(2, '0');
-    }
-
-    function loadPages(folder) {
+    async function loadPages(folder) {
       currentPage = 0;
       flipbook.innerHTML = "";
 
-      const totalPages = pageCounts[folder] || 0;
+      try {
+        const response = await fetch(`${folder}/manifest.json`);
+        const imageList = await response.json();
 
-      for (let i = 1; i <= totalPages; i++) {
-        const filename = padNumber(i) + '.jpg';
-        const img = document.createElement("img");
-        img.src = `${folder}/${filename}`;
-        img.alt = `page ${i}`;
-        img.className = "page" + (i === 1 ? " active" : "");
-        flipbook.appendChild(img);
+        imageList.forEach((file, index) => {
+          const img = document.createElement("img");
+          img.src = `${folder}/${file}`;
+          img.alt = `page ${index + 1}`;
+          img.className = "page" + (index === 0 ? " active" : "");
+          flipbook.appendChild(img);
+        });
+
+        pages = document.querySelectorAll(".page");
+      } catch (error) {
+        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
       }
-
-      pages = document.querySelectorAll(".page");
     }
 
     function showPage(index) {
@@ -173,13 +153,12 @@
       showPage(currentPage);
     }
 
-    function switchBook(folder) {
-      currentFolder = folder;
+    function switchPart(folder) {
       loadPages(folder);
     }
 
     // 預設載入中文版 Part 1
-    loadPages(currentFolder);
+    loadPages('images');
   </script>
 </body>
 </html>
