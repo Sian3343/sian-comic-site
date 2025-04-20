@@ -3,73 +3,217 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sian 情思漫畫</title>
+  <title>Sian 漫畫記錄 Asperger's の日常</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      display: flex;
-      height: 100vh;
+      font-family: "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
+      min-height: 100vh;
     }
 
-    .sidebar {
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 999;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    nav.sidebar {
+      background-color: #ECFFFF;
       width: 220px;
-      background-color: #f8f8f8;
-      border-right: 1px solid #ddd;
-      padding: 1.5em 1em;
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 998;
     }
 
-    .sidebar img {
+    nav.sidebar h2 {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
+    }
+
+    nav.sidebar a {
       display: block;
-      width: 100px;
-      margin: 0 auto 1em;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #5a5a5a;
+    }
+
+    nav.sidebar a:hover {
+      color: #c67878;
+    }
+
+    main.main-content {
+      margin-left: 220px;
+      padding: 40px 30px;
+      max-width: 100%;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 120px;
       border-radius: 50%;
     }
 
-    .sidebar h1 {
-      font-size: 1.2em;
+    h1, h2 {
       text-align: center;
-      margin-bottom: 1em;
     }
 
-    .sidebar a {
-      display: block;
-      margin: 0.7em 0;
-      text-decoration: none;
-      color: #444;
-      transition: 0.3s;
+    .comic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      margin-bottom: 2em;
     }
 
-    .sidebar a:hover {
-      color: #9f5b7c;
+    .comic-grid img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
     }
 
-    .main {
-      flex: 1;
-      background: #fff;
-      overflow: hidden;
+    .comic-grid img:hover {
+      transform: scale(1.05);
     }
 
-    iframe {
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      border: none;
+      background-image: radial-gradient(#fceef2 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    /* 響應式手機版 */
+    @media (max-width: 768px) {
+      nav.sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      nav.sidebar.active {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      main.main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <img src="logo.png" alt="Sian Logo" />
-    <h1>Sian の 情思漫畫</h1>
-    <a href="welcome.html" target="contentFrame">歡迎｜Welcome</a>
-    <a href="flipbook.html" target="contentFrame">Part 1 漫畫翻頁</a>
-    <a href="flipbook2.html" target="contentFrame">Part 2 漫畫翻頁</a>
-    <!-- 你可以繼續加更多頁面 -->
-  </div>
+  <!-- 漢堡按鈕 -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <div class="main">
-    <iframe src="welcome.html" name="contentFrame"></iframe>
-  </div>
+  <!-- 側邊欄 -->
+  <nav class="sidebar" id="sidebar">
+    <img src="logo.png" alt="Sian 的 Logo" style="width: 100%;">
+    <h2>選單 Menu</h2>
+    <a href="#" onclick="closeMenu()">🏠 首頁 / Home</a>
+    <a href="#about" onclick="closeMenu()">👩 關於我 / About Me</a>
+    <a href="#works" onclick="closeMenu()">🎨 漫畫作品 / Comics</a>
+    <a href="#flipbook" onclick="closeMenu()">📖 翻書版 / Flipbook</a>
+  </nav>
+
+  <!-- 主內容 -->
+  <main class="main-content">
+    <img src="sian_logo.png" alt="Sian Logo" class="logo">
+    <header style="text-align: center;">
+      <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
+      <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
+      <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
+    </header>
+    <h1>Sian の 情思漫畫</h1>
+    <h2>Sian's Comic Confessions with Asperger's Life</h2>
+
+    <section id="about">
+      <h2>關於我｜About Me</h2>
+      <p>這是我從生活點滴記下的內心世界。<br>
+         我是 Sian，是成人確診有亞斯伯格症的創作者。<br>
+         我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。<br>
+         如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。<br></p>
+      <p>These comics reflect the world I see from my inner lens.<br>
+         I’m Sian, an adult diagnosed with Asperger's Syndrome.<br>
+         I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
+    </section>
+
+    <section id="works">
+      <h2>漫畫作品｜Comic Works</h2>
+      <div class="comic-grid">
+        <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">
+          <img src="front%20cover%20C.jpg" alt="中文版 Part 1">
+        </a>
+        <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">
+          <img src="front%20cover%20E.jpg" alt="English Version Part 1">
+        </a>
+        <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">
+          <img src="front%20cover%20C2.jpg" alt="中文版 Part 2">
+        </a>
+        <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">
+          <img src="front%20cover%20CE.jpg" alt="English Version Part 2">
+        </a>
+      </div>
+    </section>
+
+    <section id="flipbook">
+      <h2>📖 翻書版｜Flipbook Version</h2>
+      <p style="text-align:center;">
+        <a href="flipbook.html">點我進入翻書版漫畫 →</a>
+      </p>
+    </section>
+
+    <footer>© 2025 Sian</footer>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+    }
+  </script>
 </body>
 </html>
