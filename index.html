@@ -3,104 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sian 情思漫畫｜主頁</title>
+  <title>Sian 情思漫畫</title>
   <style>
     body {
       margin: 0;
       font-family: "Noto Sans TC", sans-serif;
+      background: linear-gradient(to bottom right, #f3e8f9, #e5d4ef); /* 紫粉漸層 */
+      background-size: cover;
+      color: #5a2d60;
+      text-align: center;
+      padding: 2em;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      color: #812e76;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto 2em auto;
+      line-height: 1.6;
+    }
+
+    .button-container {
       display: flex;
-      height: 100vh;
-      background: linear-gradient(to right, #f3e6f5, #e0cfe2);
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1em;
     }
 
-    .sidebar {
-      width: 240px;
-      background-color: #ffffffd9;
-      padding: 1.5em 1em;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-    }
-
-    .sidebar h1 {
-      text-align: center;
-      color: #7a3d6e;
-      font-size: 1.3em;
-      margin-bottom: 1.5em;
-    }
-
-    .sidebar img {
-      display: block;
-      margin: 0 auto 1em;
-      width: 100px;
-      border-radius: 50%;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar li {
-      margin: 1em 0;
-      text-align: center;
-    }
-
-    .sidebar a {
+    a.button {
+      background-color: #9f5b7c;
+      color: white;
+      padding: 0.8em 1.8em;
       text-decoration: none;
-      color: #6c3e62;
-      font-weight: bold;
-      transition: 0.3s;
+      font-size: 1em;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
     }
 
-    .sidebar a:hover {
-      color: #9f5b7c;
+    a.button:hover {
+      background-color: #7c4561;
     }
 
-    .content {
-      flex: 1;
-      height: 100vh;
+    footer {
+      margin-top: 3em;
+      font-size: 0.9em;
+      color: #888;
     }
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
       }
-      .sidebar {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        box-shadow: none;
-        background-color: #f9f0f5;
-      }
-      .sidebar h1, .sidebar img {
-        display: none;
-      }
-      .sidebar li {
-        margin: 0.5em;
+      p {
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <img src="logo.png" alt="Sian Logo">
-    <h1>Sian 情思漫畫</h1>
-    <ul>
-      <li><a href="welcome.html" target="mainFrame">歡迎 Welcome</a></li>
-      <li><a href="flipbook.html" target="mainFrame">翻頁漫畫 Flipbook</a></li>
-      <li><a href="part1.html" target="mainFrame">Part 1</a></li>
-      <li><a href="about.html" target="mainFrame">關於我 About</a></li>
-    </ul>
+  <h1>Sian 情思漫畫世界</h1>
+  <p>歡迎你進入我心靈深處的漫畫小天地。<br>每一頁都是情感的記錄，細膩的筆觸，靜靜講述著 Asperger 眼中的世界。</p>
+
+  <div class="button-container">
+    <a href="flipbook.html" class="button">閱讀漫畫 - Part 1</a>
+    <!-- 你之後可以加多個 part -->
   </div>
 
-  <div class="content">
-    <iframe src="welcome.html" name="mainFrame"></iframe>
-  </div>
+  <footer>
+    &copy; 2025 Sian｜感謝你的到訪與欣賞
+  </footer>
 </body>
 </html>
