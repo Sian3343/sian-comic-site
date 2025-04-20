@@ -70,6 +70,21 @@
       margin-top: 10px;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .lang-switcher button {
+      background-color: #ffe8ec;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #fbb6c2;
     }
   </style>
 </head>
@@ -77,8 +92,10 @@
   <h1>📖 Sian 的漫畫翻書版</h1>
 
   <div class="lang-switcher">
-    <button onclick="switchLang('zh')">中文版 part 1</button>
-    <button onclick="switchLang('en')">English part 1</button>
+    <button onclick="switchBook('images')">中文版 Part 1</button>
+    <button onclick="switchBook('images2')">中文版 Part 2</button>
+    <button onclick="switchBook('images-en')">English Part 1</button>
+    <button onclick="switchBook('images-en2')">English Part 2</button>
   </div>
 
   <div class="flipbook-container" id="flipbook"></div>
@@ -94,19 +111,16 @@
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
-    let currentLang = "zh";
+    let currentFolder = "images";
+    const totalPages = 158;
 
     function padNumber(num) {
       return num.toString().padStart(2, '0');
     }
 
-    function loadPages(lang) {
+    function loadPages(folder) {
       currentPage = 0;
       flipbook.innerHTML = "";
-
-      const folder = lang === 'zh' ? 'images' : 'images-en';
-      const totalPages = 158;
-
       for (let i = 1; i <= totalPages; i++) {
         const filename = padNumber(i) + '.jpg';
         const img = document.createElement("img");
@@ -115,7 +129,6 @@
         img.className = "page" + (i === 1 ? " active" : "");
         flipbook.appendChild(img);
       }
-
       pages = document.querySelectorAll(".page");
     }
 
@@ -149,13 +162,13 @@
       showPage(currentPage);
     }
 
-    function switchLang(lang) {
-      currentLang = lang;
-      loadPages(lang);
+    function switchBook(folder) {
+      currentFolder = folder;
+      loadPages(folder);
     }
 
-    // 預設載入中文
-    loadPages(currentLang);
+    // 預設載入中文版 Part 1
+    loadPages(currentFolder);
   </script>
 </body>
 </html>
