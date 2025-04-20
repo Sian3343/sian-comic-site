@@ -4,70 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sian 的漫畫翻書版</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      background-color: #fdf6f0;
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(to bottom right, #fdf4fb, #efe8ff);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
+      padding: 20px;
+      color: #4b306a;
     }
 
     h1 {
       margin-top: 20px;
       text-align: center;
-      color: #444;
+      color: #6d3684;
     }
 
     .flipbook-container {
       position: relative;
       width: 90%;
-      max-width: 600px;
-      height: auto;
+      max-width: 700px;
       margin: 20px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      background: white;
+      overflow: hidden;
     }
 
     .page {
       display: none;
       width: 100%;
       height: auto;
-      transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.6s ease-in-out, transform 0.3s;
     }
 
     .page.active {
       display: block;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .controls {
       display: flex;
       justify-content: space-between;
-      width: 100%;
-      max-width: 600px;
-      padding: 10px 20px;
+      max-width: 700px;
+      width: 90%;
+      margin: 15px 0;
     }
 
-    .controls button {
-      background-color: #ffd8df;
+    .controls button,
+    .lang-switcher button {
+      background-color: #c9a3e4;
       border: none;
       padding: 10px 20px;
       border-radius: 10px;
       cursor: pointer;
       font-size: 16px;
-      transition: background 0.3s ease;
+      color: white;
+      transition: 0.3s ease;
     }
 
-    .controls button:hover {
-      background-color: #fca5b3;
+    .controls button:hover,
+    .lang-switcher button:hover {
+      background-color: #a75bb8;
     }
 
     .lang-switcher {
       margin-top: 10px;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .loading {
+      font-size: 1em;
+      color: #888;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .controls {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -75,9 +105,11 @@
   <h1>📖 Sian 的漫畫翻書版</h1>
 
   <div class="lang-switcher">
-    <button onclick="switchLang('zh')">中文版 part 1</button>
-    <button onclick="switchLang('en')">English part 1</button>
+    <button onclick="switchLang('zh')">中文版 Part 1</button>
+    <button onclick="switchLang('en')">English Part 1</button>
   </div>
+
+  <div class="loading" id="loading">載入中 Loading...</div>
 
   <div class="flipbook-container" id="flipbook"></div>
 
@@ -88,6 +120,7 @@
 
   <script>
     const flipbook = document.getElementById("flipbook");
+    const loading = document.getElementById("loading");
     let currentPage = 0;
     let pages = [];
     let currentLang = "zh";
@@ -95,6 +128,7 @@
     async function loadPages(lang) {
       currentPage = 0;
       flipbook.innerHTML = "";
+      loading.style.display = "block";
 
       try {
         const folder = lang === 'zh' ? 'images' : 'images-en';
@@ -106,12 +140,18 @@
           img.src = `${folder}/${filename}`;
           img.alt = `page ${index + 1}`;
           img.className = "page" + (index === 0 ? " active" : "");
+          img.style.display = "block";
+          img.style.margin = "0 auto";
+          img.style.maxWidth = "100%";
+          img.style.height = "auto";
           flipbook.appendChild(img);
         });
 
         pages = document.querySelectorAll(".page");
+        loading.style.display = "none";
       } catch (error) {
         flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
+        loading.style.display = "none";
       }
     }
 
@@ -140,7 +180,6 @@
       loadPages(lang);
     }
 
-    // 預設載入中文
     loadPages(currentLang);
   </script>
 </body>
