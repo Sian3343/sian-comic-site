@@ -9,7 +9,7 @@
       font-family: "Noto Sans TC", sans-serif;
       margin: 0;
       padding: 2rem;
-      background: linear-gradient(to bottom, #f0f4f8, #e6eaf0);
+      background: linear-gradient(to bottom, #e6ecf0, #fdfdfd);
       color: #333;
     }
     h1 {
@@ -19,15 +19,15 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding-bottom: 3rem;
     }
     .card {
-      background: #ffffffdd;
+      background: #fff;
       border-radius: 1rem;
       overflow: hidden;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
@@ -35,12 +35,12 @@
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      cursor: pointer;
     }
     .card img {
       width: 100%;
       height: auto;
       display: block;
-      cursor: pointer;
     }
     .caption {
       padding: 1rem;
@@ -51,59 +51,85 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+
+    /* Modal viewer */
+    .modal {
       display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9);
     }
-    .lightbox img {
+    .modal-content {
+      margin: auto;
+      display: block;
       max-width: 90%;
       max-height: 90%;
-      border-radius: 1rem;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .close {
+        right: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <h1>🎨 我的心情畫簿</h1>
-  <div class="gallery" id="gallery"></div>
-  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="">
+  <div class="gallery">
+    <!-- 圖片卡片產生區 -->
+    <!-- JavaScript 會自動插入 -->
+  </div>
+
+  <!-- Modal 彈出視窗 -->
+  <div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modal-img">
   </div>
 
   <script>
-    const gallery = document.getElementById("gallery");
-    const totalImages = 71; // 修改此處以擴充圖片數量
-
-    for (let i = 1; i <= totalImages; i++) {
-      const filename = String(i).padStart(2, '0') + '.jpg';
+    const gallery = document.querySelector(".gallery");
+    for (let i = 1; i <= 71; i++) {
+      const num = i.toString().padStart(2, '0');
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <img src="feelings/${filename}" alt="Feeling ${i}" onclick="openLightbox('feelings/${filename}')">
+        <img src="feelings/${num}.jpg" alt="Feeling ${i}" onclick="openModal(this)">
         <div class="caption"></div>
       `;
       gallery.appendChild(card);
     }
 
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-
-    function openLightbox(src) {
-      lightbox.style.display = "flex";
-      lightboxImg.src = src;
+    function openModal(img) {
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modal-img");
+      modal.style.display = "block";
+      modalImg.src = img.src;
     }
 
-    lightbox.addEventListener("click", function() {
-      lightbox.style.display = "none";
-    });
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    // 關閉 modal（點擊背景或 ESC）
+    window.onclick = function(event) {
+      const modal = document.getElementById("modal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+    window.onkeydown = function(e) {
+      if (e.key === "Escape") closeModal();
+    }
   </script>
 </body>
 </html>
