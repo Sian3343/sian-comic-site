@@ -4,99 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sian 的漫畫翻書版</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      background: linear-gradient(to bottom right, #fdf4fb, #efe8ff);
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       min-height: 100vh;
-      padding: 20px;
-      color: #4b306a;
     }
 
     h1 {
       margin-top: 20px;
       text-align: center;
-      color: #6d3684;
+      color: #444;
     }
 
     .flipbook-container {
       position: relative;
       width: 90%;
-      max-width: 700px;
+      max-width: 600px;
+      height: auto;
       margin: 20px auto;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
-      border-radius: 12px;
-      background: white;
-      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
     .page {
       display: none;
       width: 100%;
-      transition: opacity 0.6s ease-in-out, transform 0.3s;
+      height: auto;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .page.active {
       display: block;
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .controls {
       display: flex;
-      justify-content: space-between;
-      max-width: 700px;
-      width: 90%;
-      margin: 15px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 20px;
     }
 
-    .controls button,
-    .lang-switcher button {
-      background-color: #c9a3e4;
+    .controls button {
+      background-color: #ffd8df;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 10px;
       cursor: pointer;
       font-size: 16px;
-      color: white;
-      transition: 0.3s ease;
+      transition: background 0.3s ease;
     }
 
-    .controls button:hover,
-    .lang-switcher button:hover {
-      background-color: #a75bb8;
+    .controls button:hover {
+      background-color: #fca5b3;
     }
 
     .lang-switcher {
       margin-top: 10px;
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .loading {
-      font-size: 1em;
-      color: #888;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 480px) {
-      .controls {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-      }
     }
   </style>
 </head>
@@ -104,69 +77,51 @@
   <h1>📖 Sian 的漫畫翻書版</h1>
 
   <div class="lang-switcher">
-    <button onclick="switchLang('zh')">中文版 Part 1</button>
-    <button onclick="switchLang('en')">English Part 1</button>
+    <button onclick="switchLang('zh')">中文版 part 1</button>
+    <button onclick="switchLang('en')">English part 1</button>
   </div>
-
-  <div class="loading" id="loading">載入中 Loading...</div>
 
   <div class="flipbook-container" id="flipbook"></div>
 
   <div class="controls">
+    <button onclick="firstPage()">⏮ 回到最前</button>
     <button onclick="prevPage()">← 上一頁</button>
     <button onclick="nextPage()">下一頁 →</button>
+    <button onclick="lastPage()">⏭ 跳到最後</button>
   </div>
 
   <script>
     const flipbook = document.getElementById("flipbook");
-    const loading = document.getElementById("loading");
     let currentPage = 0;
     let pages = [];
     let currentLang = "zh";
 
-    async function loadPages(lang) {
+    function padNumber(num) {
+      return num.toString().padStart(2, '0');
+    }
+
+    function loadPages(lang) {
       currentPage = 0;
       flipbook.innerHTML = "";
-      loading.style.display = "block";
 
-      try {
-        const folder = lang === 'zh' ? 'images' : 'images-en';
-        const response = await fetch(`${folder}/manifest.json`);
-        const imageList = await response.json();
+      const folder = lang === 'zh' ? 'images' : 'images-en';
+      const totalPages = 158;
 
-        const loadPromises = imageList.map((filename, index) => {
-          return new Promise((resolve) => {
-            const img = document.createElement("img");
-            img.src = `${folder}/${filename}`;
-            img.alt = `page ${index + 1}`;
-            img.className = "page";
-            img.style.display = "none";
-            img.style.margin = "0 auto";
-            img.style.maxWidth = "100%";
-            img.onload = () => resolve(img);
-            flipbook.appendChild(img);
-          });
-        });
-
-        const loadedImages = await Promise.all(loadPromises);
-        pages = loadedImages;
-        pages[0].classList.add("active");
-        pages[0].style.display = "block";
-        loading.style.display = "none";
-      } catch (error) {
-        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
-        loading.style.display = "none";
+      for (let i = 1; i <= totalPages; i++) {
+        const filename = padNumber(i) + '.jpg';
+        const img = document.createElement("img");
+        img.src = `${folder}/${filename}`;
+        img.alt = `page ${i}`;
+        img.className = "page" + (i === 1 ? " active" : "");
+        flipbook.appendChild(img);
       }
+
+      pages = document.querySelectorAll(".page");
     }
 
     function showPage(index) {
       pages.forEach((page, i) => {
-        page.classList.remove("active");
-        page.style.display = "none";
-        if (i === index) {
-          page.classList.add("active");
-          page.style.display = "block";
-        }
+        page.classList.toggle("active", i === index);
       });
     }
 
@@ -184,12 +139,22 @@
       }
     }
 
+    function firstPage() {
+      currentPage = 0;
+      showPage(currentPage);
+    }
+
+    function lastPage() {
+      currentPage = pages.length - 1;
+      showPage(currentPage);
+    }
+
     function switchLang(lang) {
       currentLang = lang;
       loadPages(lang);
     }
 
-    // 預設載入
+    // 預設載入中文
     loadPages(currentLang);
   </script>
 </body>
