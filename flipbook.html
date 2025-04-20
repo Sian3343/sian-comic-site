@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sian 的漫畫翻書版</title>
   <style>
     body {
@@ -76,7 +76,7 @@
 
   <div class="lang-switcher">
     <button onclick="switchLang('zh')">中文版 part 1</button>
-    <button onclick="switchLang('en')">English Part 1</button>
+    <button onclick="switchLang('en')">English part 1</button>
   </div>
 
   <div class="flipbook-container" id="flipbook"></div>
@@ -89,29 +89,29 @@
   <script>
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
-    let currentLang = "zh";
     let pages = [];
+    let currentLang = "zh";
 
-    const imageSets = {
-      zh: ["images/01.jpg", "images/02.jpg", "images/03.jpg", "images/04.jpg", "images/05.jpg",],
-      en: ["images-en/01.jpg",
-    "images-en/02.jpg",
-    "images-en/03.jpg",
-    "images-en/04.jpg",
-    "images-en/05.jpg"]
-    };
-
-    function loadPages(lang) {
-      flipbook.innerHTML = "";
-      imageSets[lang].forEach((src, index) => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = `page ${index+1}`;
-        img.className = "page" + (index === 0 ? " active" : "");
-        flipbook.appendChild(img);
-      });
-      pages = document.querySelectorAll(".page");
+    async function loadPages(lang) {
       currentPage = 0;
+      flipbook.innerHTML = "";
+
+      try {
+        const response = await fetch(`${lang === 'zh' ? 'images' : 'images-en'}/manifest.json`);
+        const imageList = await response.json();
+
+        imageList.forEach((file, index) => {
+          const img = document.createElement("img");
+          img.src = `${lang === 'zh' ? 'images' : 'images-en'}/${file}`;
+          img.alt = `page ${index + 1}`;
+          img.className = "page" + (index === 0 ? " active" : "");
+          flipbook.appendChild(img);
+        });
+
+        pages = document.querySelectorAll(".page");
+      } catch (error) {
+        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
+      }
     }
 
     function showPage(index) {
@@ -140,7 +140,7 @@
     }
 
     // Initial load
-    loadPages("zh");
+    loadPages(currentLang);
   </script>
 </body>
 </html>
