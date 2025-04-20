@@ -97,12 +97,13 @@
       flipbook.innerHTML = "";
 
       try {
-        const response = await fetch(`${lang === 'zh' ? 'images' : 'images-en'}/manifest.json`);
+        const folder = lang === 'zh' ? 'images' : 'images-en';
+        const response = await fetch(`${folder}/manifest.json`);
         const imageList = await response.json();
 
-        imageList.forEach((file, index) => {
+        imageList.forEach((filename, index) => {
           const img = document.createElement("img");
-          img.src = `${lang === 'zh' ? 'images' : 'images-en'}/${file}`;
+          img.src = `${folder}/${filename}`;
           img.alt = `page ${index + 1}`;
           img.className = "page" + (index === 0 ? " active" : "");
           flipbook.appendChild(img);
@@ -139,7 +140,7 @@
       loadPages(lang);
     }
 
-    // Initial load
+    // 預設載入中文
     loadPages(currentLang);
   </script>
 </body>
