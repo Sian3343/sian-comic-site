@@ -9,7 +9,7 @@
       font-family: "Noto Sans TC", sans-serif;
       margin: 0;
       padding: 2rem;
-      background: #fefefe;
+      background: linear-gradient(to bottom, #f0f4f8, #e6eaf0);
       color: #333;
     }
     h1 {
@@ -24,10 +24,10 @@
       padding-bottom: 3rem;
     }
     .card {
-      background: #fff;
+      background: #ffffffdd;
       border-radius: 1rem;
       overflow: hidden;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
@@ -40,6 +40,7 @@
       width: 100%;
       height: auto;
       display: block;
+      cursor: pointer;
     }
     .caption {
       padding: 1rem;
@@ -50,23 +51,59 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 1rem;
+    }
   </style>
 </head>
 <body>
   <h1>🎨 我的心情畫簿</h1>
-  <div class="gallery">
-    <div class="card">
-      <img src="feelings/01.jpg" alt="Feeling 1">
-      <div class="caption"></div>
-    </div>
-    <div class="card">
-      <img src="feelings/02.jpg" alt="Feeling 2">
-      <div class="caption"></div>
-    </div>
-    <div class="card">
-      <img src="feelings/03.jpg" alt="Feeling 3">
-      <div class="caption"></div>
-    </div>
+  <div class="gallery" id="gallery"></div>
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="">
   </div>
+
+  <script>
+    const gallery = document.getElementById("gallery");
+    const totalImages = 71; // 修改此處以擴充圖片數量
+
+    for (let i = 1; i <= totalImages; i++) {
+      const filename = String(i).padStart(2, '0') + '.jpg';
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="feelings/${filename}" alt="Feeling ${i}" onclick="openLightbox('feelings/${filename}')">
+        <div class="caption"></div>
+      `;
+      gallery.appendChild(card);
+    }
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    function openLightbox(src) {
+      lightbox.style.display = "flex";
+      lightboxImg.src = src;
+    }
+
+    lightbox.addEventListener("click", function() {
+      lightbox.style.display = "none";
+    });
+  </script>
 </body>
 </html>
