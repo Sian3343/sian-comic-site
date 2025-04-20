@@ -39,7 +39,6 @@
     .page {
       display: none;
       width: 100%;
-      height: auto;
       transition: opacity 0.6s ease-in-out, transform 0.3s;
     }
 
@@ -135,19 +134,24 @@
         const response = await fetch(`${folder}/manifest.json`);
         const imageList = await response.json();
 
-        imageList.forEach((filename, index) => {
-          const img = document.createElement("img");
-          img.src = `${folder}/${filename}`;
-          img.alt = `page ${index + 1}`;
-          img.className = "page" + (index === 0 ? " active" : "");
-          img.style.display = "block";
-          img.style.margin = "0 auto";
-          img.style.maxWidth = "100%";
-          img.style.height = "auto";
-          flipbook.appendChild(img);
+        const loadPromises = imageList.map((filename, index) => {
+          return new Promise((resolve) => {
+            const img = document.createElement("img");
+            img.src = `${folder}/${filename}`;
+            img.alt = `page ${index + 1}`;
+            img.className = "page";
+            img.style.display = "none";
+            img.style.margin = "0 auto";
+            img.style.maxWidth = "100%";
+            img.onload = () => resolve(img);
+            flipbook.appendChild(img);
+          });
         });
 
-        pages = document.querySelectorAll(".page");
+        const loadedImages = await Promise.all(loadPromises);
+        pages = loadedImages;
+        pages[0].classList.add("active");
+        pages[0].style.display = "block";
         loading.style.display = "none";
       } catch (error) {
         flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
@@ -157,7 +161,12 @@
 
     function showPage(index) {
       pages.forEach((page, i) => {
-        page.classList.toggle("active", i === index);
+        page.classList.remove("active");
+        page.style.display = "none";
+        if (i === index) {
+          page.classList.add("active");
+          page.style.display = "block";
+        }
       });
     }
 
@@ -180,6 +189,7 @@
       loadPages(lang);
     }
 
+    // 預設載入
     loadPages(currentLang);
   </script>
 </body>
