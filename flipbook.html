@@ -1,140 +1,142 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sian 情思漫畫｜Flipbook</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sian 的漫畫翻書版</title>
   <style>
     body {
       margin: 0;
       font-family: "Noto Sans TC", sans-serif;
-      background: #f2f2f2;
+      background-color: #fdf6f0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1em;
+      min-height: 100vh;
     }
 
     h1 {
+      margin-top: 20px;
       text-align: center;
-      margin-bottom: 0.5em;
+      color: #444;
     }
 
-    #flipbook-container {
-      max-width: 100%;
-      width: 100%;
-      max-width: 600px;
+    .flipbook-container {
       position: relative;
+      width: 90%;
+      max-width: 600px;
+      height: auto;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    #comicImage {
+    .page {
+      display: none;
       width: 100%;
       height: auto;
-      border: 2px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .page.active {
       display: block;
-      margin: 0 auto;
     }
 
-    .page-number {
-      margin-top: 0.5em;
-      font-size: 0.9em;
-      color: #555;
-      text-align: center;
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 20px;
     }
 
-    .nav-buttons {
-      margin-top: 1em;
-      text-align: center;
-    }
-
-    button {
-      background-color: #9f5b7c;
-      color: white;
+    .controls button {
+      background-color: #ffd8df;
       border: none;
-      padding: 0.5em 1.5em;
-      margin: 0 1em;
-      font-size: 1em;
+      padding: 10px 20px;
+      border-radius: 10px;
       cursor: pointer;
-      border-radius: 6px;
-      transition: background-color 0.3s;
+      font-size: 16px;
+      transition: background 0.3s ease;
     }
 
-    button:hover {
-      background-color: #7c4561;
+    .controls button:hover {
+      background-color: #fca5b3;
     }
 
-    .back-link {
-      margin-top: 2em;
-      text-align: center;
-    }
-
-    .back-link a {
-      text-decoration: none;
-      color: #666;
-      font-size: 0.95em;
-    }
-
-    @media (max-width: 768px) {
-      button {
-        padding: 0.5em 1em;
-        font-size: 0.9em;
-      }
+    .lang-switcher {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Sian 情思漫畫｜翻頁瀏覽</h1>
+  <h1>📖 Sian 的漫畫翻書版</h1>
 
-  <div id="flipbook-container">
-    <img id="comicImage" src="images/01.jpg" alt="Comic Page" loading="lazy" />
-    <div class="page-number" id="page-number">第 1 頁 / 共 158 頁</div>
+  <div class="lang-switcher">
+    <button onclick="switchLang('zh')">中文版</button>
+    <button onclick="switchLang('en')">English</button>
   </div>
 
-  <div class="nav-buttons">
+  <div class="flipbook-container" id="flipbook"></div>
+
+  <div class="controls">
     <button onclick="prevPage()">← 上一頁</button>
     <button onclick="nextPage()">下一頁 →</button>
   </div>
 
-  <div class="back-link">
-    <a href="index.html">🔙 返回主頁</a>
-  </div>
+  <script>
+    const flipbook = document.getElementById("flipbook");
+    let currentPage = 0;
+    let currentLang = "zh";
+    let pages = [];
 
- <script>
-  const totalPages = 158;
-  const images = [];
+    const imageSets = {
+      zh: ["images/01.jpg", "images/02.jpg", "images/03.jpg"],
+      en: ["images-en/01.jpg", "images-en/02.jpg", "images-en/03.jpg"]
+    };
 
-  for (let i = 1; i <= totalPages; i++) {
-    const num = i.toString().padStart(2, '0'); // 由 2 位數組成 01, 02, 03...
-    images.push(`images/${num}.jpg`);
-  }
-
-  let currentPage = 0;
-
-  function showPage(index) {
-    const imgElement = document.getElementById('comicImage'); // 改番正確 ID
-    imgElement.src = images[index];
-  }
-
-  function nextPage() {
-    if (currentPage < images.length - 1) {
-      currentPage++;
-      showPage(currentPage);
+    function loadPages(lang) {
+      flipbook.innerHTML = "";
+      imageSets[lang].forEach((src, index) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `page ${index+1}`;
+        img.className = "page" + (index === 0 ? " active" : "");
+        flipbook.appendChild(img);
+      });
+      pages = document.querySelectorAll(".page");
+      currentPage = 0;
     }
-  }
 
-  function prevPage() {
-    if (currentPage > 0) {
-      currentPage--;
-      showPage(currentPage);
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle("active", i === index);
+      });
     }
-  }
 
-  window.onload = function () {
-    showPage(currentPage);
-  };
-</script>
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
 
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function switchLang(lang) {
+      currentLang = lang;
+      loadPages(lang);
+    }
+
+    // Initial load
+    loadPages("zh");
+  </script>
 </body>
 </html>
