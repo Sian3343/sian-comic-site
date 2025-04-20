@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心情畫簿 | Sian's Feelings</title>
+  <style>
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #fefefe;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding-bottom: 3rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .caption {
+      padding: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🖼️ 我的心情畫簿</h1>
+  <div class="gallery">
+    <div class="card">
+      <img src="feelings/01" alt="Feeling 1">
+      <div class="caption"></div>
+    </div>
+    <div class="card">
+      <img src="feelings/02" alt="Feeling 2">
+      <div class="caption"></div>
+    </div>
+    <div class="card">
+      <img src="feelinsg/03" alt="Feeling 3">
+      <div class="caption"></div>
+    </div>
+  </div>
+</body>
+</html>
