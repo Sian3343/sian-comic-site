@@ -112,7 +112,14 @@
     let currentPage = 0;
     let pages = [];
     let currentFolder = "images";
-    const totalPages = 158;
+
+    // 每個資料夾的頁數
+    const pageCounts = {
+      "images": 158,
+      "images-en": 158,
+      "images2": 90,
+      "images-en2": 90
+    };
 
     function padNumber(num) {
       return num.toString().padStart(2, '0');
@@ -121,6 +128,9 @@
     function loadPages(folder) {
       currentPage = 0;
       flipbook.innerHTML = "";
+
+      const totalPages = pageCounts[folder] || 0;
+
       for (let i = 1; i <= totalPages; i++) {
         const filename = padNumber(i) + '.jpg';
         const img = document.createElement("img");
@@ -129,6 +139,7 @@
         img.className = "page" + (i === 1 ? " active" : "");
         flipbook.appendChild(img);
       }
+
       pages = document.querySelectorAll(".page");
     }
 
