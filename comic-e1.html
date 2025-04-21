@@ -47,5 +47,17 @@
       <!-- Images from old to new -->
       <!-- For example: -->
       <img src="images-en/01.jpg"
-::contentReference[oaicite:4]{index=4}
+      <img src="images-en/02.jpg" alt="Page 2" />
+      <!-- 繼續加入至最後一頁 -->
+      <img src="images-en/99.jpg" alt="Page 99" />
+    </div>
+  </div>
+  <script>
+    const container = document.getElementById('comicContainer');
+    const images = Array.from(container.children);
+    images.reverse().forEach(img => container.appendChild(img));
+  </script>
+</body>
+</html>
+
  
