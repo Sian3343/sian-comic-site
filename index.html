@@ -2,257 +2,65 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Sian 漫畫記錄 Asperger's 的日常</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中文版 Part 1｜Sian 漫畫</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-  <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: 'Noto Sans TC', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      min-height: 100vh;
+      background-color: #faf4ff;
       color: #4b306a;
-    }
-    nav.sidebar {
-      background-color: #f7f2fb;
-      width: 220px;
-      min-height: 100vh;
       padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 998;
-    }
-    nav.sidebar h2 {
-      font-size: 1.2em;
-      margin-bottom: 1em;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3em;
-    }
-    nav.sidebar a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: #6b4c88;
-      transition: 0.3s;
-    }
-    nav.sidebar a:hover {
-      color: #a75bb8;
-    }
-    .hamburger {
-      display: none;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 999;
-      background: rgba(255,255,255,0.8);
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
-    @media (max-width: 768px) {
-      nav.sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-      }
-      nav.sidebar.active {
-        transform: translateX(0);
-      }
-      .hamburger {
-        display: block;
-      }
-      main.main-content {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px;
-        max-width: 100%;
-      }
-    }
-    main.main-content {
-      flex-grow: 1;
-      padding: 40px 30px;
-      margin-left: 220px;
-      margin-right: 30px;
-      max-width: calc(100% - 250px);
-      animation: fadeIn 1s ease-in;
-      overflow-wrap: break-word;
-    }
-    .logo {
-      display: block;
-      margin: 0 auto 20px;
-      width: 120px;
-      border-radius: 50%;
-    }
-    h1, h2 {
-      text-align: center;
-      color: #6d3684;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #888;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(#e8d0ef 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.2;
-      z-index: -1;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 漫畫卡片區 */
-    .comic-card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-    .comic-card {
-      background: #fff8ff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+    h1 {
       text-align: center;
-      transition: transform 0.3s ease;
-      padding-bottom: 1em;
-    }
-    .comic-card:hover {
-      transform: translateY(-5px);
-    }
-    .comic-card img {
-      width: 100%;
-      height: auto;
-      border-bottom: 1px solid #eee;
-    }
-    .comic-card h3 {
-      margin: 12px 0 4px;
+      margin-bottom: 1em;
       color: #6d3684;
     }
-    .comic-card p {
-      font-size: 0.95em;
-      color: #666;
-      margin-bottom: 10px;
+
+    .comic-pages {
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .comic-card a {
-      background-color: #a170bd;
-      color: #fff;
+
+    .comic-pages img {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    .back-link a {
+      color: #874ca4;
       text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 0.95em;
-      transition: 0.3s;
-    }
-    .comic-card a:hover {
-      background-color: #874ca4;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <h1>中文版漫畫｜Part 1</h1>
+  <div class="comic-pages">
+    <img src="comics/c1/01.jpg" alt="Page 1">
+    <img src="comics/c1/02.jpg" alt="Page 2">
+    <img src="comics/c1/03.jpg" alt="Page 3">
+    <img src="comics/c1/04.jpg" alt="Page 4">
+    <img src="comics/c1/05.jpg" alt="Page 5">
+    <img src="comics/c1/06.jpg" alt="Page 6">
+    <img src="comics/c1/07.jpg" alt="Page 7">
+    <img src="comics/c1/08.jpg" alt="Page 8">
+    <img src="comics/c1/09.jpg" alt="Page 9">
+    <img src="comics/c1/10.jpg" alt="Page 10">
+  </div>
 
-  <nav class="sidebar" id="sidebar">
-    <img src="logo.png" alt="Sian 的 Logo" style="width: 100%;">
-    <h2>選單 Menu</h2>
-    <a href="#">🏠 首頁 / Home</a>
-    <a href="#about">👩 關於我 / About Me</a>
-    <a href="#works">🎨 漫畫作品 / Comics</a>
-    <a href="#flipbook">📖 翻書版 / Flipbook</a>
-    <a href="#moodbook">🖼️ 心情畫簿 / Moodbook</a>
-  </nav>
-
-  <main class="main-content">
-    <img src="sian_logo.png" alt="Sian Logo" class="logo">
-    <header style="text-align: center;">
-      <img src="logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
-      <img src="banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
-      <img src="logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
-    </header>
-    <h1>Sian の 情思漫畫</h1>
-    <h2>Sian's Comic Confessions with Asperger's Life</h2>
-
-    <section id="about">
-      <h2>關於我｜About Me</h2>
-      <p>這是我從生活點滴記下的內心世界。<br>
-         我是 Sian，是成人確診 Asperger's 的創作者。<br>
-         我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。</p>
-      <p>These comics reflect the world I see from my inner lens.<br>
-         I’m Sian, an adult diagnosed with Asperger's Syndrome.<br>
-         I use drawing and writing to speak in place of words, capturing the ups and downs of everyday life.</p>
-    </section>
-
-    <section id="works">
-      <h2>漫畫作品｜Comic Works</h2>
-      <div class="comic-card-container">
-        <div class="comic-card">
-          <img src="front%20cover%20C.jpg" alt="中文版 Part 1 封面">
-          <h3>中文版 Part 1</h3>
-          <p>生活細節日常</p>
-          <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">打開漫畫</a>
-        </div>
-        <div class="comic-card">
-          <img src="front%20cover%20C2.jpg" alt="中文版 Part 2 封面">
-          <h3>中文版 Part 2</h3>
-          <p>內在情緒延伸</p>
-          <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">打開漫畫</a>
-        </div>
-        <div class="comic-card">
-          <img src="front%20cover%20E.jpg" alt="English Part 1 Cover">
-          <h3>English Part 1</h3>
-          <p>Daily Life Moments</p>
-          <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">View Comic</a>
-        </div>
-        <div class="comic-card">
-          <img src="front%20cover%20CE.jpg" alt="English Part 2 Cover">
-          <h3>English Part 2</h3>
-          <p>Deeper Emotions</p>
-          <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">View Comic</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="flipbook">
-      <h2>📖 翻書版｜Flipbook Version</h2>
-      <div style="text-align: center;">
-        <a href="flipbook.html" class="comic-card a">點我進入翻書版漫畫 →</a>
-      </div>
-    </section>
-
-    <section id="moodbook">
-      <h2>🖌️ 心情畫簿｜Moodbook</h2>
-      <p>這一區會不定期更新畫作、塗鴉、或任何反映我當時情緒的小作品。<br>
-         有時唔係為咗畫好，只係為咗釋放情感。</p>
-      <p>This section features casual illustrations or mood sketches I create spontaneously — not always polished, but deeply personal.</p>
-      <div style="text-align:center;">
-        <a href="feelings.html" target="_blank" style="color: #874ca4; text-decoration: underline;">→ 前往心情畫簿</a>
-      </div>
-    </section>
-
-    <footer>© 2025 Sian</footer>
-  </main>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-  </script>
+  <div class="back-link">
+    <a href="index.html">← 返回首頁</a>
+  </div>
 </body>
 </html>
