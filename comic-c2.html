@@ -1,71 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>漫畫 中文版 Part 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sian 中文漫畫 Part 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      display: flex;
-      min-height: 100vh;
-      background-color: #fdf9ff;
-    }
+    body { margin: 0; font-family: 'Noto Sans TC', sans-serif; display: flex; background-color: #fdf8fc; color: #4b306a; }
     nav.sidebar {
-      background-color: #f7f2fb;
-      width: 220px;
-      min-height: 100vh;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-      position: fixed;
-      left: 0;
-      top: 0;
+      width: 220px; background-color: #ece3f3; padding: 20px; min-height: 100vh; position: fixed;
     }
     nav.sidebar h2 {
-      font-size: 1.2em;
-      margin-bottom: 1em;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3em;
+      font-size: 1.1em; margin-bottom: 1em; border-bottom: 1px solid #ccc; padding-bottom: 0.3em;
     }
     nav.sidebar a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: #6b4c88;
+      display: block; margin: 10px 0; color: #6b4c88; text-decoration: none;
     }
-    nav.sidebar a:hover {
-      color: #a75bb8;
-    }
+    nav.sidebar a:hover { color: #a75bb8; }
+
     main {
-      flex-grow: 1;
-      margin-left: 240px;
-      padding: 30px;
+      margin-left: 240px; padding: 30px; flex-grow: 1;
     }
+
+    h1 { text-align: center; color: #6d3684; }
     .comic-page img {
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 20px auto;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      border-radius: 8px;
+      max-width: 100%; height: auto; display: block; margin: 0 auto 30px;
     }
-    .back-link {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .about-section {
-      margin-top: 50px;
-      background: #f2e8fb;
-      padding: 20px;
-      border-radius: 8px;
-    }
+
     footer {
-      text-align: center;
-      margin-top: 60px;
-      font-size: 0.9em;
-      color: #888;
+      text-align: center; padding: 20px; font-size: 0.9em; color: #888;
+    }
+
+    .back-link {
+      text-align: center; margin-top: 20px;
+    }
+
+    .back-link a {
+      text-decoration: none; color: #6d3684; font-weight: bold;
     }
   </style>
 </head>
@@ -73,45 +44,30 @@
   <nav class="sidebar">
     <h2>選單 Menu</h2>
     <a href="index.html">🏠 首頁 / Home</a>
-    <a href="comic-c1.html">📘 中文版 Part 1</a>
-    <a href="comic-c2.html">📗 中文版 Part 2</a>
-    <a href="comic-e1.html">📙 English Part 1</a>
-    <a href="comic-e2.html">📕 English Part 2</a>
-    <a href="feelings.html">🖌️ 心情畫簿</a>
+    <a href="#about">👩 關於我 / About Me</a>
+    <a href="#works">🎨 漫畫作品 / Comics</a>
+    <a href="#flipbook">📖 翻書版 / Flipbook</a>
+    <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
+    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+    <hr>
+    <h2>Facebook 相簿</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
   </nav>
 
   <main>
-    <h1>📗 漫畫 - 中文版 Part 2</h1>
+    <h1>📘 中文漫畫 Part 2</h1>
     <div class="comic-page">
-      <img src="images2/01.jpg" alt="Page 1">
-      <img src="images2/02.jpg" alt="Page 2">
-      <img src="images2/03.jpg" alt="Page 3">
-      <img src="images2/04.jpg" alt="Page 4">
-      <img src="images2/05.jpg" alt="Page 5">
-      <img src="images2/06.jpg" alt="Page 6">
-      <img src="images2/07.jpg" alt="Page 7">
-      <img src="images2/08.jpg" alt="Page 8">
-      <img src="images2/09.jpg" alt="Page 9">
-      <img src="images2/10.jpg" alt="Page 10">
+      <img src="images2/01.jpg" alt="Comic Page 1">
+      <img src="images2/02.jpg" alt="Comic Page 2">
+      <img src="images2/03.jpg" alt="Comic Page 3">
+      <!-- 按實際圖數量加 -->
     </div>
 
     <div class="back-link">
-      <a href="index.html">← 返回首頁</a>
-    </div>
-
-    <div class="about-section">
-     <h2>關於我｜About Me</h2>
-      <p>我是 Sian，是成人確診 Asperger's 的創作者。
-      我習慣以畫筆或文字，代替說話，用漫畫記錄生活中的酸甜苦辣。<br>
-          如果你也曾在社會中感到格格不入，希望我的故事能給你一點共鳴與陪伴。<br>
-      我用漫畫記錄生活，分享感受。</p>
-        <p>This is the inner world I recorded through daily life.<br>
-            I’m Sian, a creator diagnosed with Asperger’s Syndrome as an adult.<br>
-            I’m used to expressing myself with drawings or words instead of
-            speech, using comics to portray the bitter sweetness of
-            life.<br>
-            If you’ve ever felt out of place in society, I hope my stories bring
-            you some resonance and companionship.</p>
+      <a href="index.html">&larr; 返回首頁</a>
     </div>
 
     <footer>© 2025 Sian</footer>
