@@ -109,49 +109,59 @@
   </main>
 
   <script>
-    const folder = "images"; // 資料夾名稱
-    const totalPages = 159; // 圖片總數
-    let currentPage = 1;
+  const folder = "images"; // 📂 圖片資料夾
+  const totalPages = 159;  // 📄 總頁數
+  const flipbook = document.getElementById("flipbook");
+  let currentPage = 0;
+  let pages = [];
 
-    const img = document.getElementById("comic-page");
-    const errorMsg = document.getElementById("error-msg");
+  function getFilename(i) {
+    return i < 10 ? `0${i}.jpg` : `${i}.jpg`;
+  }
 
-    function updatePage() {
-      const url = `${folder}/${currentPage}.jpg`;
-      img.src = url;
-      img.alt = `Page ${currentPage}`;
-      errorMsg.textContent = "";
+  function loadPages() {
+    for (let i = 1; i <= totalPages; i++) {
+      const img = document.createElement("img");
+      img.src = `${folder}/${getFilename(i)}`;
+      img.alt = `Page ${i}`;
+      img.className = "page" + (i === 1 ? " active" : "");
+      flipbook.appendChild(img);
     }
+    pages = document.querySelectorAll(".page");
+  }
 
-    img.onerror = function () {
-      errorMsg.textContent = `圖片載入失敗：${currentPage}.jpg`;
-    };
+  function showPage(index) {
+    pages.forEach((p, i) => {
+      p.classList.toggle("active", i === index);
+    });
+  }
 
-    function nextPage() {
-      if (currentPage < totalPages) {
-        currentPage++;
-        updatePage();
-      }
+  function nextPage() {
+    if (currentPage < pages.length - 1) {
+      currentPage++;
+      showPage(currentPage);
     }
+  }
 
-    function prevPage() {
-      if (currentPage > 1) {
-        currentPage--;
-        updatePage();
-      }
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
     }
+  }
 
-    function firstPage() {
-      currentPage = 1;
-      updatePage();
-    }
+  function firstPage() {
+    currentPage = 0;
+    showPage(currentPage);
+  }
 
-    function lastPage() {
-      currentPage = totalPages;
-      updatePage();
-    }
+  function lastPage() {
+    currentPage = pages.length - 1;
+    showPage(currentPage);
+  }
 
-    updatePage(); // 初始載入
-  </script>
+  loadPages();
+</script>
+
 </body>
 </html>
