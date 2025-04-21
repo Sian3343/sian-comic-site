@@ -47,12 +47,7 @@
     }
 
     .page {
-      display: none;
       width: 100%;
-    }
-
-    .page.active {
-      display: block;
     }
 
     .controls {
@@ -71,6 +66,11 @@
 
     .controls button:hover {
       background-color: #fca5b3;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -95,7 +95,10 @@
 
   <main>
     <h1>📘 中文版 Part 1</h1>
-    <div class="flipbook-container" id="flipbook"></div>
+    <div class="flipbook-container">
+      <img id="comic-page" class="page" src="" alt="Comic Page" />
+      <div id="error-msg" class="error"></div>
+    </div>
 
     <div class="controls">
       <button onclick="firstPage()">⏮ 回到最前</button>
@@ -106,54 +109,49 @@
   </main>
 
   <script>
-    const folder = "images"; // 📂 圖片資料夾
-    const totalPages = 159;  // 📄 總頁數
-    const flipbook = document.getElementById("flipbook");
-    let currentPage = 0;
-    let pages = [];
+    const folder = "images"; // 資料夾名稱
+    const totalPages = 159; // 圖片總數
+    let currentPage = 1;
 
-    function loadPages() {
-      for (let i = totalPages; i >= 1; i--) {
-        const img = document.createElement("img");
-        img.src = `${folder}/${String(i).padStart(3, '0')}.jpg`;
-        img.alt = `Page ${i}`;
-        img.className = "page" + (i === totalPages ? " active" : "");
-        flipbook.appendChild(img);
-      }
-      pages = document.querySelectorAll(".page");
+    const img = document.getElementById("comic-page");
+    const errorMsg = document.getElementById("error-msg");
+
+    function updatePage() {
+      const url = `${folder}/${currentPage}.jpg`;
+      img.src = url;
+      img.alt = `Page ${currentPage}`;
+      errorMsg.textContent = "";
     }
 
-    function showPage(index) {
-      pages.forEach((p, i) => {
-        p.classList.toggle("active", i === index);
-      });
-    }
+    img.onerror = function () {
+      errorMsg.textContent = `圖片載入失敗：${currentPage}.jpg`;
+    };
 
     function nextPage() {
-      if (currentPage < pages.length - 1) {
+      if (currentPage < totalPages) {
         currentPage++;
-        showPage(currentPage);
+        updatePage();
       }
     }
 
     function prevPage() {
-      if (currentPage > 0) {
+      if (currentPage > 1) {
         currentPage--;
-        showPage(currentPage);
+        updatePage();
       }
     }
 
     function firstPage() {
-      currentPage = 0;
-      showPage(currentPage);
+      currentPage = 1;
+      updatePage();
     }
 
     function lastPage() {
-      currentPage = pages.length - 1;
-      showPage(currentPage);
+      currentPage = totalPages;
+      updatePage();
     }
 
-    loadPages();
+    updatePage(); // 初始載入
   </script>
 </body>
 </html>
