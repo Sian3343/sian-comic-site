@@ -112,16 +112,16 @@
     let currentPage = 0;
     let pages = [];
 
-    function loadPages() {
-      for (let i = totalPages; i >= 1; i--) {
-        const img = document.createElement("img");
-        img.src = `${folder}/${i}.jpg`; // 自動對應圖片名（1.jpg、2.jpg、...、159.jpg）
-        img.alt = `Page ${i}`;
-        img.className = "page" + (i === totalPages ? " active" : "");
-        flipbook.appendChild(img);
-      }
-      pages = document.querySelectorAll(".page");
-    }
+function loadPages() {
+  for (let i = totalPages; i >= 1; i--) {
+    const img = document.createElement("img");
+    img.src = `${folder}/${i}.jpg`; // 使用反引號來進行字符串插值
+    img.alt = `Page ${i}`; // 使用反引號來進行字符串插值
+    img.className = "page" + (i === totalPages ? " active" : "");
+    flipbook.appendChild(img);
+  }
+  pages = document.querySelectorAll(".page");
+}
 
     function showPage(index) {
       pages.forEach((p, i) => {
