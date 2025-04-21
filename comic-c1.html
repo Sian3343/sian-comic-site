@@ -3,54 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎨 中文漫畫 Part 1 | Sian 的漫畫世界</title>
+  <title>📘 中文版 Part 1 - 漫畫翻書版</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
       display: flex;
-      background-color: #fff8f3;
-      color: #4b306a;
     }
-    nav.sidebar {
+    nav {
       width: 220px;
-      background-color: #f2e5ec;
+      background: #ece3f3;
       padding: 20px;
       min-height: 100vh;
-      position: fixed;
     }
-    nav.sidebar h2 {
+    nav h2 {
       font-size: 1.1em;
       margin-bottom: 1em;
       border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3em;
     }
-    nav.sidebar a {
+    nav a {
       display: block;
       margin: 10px 0;
       color: #6b4c88;
       text-decoration: none;
     }
-    nav.sidebar a:hover {
+    nav a:hover {
       color: #a75bb8;
     }
-
     main {
-      margin-left: 240px;
-      padding: 30px;
       flex-grow: 1;
-    }
-
-    h1 {
+      padding: 20px;
       text-align: center;
-      color: #6d3684;
     }
+    h1 { color: #6d3684; }
 
     .flipbook-container {
-      position: relative;
-      width: 100%;
+      width: 90%;
       max-width: 600px;
       margin: 20px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -59,8 +49,6 @@
     .page {
       display: none;
       width: 100%;
-      height: auto;
-      transition: opacity 0.5s ease-in-out;
     }
 
     .page.active {
@@ -68,8 +56,7 @@
     }
 
     .controls {
-      text-align: center;
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     .controls button {
@@ -78,47 +65,32 @@
       padding: 10px 15px;
       border-radius: 10px;
       cursor: pointer;
+      margin: 5px;
       font-size: 16px;
-      transition: background 0.3s ease;
     }
 
     .controls button:hover {
       background-color: #fca5b3;
     }
-
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #888;
-    }
   </style>
 </head>
 <body>
-
-  <nav class="sidebar">
+  <nav>
     <h2>選單 Menu</h2>
     <a href="index.html">🏠 首頁 / Home</a>
-    <a href="#about">👩 關於我 / About Me</a>
-    <a href="#works">🎨 漫畫作品 / Comics</a>
-    <a href="flipbook.html">📖 翻書版 / Flipbook</a>
-    <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
-    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+    <a href="feelings.html">🖼️ 心情畫簿</a>
+    <a href="feelings-en.html">🖼️ Moodbook (EN)</a>
+    <a href="flipbook.html">📖 翻書總頁</a>
     <hr>
-    <h2>更多漫畫</h2>
-    <a href="comic-c1.html">📘 中文漫畫 Part 1</a>
-    <a href="comic-c2.html">📗 中文漫畫 Part 2</a>
-    <a href="comic-e1.html">📙 English Comic Part 1</a>
-    <a href="comic-e2.html">📕 English Comic Part 2</a>
+    <h2>Facebook 相簿</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
   </nav>
 
   <main>
-    <h1>📘 中文漫畫 Part 1</h1>
-    <p style="text-align:center; max-width:700px; margin:0 auto 30px;">
-      第一輯漫畫，講述日常點滴與內心旅程。<br>
-      The first set of comics — stories of daily life and inner thoughts.
-    </p>
-
+    <h1>📘 中文版 Part 1</h1>
     <div class="flipbook-container" id="flipbook"></div>
 
     <div class="controls">
@@ -127,53 +99,42 @@
       <button onclick="nextPage()">下一頁 →</button>
       <button onclick="lastPage()">⏭ 跳到最後</button>
     </div>
-
-    <footer>© 2025 Sian | 中文漫畫 Part 1</footer>
   </main>
 
   <script>
+    const folder = "images";
+    const totalPages = 159;
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
 
-    async function loadPages(folder) {
-      currentPage = 0;
-      flipbook.innerHTML = "";
-
-      try {
-        const response = await fetch(`${folder}/manifest.json`);
-        const imageList = await response.json();
-
-        imageList.forEach((file, index) => {
-          const img = document.createElement("img");
-          img.src = `${folder}/${file}`;
-          img.alt = `page ${index + 1}`;
-          img.className = "page" + (index === 0 ? " active" : "");
-          flipbook.appendChild(img);
-        });
-
-        pages = document.querySelectorAll(".page");
-      } catch (error) {
-        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
+    function loadPages() {
+      for (let i = 1; i <= totalPages; i++) {
+        const img = document.createElement("img");
+        img.src = `${folder}/${String(i).padStart(3, '0')}.jpg`;
+        img.alt = `Page ${i}`;
+        img.className = "page" + (i === 1 ? " active" : "");
+        flipbook.appendChild(img);
       }
+      pages = document.querySelectorAll(".page");
     }
 
     function showPage(index) {
-      pages.forEach((page, i) => {
-        page.classList.toggle("active", i === index);
+      pages.forEach((p, i) => {
+        p.classList.toggle("active", i === index);
       });
-    }
-
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        showPage(currentPage);
-      }
     }
 
     function nextPage() {
       if (currentPage < pages.length - 1) {
         currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
         showPage(currentPage);
       }
     }
@@ -188,9 +149,7 @@
       showPage(currentPage);
     }
 
-    // ✅ 這裡換資料夾就得
-    loadPages('comic-c1');
+    loadPages();
   </script>
-
 </body>
 </html>
