@@ -1,44 +1,65 @@
-ings<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🖌️ 心情畫簿｜Sian's Moodbook</title>
+  <title>心情畫簿｜Sian 的情緒插畫</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Noto Sans TC', sans-serif;
-      background: #f7f3fb;
+      display: flex;
+      background-color: #f7f2fb;
       color: #4b306a;
     }
+    nav.sidebar {
+      width: 220px;
+      background-color: #ece3f3;
+      padding: 20px;
+      min-height: 100vh;
+      position: fixed;
+    }
+    nav.sidebar h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
+    }
+    nav.sidebar a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
+    nav.sidebar a:hover {
+      color: #a75bb8;
+    }
 
-    .header {
-      text-align: center;
-      padding: 30px 20px 10px;
+    main {
+      margin-left: 240px;
+      padding: 30px;
+      flex-grow: 1;
     }
 
     h1 {
-      font-size: 2em;
+      text-align: center;
       color: #6d3684;
     }
 
-    .container {
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      padding: 20px 30px;
-      max-width: 1200px;
-      margin: auto;
     }
 
     .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.2s;
+      transition: 0.3s;
     }
 
     .card:hover {
@@ -50,64 +71,108 @@ ings<!DOCTYPE html>
       display: block;
     }
 
-    .caption {
-      padding: 15px;
+    .card .caption {
+      padding: 10px;
       font-size: 0.95em;
+      color: #5a3a6a;
+    }
+
+    .pagination {
       text-align: center;
-      color: #6a4c85;
+      margin-top: 30px;
+    }
+
+    .pagination button {
+      background-color: #a170bd;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #6a3d93;
     }
 
     footer {
+      margin-top: 40px;
       text-align: center;
       font-size: 0.9em;
-      padding: 20px;
-      color: #aaa;
-    }
-
-    .back-home {
-      display: block;
-      text-align: center;
-      margin: 20px auto;
-      text-decoration: none;
-      color: white;
-      background-color: #a170bd;
-      padding: 10px 20px;
-      border-radius: 6px;
-      width: fit-content;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background-color: #874ca4;
+      color: #888;
     }
   </style>
 </head>
 <body>
+  <nav class="sidebar">
+    <h2>選單 Menu</h2>
+    <a href="index.html">🏠 首頁 Home</a>
+    <a href="index.html#about">👩 關於我 / About Me</a>
+    <a href="index.html#works">🎨 漫畫作品 / Comics</a>
+    <a href="index.html#flipbook">📖 翻書版 / Flipbook</a>
+    <a href="feelings.html">🖌️ 心情畫簿 / Moodbook</a>
+    <hr>
+    <h2>Facebook 相簿</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
+  </nav>
 
-  <div class="header">
-    <h1>🖌️ 心情畫簿</h1>
-    <p>用圖畫記錄心情的片刻。<br>Mood sketches that capture the moment.</p>
-  </div>
+  <main>
+    <h1>🖌️ 心情畫簿 Moodbook</h1>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
+      這裡收錄了我在不同情緒狀態下的插畫作品，也許不是最完美，但都是真實的情感流露。<br>
+      Mood sketches drawn in different moments — not always polished, but always honest.
+    </p>
 
-  <div class="container">
-    <!-- 每張圖一張卡片 -->
-    <div class="card">
-      <img src="feelings/01.jpg" alt="Mood 1">
-      <div class="caption">今天感到有些疲憊，但畫出來後心情好多了。<br><em>A bit tired today, but drawing made me feel better.</em></div>
-    </div>
-    <div class="card">
-      <img src="feelings/02.jpg" alt="Mood 2">
-      <div class="caption">不一定要說出口，畫下來，我自己就懂了。<br><em>Sometimes I don’t need to explain — my drawing says it all.</em></div>
-    </div>
-    <div class="card">
-      <img src="feelings/03.jpg" alt="Mood 3">
-      <div class="caption">被情緒包圍的感覺，不一定是壞事。<br><em>Being surrounded by emotions... isn’t always a bad thing.</em></div>
-    </div>
-    <!-- 可繼續加更多卡片 -->
-  </div>
+    <div class="gallery" id="gallery"></div>
 
-  <a href="index.html" class="back-home">← 回首頁｜Back to Home</a>
+    <div class="pagination" id="pagination"></div>
 
-  <footer>© 2025 Sian</footer>
+    <footer>© 2025 Sian | 心情畫簿</footer>
+  </main>
+
+  <script>
+    const totalImages = 67;
+    const imagesPerPage = 15;
+    let currentPage = 1;
+
+    function showGalleryPage(page) {
+      const gallery = document.getElementById("gallery");
+      const pagination = document.getElementById("pagination");
+      gallery.innerHTML = "";
+      pagination.innerHTML = "";
+
+      const start = (page - 1) * imagesPerPage + 1;
+      const end = Math.min(start + imagesPerPage - 1, totalImages);
+
+      for (let i = start; i <= end; i++) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}">
+          <div class="caption">圖 #${i}</div>
+        `;
+        gallery.appendChild(card);
+      }
+
+      const totalPages = Math.ceil(totalImages / imagesPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === page) btn.classList.add("active");
+        btn.onclick = () => {
+          currentPage = i;
+          showGalleryPage(i);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        pagination.appendChild(btn);
+      }
+    }
+
+    showGalleryPage(currentPage);
+  </script>
 </body>
 </html>
