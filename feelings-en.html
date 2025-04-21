@@ -1,202 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moodbook - English Version</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Noto Sans TC', sans-serif;
-      background: #fdf8fc;
+      display: flex;
+      background-color: #f7f2fb;
       color: #4b306a;
     }
-    header {
-      text-align: center;
-      padding: 30px 10px 10px;
+    nav.sidebar {
+      width: 220px;
+      background-color: #ece3f3;
+      padding: 20px;
+      min-height: 100vh;
+      position: fixed;
     }
+    nav.sidebar h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
+    }
+    nav.sidebar a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
+    nav.sidebar a:hover {
+      color: #a75bb8;
+    }
+
+    main {
+      margin-left: 240px;
+      padding: 30px;
+      flex-grow: 1;
+    }
+
     h1 {
-      font-size: 2em;
+      text-align: center;
       color: #6d3684;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      padding: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
     }
+
     .card {
-      background: white;
+      background-color: white;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: 0.3s;
     }
+
     .card:hover {
       transform: translateY(-5px);
     }
+
     .card img {
       width: 100%;
       display: block;
     }
-    .caption {
-      padding: 10px 15px;
-      font-size: 0.9em;
-      color: #555;
-      text-align: center;
+
+    .card .caption {
+      padding: 10px;
+      font-size: 0.95em;
+      color: #5a3a6a;
     }
-    footer {
+
+    .pagination {
       text-align: center;
-      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .pagination button {
+      background-color: #a170bd;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #6a3d93;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
       font-size: 0.9em;
       color: #888;
-    }
-    .back-link {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .back-link a {
-      text-decoration: none;
-      color: #6d3684;
-      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Moodbook (English Version)</h1>
-    <p>This section features casual sketches and emotional moments.</p>
-  </header>
+  <nav class="sidebar">
+    <h2>選單 Menu</h2>
+    <a href="index.html">🏠 首頁 Home</a>
+    <a href="index.html#about">👩 關於我 / About Me</a>
+    <a href="index.html#works">🎨 漫畫作品 / Comics</a>
+    <a href="index.html#flipbook">📖 翻書版 / Flipbook</a>
+    <a href="feelings.html">🖌️ 心情畫簿 / Moodbook</a>
+    <hr>
+    <h2>Facebook 相簿</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
+  </nav>
 
-  <div class="gallery">
-    <!-- Auto generated 27 images -->
-    <!-- BEGIN cards -->
-    <!-- (請根據需要編輯 caption 內容) -->
-    <!-- Start loop -->
-    <!-- prettier-ignore -->
-    <!-- Copy of previous reply inserted here -->
-    <div class="card">
-      <img src="feelinge/01.jpg" alt="Mood 1">
-      <div class="caption">Mood Sketch 1</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/02.jpg" alt="Mood 2">
-      <div class="caption">Mood Sketch 2</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/03.jpg" alt="Mood 3">
-      <div class="caption">Mood Sketch 3</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/04.jpg" alt="Mood 4">
-      <div class="caption">Mood Sketch 4</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/05.jpg" alt="Mood 5">
-      <div class="caption">Mood Sketch 5</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/06.jpg" alt="Mood 6">
-      <div class="caption">Mood Sketch 6</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/07.jpg" alt="Mood 7">
-      <div class="caption">Mood Sketch 7</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/08.jpg" alt="Mood 8">
-      <div class="caption">Mood Sketch 8</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/09.jpg" alt="Mood 9">
-      <div class="caption">Mood Sketch 9</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/10.jpg" alt="Mood 10">
-      <div class="caption">Mood Sketch 10</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/11.jpg" alt="Mood 11">
-      <div class="caption">Mood Sketch 11</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/12.jpg" alt="Mood 12">
-      <div class="caption">Mood Sketch 12</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/13.jpg" alt="Mood 13">
-      <div class="caption">Mood Sketch 13</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/14.jpg" alt="Mood 14">
-      <div class="caption">Mood Sketch 14</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/15.jpg" alt="Mood 15">
-      <div class="caption">Mood Sketch 15</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/16.jpg" alt="Mood 16">
-      <div class="caption">Mood Sketch 16</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/17.jpg" alt="Mood 17">
-      <div class="caption">Mood Sketch 17</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/18.jpg" alt="Mood 18">
-      <div class="caption">Mood Sketch 18</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/19.jpg" alt="Mood 19">
-      <div class="caption">Mood Sketch 19</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/20.jpg" alt="Mood 20">
-      <div class="caption">Mood Sketch 20</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/21.jpg" alt="Mood 21">
-      <div class="caption">Mood Sketch 21</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/22.jpg" alt="Mood 22">
-      <div class="caption">Mood Sketch 22</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/23.jpg" alt="Mood 23">
-      <div class="caption">Mood Sketch 23</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/24.jpg" alt="Mood 24">
-      <div class="caption">Mood Sketch 24</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/25.jpg" alt="Mood 25">
-      <div class="caption">Mood Sketch 25</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/26.jpg" alt="Mood 26">
-      <div class="caption">Mood Sketch 26</div>
-    </div>
-    <div class="card">
-      <img src="feelinge/27.jpg" alt="Mood 27">
-      <div class="caption">Mood Sketch 27</div>
-    </div>
-    <!-- END cards -->
-  </div>
+  <main>
+    <h1>🖌️Moodbook (English Version)</h1>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
+      Mood sketches drawn in different moments — not always polished, but always honest.
+    </p>
 
-  <div class="back-link">
-    <a href="index.html">&larr; Back to Home</a>
-  </div>
+    <div class="gallery" id="gallery"></div>
 
-  <footer>© 2025 Sian</footer>
+    <div class="pagination" id="pagination"></div>
+
+    <footer>© 2025 Sian | Moodbook - English Version</footer>
+  </main>
+
+  <script>
+    const totalImages = 29;
+    const imagesPerPage = 15;
+    let currentPage = 1;
+
+    function showGalleryPage(page) {
+      const gallery = document.getElementById("gallery");
+      const pagination = document.getElementById("pagination");
+      gallery.innerHTML = "";
+      pagination.innerHTML = "";
+
+      const start = (page - 1) * imagesPerPage + 1;
+      const end = Math.min(start + imagesPerPage - 1, totalImages);
+
+      for (let i = start; i <= end; i++) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="feelinge/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}">
+          <div class="caption">圖 #${i}</div>
+        `;
+        gallery.appendChild(card);
+      }
+
+      const totalPages = Math.ceil(totalImages / imagesPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === page) btn.classList.add("active");
+        btn.onclick = () => {
+          currentPage = i;
+          showGalleryPage(i);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        pagination.appendChild(btn);
+      }
+    }
+
+    showGalleryPage(currentPage);
+  </script>
 </body>
 </html>
