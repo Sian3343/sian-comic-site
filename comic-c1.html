@@ -3,157 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>中文版 Part 1｜Sian 的漫畫</title>
+  <title>🎨 中文漫畫 Part 1 | Sian 的漫畫世界</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      background: #f9f3fb;
-      color: #4b306a;
+      font-family: "Noto Sans TC", sans-serif;
       display: flex;
-      min-height: 100vh;
+      background-color: #fff8f3;
+      color: #4b306a;
     }
-
     nav.sidebar {
-      background-color: #f7f2fb;
       width: 220px;
-      min-height: 100vh;
+      background-color: #f2e5ec;
       padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+      min-height: 100vh;
       position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 998;
     }
-
     nav.sidebar h2 {
-      font-size: 1.2em;
+      font-size: 1.1em;
       margin-bottom: 1em;
       border-bottom: 1px solid #ccc;
       padding-bottom: 0.3em;
     }
-
     nav.sidebar a {
       display: block;
       margin: 10px 0;
-      text-decoration: none;
       color: #6b4c88;
-      transition: 0.3s;
+      text-decoration: none;
     }
-
     nav.sidebar a:hover {
       color: #a75bb8;
     }
 
-    main.main-content {
+    main {
+      margin-left: 240px;
+      padding: 30px;
       flex-grow: 1;
-      padding: 40px 30px;
-      margin-left: 220px;
-      max-width: calc(100% - 220px);
-      overflow-wrap: break-word;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      color: #6d3684;
     }
 
-    .comic-page {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .comic-page img {
+    .flipbook-container {
+      position: relative;
       width: 100%;
-      max-width: 700px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    .back-link {
+    .page {
+      display: none;
+      width: 100%;
+      height: auto;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .controls {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
-    .back-link a {
-      text-decoration: none;
-      padding: 10px 20px;
-      background-color: #a170bd;
-      color: white;
-      border-radius: 5px;
+    .controls button {
+      background-color: #ffd8df;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
     }
 
-    .back-link a:hover {
-      background-color: #874ca4;
+    .controls button:hover {
+      background-color: #fca5b3;
     }
 
     footer {
+      margin-top: 40px;
       text-align: center;
-      padding: 30px;
       font-size: 0.9em;
       color: #888;
-    }
-
-    section#about {
-      background-color: #f0e2fa;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 50px;
-    }
-
-    @media (max-width: 768px) {
-      nav.sidebar {
-        display: none;
-      }
-      main.main-content {
-        margin-left: 0;
-        max-width: 100%;
-      }
     }
   </style>
 </head>
 <body>
+
   <nav class="sidebar">
-    <img src="logo.png" alt="Sian 的 Logo" style="width: 100%;">
     <h2>選單 Menu</h2>
     <a href="index.html">🏠 首頁 / Home</a>
-    <a href="index.html#about">👩 關於我 / About Me</a>
-    <a href="index.html#works">🎨 漫畫作品 / Comics</a>
-    <a href="index.html#flipbook">📖 翻書版 / Flipbook</a>
+    <a href="#about">👩 關於我 / About Me</a>
+    <a href="#works">🎨 漫畫作品 / Comics</a>
+    <a href="flipbook.html">📖 翻書版 / Flipbook</a>
     <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
+    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+    <hr>
+    <h2>更多漫畫</h2>
+    <a href="comic-c1.html">📘 中文漫畫 Part 1</a>
+    <a href="comic-c2.html">📗 中文漫畫 Part 2</a>
+    <a href="comic-e1.html">📙 English Comic Part 1</a>
+    <a href="comic-e2.html">📕 English Comic Part 2</a>
   </nav>
 
-  <main class="main-content">
-    <h1>中文版 Part 1</h1>
+  <main>
+    <h1>📘 中文漫畫 Part 1</h1>
+    <p style="text-align:center; max-width:700px; margin:0 auto 30px;">
+      第一輯漫畫，講述日常點滴與內心旅程。<br>
+      The first set of comics — stories of daily life and inner thoughts.
+    </p>
 
-    <!-- 漫畫頁數 -->
-    <div class="comic-page"><img src="images/01.jpg" alt="第1頁"></div>
-    <div class="comic-page"><img src="images/02.jpg" alt="第2頁"></div>
-    <div class="comic-page"><img src="images/03.jpg" alt="第3頁"></div>
-    <div class="comic-page"><img src="images/04.jpg" alt="第4頁"></div>
-    <div class="comic-page"><img src="images/05.jpg" alt="第5頁"></div>
-    <div class="comic-page"><img src="images/06.jpg" alt="第6頁"></div>
-    <div class="comic-page"><img src="images/07.jpg" alt="第7頁"></div>
-    <div class="comic-page"><img src="images/08.jpg" alt="第8頁"></div>
-    <div class="comic-page"><img src="images/09.jpg" alt="第9頁"></div>
-    <div class="comic-page"><img src="images/10.jpg" alt="第10頁"></div>
+    <div class="flipbook-container" id="flipbook"></div>
 
-    <!-- 返回按鈕 -->
-    <div class="back-link">
-      <a href="index.html">← 返回首頁</a>
+    <div class="controls">
+      <button onclick="firstPage()">⏮ 回到最前</button>
+      <button onclick="prevPage()">← 上一頁</button>
+      <button onclick="nextPage()">下一頁 →</button>
+      <button onclick="lastPage()">⏭ 跳到最後</button>
     </div>
 
-    <!-- About Me 區域 -->
-    <section id="about">
-      <h2>關於我｜About Me</h2>
-      <p>我是 Sian，一位成人確診 Asperger's 的創作者。<br>
-         我用漫畫和圖畫抒發生活中唔易用語言表達嘅感受。</p>
-    </section>
-
-    <footer>© 2025 Sian</footer>
+    <footer>© 2025 Sian | 中文漫畫 Part 1</footer>
   </main>
+
+  <script>
+    const flipbook = document.getElementById("flipbook");
+    let currentPage = 0;
+    let pages = [];
+
+    async function loadPages(folder) {
+      currentPage = 0;
+      flipbook.innerHTML = "";
+
+      try {
+        const response = await fetch(`${folder}/manifest.json`);
+        const imageList = await response.json();
+
+        imageList.forEach((file, index) => {
+          const img = document.createElement("img");
+          img.src = `${folder}/${file}`;
+          img.alt = `page ${index + 1}`;
+          img.className = "page" + (index === 0 ? " active" : "");
+          flipbook.appendChild(img);
+        });
+
+        pages = document.querySelectorAll(".page");
+      } catch (error) {
+        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
+      }
+    }
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle("active", i === index);
+      });
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function firstPage() {
+      currentPage = 0;
+      showPage(currentPage);
+    }
+
+    function lastPage() {
+      currentPage = pages.length - 1;
+      showPage(currentPage);
+    }
+
+    // ✅ 這裡換資料夾就得
+    loadPages('comic-c1');
+  </script>
+
 </body>
 </html>
