@@ -115,7 +115,7 @@
     function loadPages() {
       for (let i = totalPages; i >= 1; i--) {
         const img = document.createElement("img");
-        img.src = `${folder}/${String(i).padStart(3, '0')}.jpg`;
+        img.src = `${folder}/${i}.jpg`; // ✅ 改左呢行
         img.alt = `Page ${i}`;
         img.className = "page" + (i === totalPages ? " active" : "");
         flipbook.appendChild(img);
@@ -157,4 +157,3 @@
   </script>
 </body>
 </html>
-
