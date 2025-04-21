@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Moodbook - Sian's Comic Diary</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #fdf8fc;
+      color: #4b306a;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 10px 10px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #6d3684;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .caption {
+      padding: 10px 15px;
+      font-size: 0.9em;
+      color: #555;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #6d3684;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Moodbook (English Version)</h1>
+    <p>This section features casual sketches and emotional moments.</p>
+  </header>
+
+  <div class="gallery">
+    <!-- Auto insert 27 cards -->
+    <!-- You can add captions later by editing each <div class="caption"> -->
+    <!-- Begin card loop -->
+    <!-- For now, just use 01.jpg to 27.jpg -->
+    <!-- Path: feelinge/01.jpg ~ feelinge/27.jpg -->
+    <!-- Each image wrapped in a card -->
+    <!-- Sample: -->
+    <!--
+    <div class="card">
+      <img src="feelinge/01.jpg" alt="Mood 1">
+      <div class="caption">Your caption here</div>
+    </div>
+    -->
+    <!-- Generated: -->
+    <!-- BEGIN GENERATED CARDS -->
+    ${[...Array(27)].map((_, i) => `
+    <div class="card">
+      <img src="feelinge/${String(i + 1).padStart(2, '0')}.jpg" alt="Mood ${i + 1}">
+      <div class="caption">Mood Sketch ${i + 1}</div>
+    </div>
+    `).join('')}
+    <!-- END GENERATED CARDS -->
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">&larr; Back to Home</a>
+  </div>
+
+  <footer>© 2025 Sian</footer>
+</body>
+</html>
