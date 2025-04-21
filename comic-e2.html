@@ -1,60 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>English Comic Part 2</title>
+  <title>📕 English Part 2 - Comic Flipbook</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
       display: flex;
     }
-    .sidebar {
-      width: 200px;
-      background-color: #f4f4f4;
+    nav {
+      width: 220px;
+      background: #ece3f3;
       padding: 20px;
+      min-height: 100vh;
     }
-    .content {
-      flex: 1;
+    nav h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+    }
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #a75bb8;
+    }
+    main {
+      flex-grow: 1;
       padding: 20px;
+      text-align: center;
     }
-    .comic-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    h1 { color: #6d3684; }
+
+    .flipbook-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    .comic-grid img {
+
+    .page {
+      display: none;
       width: 100%;
-      max-width: 300px;
-      height: auto;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .controls {
+      margin-top: 15px;
+    }
+
+    .controls button {
+      background-color: #ffd8df;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 16px;
+    }
+
+    .controls button:hover {
+      background-color: #fca5b3;
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="comic-c1.html">中文版漫畫 Part 1</a></li>
-      <li><a href="comic-c2.html">中文版漫畫 Part 2</a></li>
-      <li><a href="comic-e1.html">English Comic Part 1</a></li>
-      <li><a href="comic-e2.html">English Comic Part 2</a></li>
-    </ul>
-  </div>
-  <div class="content">
-    <h1>English Comic Part 2</h1>
-    <div class="comic-grid" id="comicContainer">
-      <!-- Images from old to new -->
-      <img src="images-en2/01.jpg" alt="Page 1" />
-      <img src="images-en2/02.jpg" alt="Page 2" />
-      <!-- 加入至最後一頁 -->
-      <img src="images-en2/80.jpg" alt="Page 80" />
+  <nav>
+    <h2>選單 Menu</h2>
+    <a href="index.html">🏠 首頁 / Home</a>
+    <a href="feelings.html">🖼️ 心情畫簿</a>
+    <a href="feelings-en.html">🖼️ Moodbook (EN)</a>
+    <a href="flipbook.html">📖 翻書總頁</a>
+    <hr>
+    <h2>Facebook 相簿</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
+  </nav>
+
+  <main>
+    <h1>📕 English Part 2</h1>
+    <div class="flipbook-container" id="flipbook"></div>
+
+    <div class="controls">
+      <button onclick="firstPage()">⏮ First</button>
+      <button onclick="prevPage()">← Previous</button>
+      <button onclick="nextPage()">Next →</button>
+      <button onclick="lastPage()">⏭ Last</button>
     </div>
-  </div>
+  </main>
+
   <script>
-    const container = document.getElementById('comicContainer');
-    const images = Array.from(container.children);
-    images.reverse().forEach(img => container.appendChild(img));
+    const folder = "images-en2";
+    const totalPages = 90;
+    const flipbook = document.getElementById("flipbook");
+    let currentPage = 0;
+    let pages = [];
+
+    function loadPages() {
+      for (let i = 1; i <= totalPages; i++) {
+        const img = document.createElement("img");
+        img.src = `${folder}/${String(i).padStart(3, '0')}.jpg`;
+        img.alt = `Page ${i}`;
+        img.className = "page" + (i === 1 ? " active" : "");
+        flipbook.appendChild(img);
+      }
+      pages = document.querySelectorAll(".page");
+    }
+
+    function showPage(index) {
+      pages.forEach((p, i) => {
+        p.classList.toggle("active", i === index);
+      });
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    function firstPage() {
+      currentPage = 0;
+      showPage(currentPage);
+    }
+
+    function lastPage() {
+      currentPage = pages.length - 1;
+      showPage(currentPage);
+    }
+
+    loadPages();
   </script>
 </body>
 </html>
