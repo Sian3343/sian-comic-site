@@ -105,82 +105,55 @@
     </div>
   </main>
 
-<script>
-  const folder = "images";
-  const totalPages = 159;
-  const flipbook = document.getElementById("flipbook");
-  let currentPage = 0;
-  let pages = [];
+  <script>
+    const folder = "images"; // 📂 圖片資料夾
+    const totalPages = 159;  // 📄 總頁數
+    const flipbook = document.getElementById("flipbook");
+    let currentPage = 0;
+    let pages = [];
 
-  function loadPages() {
-    for (let i = 1; i <= totalPages; i++) {
-      const img = document.createElement("img");
-      img.src = `${folder}/${i}.jpg`;
-      img.alt = `Page ${i}`;
-      img.className = "page";
-      img.style.display = "none"; // 預設唔顯示
-
-      // 等圖片 load 完，先做任何事
-      img.onload = () => {
-        if (i === 1) {
-          img.classList.add("active");
-          img.style.display = "block";
-        }
-      };
-
-      img.onerror = () => {
-        console.warn(`⚠️ Page ${i} 圖片載入唔到！ (${img.src})`);
-      };
-
-      flipbook.appendChild(img);
-    }
-
-    // 等 DOM render 完，先搵 pages
-    setTimeout(() => {
-      pages = document.querySelectorAll(".page");
-    }, 500);
-  }
-
-  function showPage(index) {
-    if (!pages.length) return;
-
-    pages.forEach((p, i) => {
-      if (i === index) {
-        p.classList.add("active");
-        p.style.display = "block";
-      } else {
-        p.classList.remove("active");
-        p.style.display = "none";
+    function loadPages() {
+      for (let i = totalPages; i >= 1; i--) {
+        const img = document.createElement("img");
+        img.src = `${folder}/${i}.jpg`; // 自動對應圖片名（1.jpg、2.jpg、...、159.jpg）
+        img.alt = `Page ${i}`;
+        img.className = "page" + (i === totalPages ? " active" : "");
+        flipbook.appendChild(img);
       }
-    });
-  }
+      pages = document.querySelectorAll(".page");
+    }
 
-  function nextPage() {
-    if (currentPage < totalPages - 1) {
-      currentPage++;
+    function showPage(index) {
+      pages.forEach((p, i) => {
+        p.classList.toggle("active", i === index);
+      });
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    function firstPage() {
+      currentPage = 0;
       showPage(currentPage);
     }
-  }
 
-  function prevPage() {
-    if (currentPage > 0) {
-      currentPage--;
+    function lastPage() {
+      currentPage = pages.length - 1;
       showPage(currentPage);
     }
-  }
 
-  function firstPage() {
-    currentPage = 0;
-    showPage(currentPage);
-  }
-
-  function lastPage() {
-    currentPage = totalPages - 1;
-    showPage(currentPage);
-  }
-
-  loadPages();
-</script>
-
+    loadPages();
+  </script>
 </body>
 </html>
