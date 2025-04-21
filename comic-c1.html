@@ -102,18 +102,18 @@
   </main>
 
   <script>
-    const folder = "images";
-    const totalPages = 159;
+    const folder = "images"; // 📂 你嘅圖像資料夾
+    const totalPages = 159;  // 📄 總頁數，按需要修改
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
 
     function loadPages() {
-      for (let i = 1; i <= totalPages; i++) {
+      for (let i = totalPages; i >= 1; i--) {
         const img = document.createElement("img");
         img.src = `${folder}/${String(i).padStart(3, '0')}.jpg`;
         img.alt = `Page ${i}`;
-        img.className = "page" + (i === 1 ? " active" : "");
+        img.className = "page" + (i === totalPages ? " active" : "");
         flipbook.appendChild(img);
       }
       pages = document.querySelectorAll(".page");
@@ -153,3 +153,4 @@
   </script>
 </body>
 </html>
+
