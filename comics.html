@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>漫畫作品｜Comic Works - Sian 的漫畫世界</title>
+  <title>漫畫作品｜Comics - Sian 的漫畫世界</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Noto Sans TC', sans-serif;
@@ -66,12 +67,15 @@
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
       }
+
       nav.sidebar.active {
         transform: translateX(0);
       }
+
       .hamburger {
         display: block;
       }
+
       main.main-content {
         margin-left: 0;
         margin-right: 0;
@@ -89,39 +93,48 @@
       animation: fadeIn 1s ease-in;
     }
 
-    .comic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      margin-bottom: 2em;
-    }
-
-    .comic-grid img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .comic-grid img:hover {
-      transform: scale(1.05);
-    }
-
-    h1, h2 {
+    h1 {
       text-align: center;
       color: #6d3684;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #888;
+    .comic-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .comic-card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .comic-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .comic-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .comic-card h3 {
+      font-size: 1.1em;
+      margin: 10px 0 5px;
+      color: #5a3475;
+    }
+
+    .comic-card p {
+      font-size: 0.9em;
+      color: #777;
+      margin-bottom: 10px;
     }
 
     body::before {
@@ -136,12 +149,18 @@
       opacity: 0.2;
       z-index: -1;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-      <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
+  <nav class="sidebar" id="sidebar">
+         <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
        alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
     <h2>選單 Menu</h2>
     <a href="index.html">🏠 首頁 / Home</a>
@@ -150,26 +169,31 @@
     <a href="flipbook.html">📖 翻書版 / Flipbook</a>
     <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
     <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+  </nav>
 
   <main class="main-content">
-    <h1>🎨 漫畫作品｜Comic Works</h1>
-    <div class="comic-grid" style="text-align: center;">
-      <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">
-        中文版 part 1
-        <img src="front%20cover%20C.jpg" alt="中文版 Part 1">
-      </a>
-      <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">
-        English part 1
-        <img src="front%20cover%20E.jpg" alt="English Version Part 1">
-      </a>
-      <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">
-        中文版 part 2
-        <img src="front%20cover%20C2.jpg" alt="中文版 Part 2">
-      </a>
-      <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">
-        English part 2
-        <img src="front%20cover%20CE.jpg" alt="English Version Part 2">
-      </a>
+    <h1>🎨 漫畫作品 / Comics</h1>
+    <div class="comic-grid">
+      <div class="comic-card">
+        <img src="cover_zh1.jpg" alt="中文版漫畫1">
+        <h3>中文版 1</h3>
+        <p>Comic (ZH) Vol. 1</p>
+      </div>
+      <div class="comic-card">
+        <img src="cover_zh2.jpg" alt="中文版漫畫2">
+        <h3>中文版 2</h3>
+        <p>Comic (ZH) Vol. 2</p>
+      </div>
+      <div class="comic-card">
+        <img src="cover_en1.jpg" alt="English Comic Vol.1">
+        <h3>英文版 1</h3>
+        <p>Comic (EN) Vol. 1</p>
+      </div>
+      <div class="comic-card">
+        <img src="cover_en2.jpg" alt="English Comic Vol.2">
+        <h3>英文版 2</h3>
+        <p>Comic (EN) Vol. 2</p>
+      </div>
     </div>
   </main>
 
