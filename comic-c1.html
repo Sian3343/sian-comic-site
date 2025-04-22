@@ -47,8 +47,8 @@
     }
 
     .page {
-      width: 100%;
       display: none;
+      width: 100%;
     }
 
     .page.active {
@@ -72,17 +72,13 @@
     .controls button:hover {
       background-color: #fca5b3;
     }
-
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <nav class="sidebar" id="sidebar">
     <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 100%;">
     <h2>選單 Menu</h2>
+
     <a href="index.html">🏠 首頁 / Home</a>
     <a href="#about">👩 關於我 / About Me</a>
     <a href="#works">🎨 漫畫作品 / Comics</a>
@@ -97,44 +93,34 @@
     <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
   </nav>
 
-<main>
-  <h1>📘 中文版 Part 1</h1>
+  <main>
+    <h1>📘 中文版 Part 1</h1>
+    <div class="flipbook-container" id="flipbook"></div>
 
-  <div class="flipbook-container">
-    <div id="flipbook"></div> <!-- 專門放圖片 -->
-    <div id="error-msg" class="error"></div> <!-- 唔好放喺 flipbook 入面 -->
-  </div>
-
-  <div class="controls">
-    <button onclick="firstPage()">⏮ 回到最前</button>
-    <button onclick="prevPage()">← 上一頁</button>
-    <button onclick="nextPage()">下一頁 →</button>
-    <button onclick="lastPage()">⏭ 跳到最後</button>
-  </div>
-</main>
+    <div class="controls">
+      <button onclick="firstPage()">⏮ 回到最前</button>
+      <button onclick="prevPage()">← 上一頁</button>
+      <button onclick="nextPage()">下一頁 →</button>
+      <button onclick="lastPage()">⏭ 跳到最後</button>
+    </div>
+  </main>
 
   <script>
-    const folder = "images";        // 📂 圖片資料夾
-    const totalPages = 159;         // 📄 總頁數
+    const folder = "images"; // 📂 你嘅圖像資料夾
+    const totalPages = 159;  // 📄 總頁數，按需要修改
+    const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
 
-function getFilename(i) {
-  return i.toString().padStart(2, '0') + '.jpg';
-}
     function loadPages() {
-      const flipbook = document.getElementById("flipbook");
       for (let i = totalPages; i >= 1; i--) {
         const img = document.createElement("img");
-        img.src = `${folder}/${getFilename(i)}`;
+        img.src = `${folder}/${String(i).padStart(2, '0')}.jpg`;
         img.alt = `Page ${i}`;
-        img.className = "page";
+        img.className = "page" + (i === totalPages ? " active" : "");
         flipbook.appendChild(img);
       }
       pages = document.querySelectorAll(".page");
-      if (pages.length > 0) {
-        pages[0].classList.add("active");
-      }
     }
 
     function showPage(index) {
@@ -171,3 +157,4 @@ function getFilename(i) {
   </script>
 </body>
 </html>
+
