@@ -78,7 +78,6 @@
 
       main.main-content {
         margin-left: 0;
-        margin-right: 0;
         padding: 20px;
         max-width: 100%;
       }
@@ -88,7 +87,6 @@
       flex-grow: 1;
       padding: 40px 30px;
       margin-left: 220px;
-      margin-right: 30px;
       max-width: calc(100% - 250px);
       animation: fadeIn 1s ease-in;
     }
@@ -102,18 +100,20 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
       margin-top: 30px;
     }
 
     .comic-card {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       overflow: hidden;
       width: 220px;
       text-align: center;
       transition: transform 0.3s ease;
+      text-decoration: none;
+      color: #4b306a;
     }
 
     .comic-card:hover {
@@ -132,9 +132,9 @@
     }
 
     .comic-card p {
-      font-size: 0.9em;
+      font-size: 0.85em;
       color: #777;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     body::before {
@@ -160,12 +160,12 @@
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
   <nav class="sidebar" id="sidebar">
-         <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
-       alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
+    <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
+      alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
     <h2>選單 Menu</h2>
     <a href="index.html">🏠 首頁 / Home</a>
     <a href="about.html">👩 關於我 / About Me</a>
-    <a href="#">🎨 漫畫作品 / Comics</a>
+    <a href="comics.html">🎨 漫畫作品 / Comics</a>
     <a href="flipbook.html">📖 翻書版 / Flipbook</a>
     <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
     <a href="feelings-en.html">🖼️ Moodbook (English)</a>
@@ -173,27 +173,28 @@
 
   <main class="main-content">
     <h1>🎨 漫畫作品 / Comics</h1>
-       <section id="works">
-      <h2>🎨 漫畫作品｜Comic Works</h2>
-      <div class="comic-grid">
-        <a href="comic-c1.html">
-          📘 中文版 Part 1
-          <img src="https://sian3343.github.io/sian-comic-site/images/01.jpg" alt="中文版 Part 1 封面">
-        </a>
-        <a href="comic-c2.html">
-          📗 中文版 Part 2
-          <img src="https://sian3343.github.io/sian-comic-site/images2/01.jpg" alt="中文版 Part 2 封面">
-        </a>
-        <a href="comic-e1.html">
-          📙 English Part 1
-          <img src="https://sian3343.github.io/sian-comic-site/images-en/01.jpg" alt="English Part 1 Cover">
-        </a>
-        <a href="comic-e2.html">
-          📕 English Part 2
-          <img src="https://sian3343.github.io/sian-comic-site/images-en2/01.jpg" alt="English Part 2 Cover">
-        </a>
-      </div>
-    </section>
+    <div class="comic-grid">
+      <a href="comic-c1.html" class="comic-card">
+        <img src="images/01.jpg" alt="中文版 Part 1 封面">
+        <h3>📘 中文版 Part 1</h3>
+        <p>從生活出發的第一輯漫畫</p>
+      </a>
+      <a href="comic-c2.html" class="comic-card">
+        <img src="images2/01.jpg" alt="中文版 Part 2 封面">
+        <h3>📗 中文版 Part 2</h3>
+        <p>繼續探索 Asperger 的日常</p>
+      </a>
+      <a href="comic-e1.html" class="comic-card">
+        <img src="images-en/01.jpg" alt="English Part 1 Cover">
+        <h3>📙 English Part 1</h3>
+        <p>The story begins with real-life vibes</p>
+      </a>
+      <a href="comic-e2.html" class="comic-card">
+        <img src="images-en2/01.jpg" alt="English Part 2 Cover">
+        <h3>📕 English Part 2</h3>
+        <p>Continuing the daily thoughts and journey</p>
+      </a>
+    </div>
   </main>
 
   <script>
