@@ -97,19 +97,21 @@
     <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
   </nav>
 
-  <main>
-    <h1>📘 中文版 Part 1</h1>
-    <div class="flipbook-container" id="flipbook">
-      <div id="error-msg" class="error"></div>
-    </div>
+<main>
+  <h1>📘 中文版 Part 1</h1>
 
-    <div class="controls">
-      <button onclick="firstPage()">⏮ 回到最前</button>
-      <button onclick="prevPage()">← 上一頁</button>
-      <button onclick="nextPage()">下一頁 →</button>
-      <button onclick="lastPage()">⏭ 跳到最後</button>
-    </div>
-  </main>
+  <div class="flipbook-container">
+    <div id="flipbook"></div> <!-- 專門放圖片 -->
+    <div id="error-msg" class="error"></div> <!-- 唔好放喺 flipbook 入面 -->
+  </div>
+
+  <div class="controls">
+    <button onclick="firstPage()">⏮ 回到最前</button>
+    <button onclick="prevPage()">← 上一頁</button>
+    <button onclick="nextPage()">下一頁 →</button>
+    <button onclick="lastPage()">⏭ 跳到最後</button>
+  </div>
+</main>
 
   <script>
     const folder = "images";        // 📂 圖片資料夾
