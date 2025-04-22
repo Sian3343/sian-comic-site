@@ -48,6 +48,11 @@
 
     .page {
       width: 100%;
+      display: none;
+    }
+
+    .page.active {
+      display: block;
     }
 
     .controls {
@@ -78,7 +83,6 @@
   <nav class="sidebar" id="sidebar">
     <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 100%;">
     <h2>選單 Menu</h2>
-
     <a href="index.html">🏠 首頁 / Home</a>
     <a href="#about">👩 關於我 / About Me</a>
     <a href="#works">🎨 漫畫作品 / Comics</a>
@@ -95,8 +99,7 @@
 
   <main>
     <h1>📘 中文版 Part 1</h1>
-    <div class="flipbook-container">
-      <img id="comic-page" class="page" src="" alt="Comic Page" />
+    <div class="flipbook-container" id="flipbook">
       <div id="error-msg" class="error"></div>
     </div>
 
@@ -109,59 +112,61 @@
   </main>
 
   <script>
-  const folder = "images"; // 📂 圖片資料夾
-  const totalPages = 159;  // 📄 總頁數
-  const flipbook = document.getElementById("flipbook");
-  let currentPage = 0;
-  let pages = [];
+    const folder = "images";        // 📂 圖片資料夾
+    const totalPages = 159;         // 📄 總頁數
+    let currentPage = 0;
+    let pages = [];
 
-  function getFilename(i) {
-    return i < 10 ? `0${i}.jpg` : `${i}.jpg`;
-  }
-
-  function loadPages() {
-    for (let i = 1; i <= totalPages; i++) {
-      const img = document.createElement("img");
-      img.src = `${folder}/${getFilename(i)}`;
-      img.alt = `Page ${i}`;
-      img.className = "page" + (i === 1 ? " active" : "");
-      flipbook.appendChild(img);
+    function getFilename(i) {
+      return i < 10 ? `0${i}.jpg` : `${i}.jpg`;
     }
-    pages = document.querySelectorAll(".page");
-  }
 
-  function showPage(index) {
-    pages.forEach((p, i) => {
-      p.classList.toggle("active", i === index);
-    });
-  }
+    function loadPages() {
+      const flipbook = document.getElementById("flipbook");
+      for (let i = totalPages; i >= 1; i--) {
+        const img = document.createElement("img");
+        img.src = `${folder}/${getFilename(i)}`;
+        img.alt = `Page ${i}`;
+        img.className = "page";
+        flipbook.appendChild(img);
+      }
+      pages = document.querySelectorAll(".page");
+      if (pages.length > 0) {
+        pages[0].classList.add("active");
+      }
+    }
 
-  function nextPage() {
-    if (currentPage < pages.length - 1) {
-      currentPage++;
+    function showPage(index) {
+      pages.forEach((p, i) => {
+        p.classList.toggle("active", i === index);
+      });
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    function firstPage() {
+      currentPage = 0;
       showPage(currentPage);
     }
-  }
 
-  function prevPage() {
-    if (currentPage > 0) {
-      currentPage--;
+    function lastPage() {
+      currentPage = pages.length - 1;
       showPage(currentPage);
     }
-  }
 
-  function firstPage() {
-    currentPage = 0;
-    showPage(currentPage);
-  }
-
-  function lastPage() {
-    currentPage = pages.length - 1;
-    showPage(currentPage);
-  }
-
-  loadPages();
-</script>
-
+    loadPages();
+  </script>
 </body>
 </html>
