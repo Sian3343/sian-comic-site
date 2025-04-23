@@ -125,6 +125,27 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
       }
+      @media (max-width: 768px) {
+  main.main-content {
+    max-width: 100%;
+    padding: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
+
+  .comic-grid img,
+  header img,
+  .logo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+      }
+      
     </style>
   </head>
   <body>
