@@ -226,20 +226,6 @@
   </style>
 </head>
 <body>
-  <!-- 引入 sidebar.html -->
-<div id="sidebar">
-  <!-- 這裡將會載入 sidebar.html -->
-</div>
-
-<script>
-  fetch('https://sian3343.github.io/sian-comic-site/sidebar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('sidebar').innerHTML = data;
-    })
-    .catch(error => console.error('錯誤:', error));
-</script>
-
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
   <nav class="sidebar" id="sidebar">
@@ -357,4 +343,4 @@ I hope my drawings offer you a sense of resonance and gentle companionship.
   </script>
     <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
 </body>
-</html>
+</html>  
