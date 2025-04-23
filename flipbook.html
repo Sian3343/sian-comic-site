@@ -14,12 +14,29 @@
       background-color: #fdf6f0;
       color: #4b306a;
     }
+
+    #toggleSidebar {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 999;
+      background-color: #6b4c88;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     nav.sidebar {
       width: 220px;
       background-color: #f2e5ec;
       padding: 20px;
       min-height: 100vh;
       position: fixed;
+      transition: transform 0.3s ease;
     }
     nav.sidebar h2 {
       font-size: 1.1em;
@@ -111,46 +128,31 @@
       font-size: 0.9em;
       color: #888;
     }
-   #toggleSidebar {
-  display: none;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 999;
-  background-color: #6b4c88;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
-/* 當畫面細過 768px，就自動隱藏 sidebar，顯示按鈕 */
-@media (max-width: 768px) {
-  nav.sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
+    @media (max-width: 768px) {
+      nav.sidebar {
+        transform: translateX(-100%);
+      }
 
-  nav.sidebar.show {
-    transform: translateX(0);
-  }
+      nav.sidebar.show {
+        transform: translateX(0);
+      }
 
-  main {
-    margin-left: 0;
-    padding-top: 80px;
-  }
+      main {
+        margin-left: 0;
+        padding-top: 80px;
+      }
 
-  #toggleSidebar {
-    display: block;
-  }
-} 
-
+      #toggleSidebar {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
-<button id="toggleSidebar">☰</button>
+
+  <button id="toggleSidebar">☰</button>
+
   <nav class="sidebar" id="sidebar">
     <div style="text-align: center;">
       <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
@@ -199,7 +201,11 @@
     <footer>© 2025 Sian | 漫畫翻書版</footer>
   </main>
 
-<script>
+  <script>
+    document.getElementById("toggleSidebar").addEventListener("click", function () {
+      document.getElementById("sidebar").classList.toggle("show");
+    });
+
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
@@ -287,11 +293,7 @@
 
     // 預設載入中文版 Part 1
     loadPages('images');
-    <script>
-  document.getElementById("toggleSidebar").addEventListener("click", function () {
-    document.getElementById("sidebar").classList.toggle("show");
-  });
+  </script>
 
-</script>
 </body>
 </html>
