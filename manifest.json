@@ -1,0 +1,20 @@
+{
+  "name": "Sian's Comic Site",
+  "short_name": "SianComic",
+  "start_url": "/sian-comic-site/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f8f8f8",
+  "icons": [
+    {
+      "src": "sian_logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "sian_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
