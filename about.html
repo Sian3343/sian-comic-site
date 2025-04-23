@@ -1,166 +1,194 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>關於我｜About Me - Sian 的漫畫世界</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>關於我｜About Me - Sian 的漫畫世界</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-    body {
-      margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      min-height: 100vh;
-      color: #4b306a;
-    }
-
-    #sidebarContainer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 998;
-    }
-
-    .hamburger {
-      display: none;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 999;
-      background: rgba(255,255,255,0.8);
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block;
+      body {
+        margin: 0;
+        font-family: 'Noto Sans TC', sans-serif;
+        background: url('background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        min-height: 100vh;
+        color: #4b306a;
       }
 
       nav.sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+        background-color: #f7f2fb;
+        width: 220px;
+        min-height: 100vh;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 998;
       }
 
-      nav.sidebar.active {
-        transform: translateX(0);
+      nav.sidebar h2 {
+        font-size: 1.2em;
+        margin-bottom: 1em;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 0.3em;
+      }
+
+      nav.sidebar a {
+        display: block;
+        margin: 10px 0;
+        text-decoration: none;
+        color: #6b4c88;
+        transition: 0.3s;
+      }
+
+      nav.sidebar a:hover {
+        color: #a75bb8;
+      }
+
+      .hamburger {
+        display: none;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 12px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        nav.sidebar {
+          transform: translateX(-100%);
+          transition: transform 0.3s ease-in-out;
+        }
+
+        nav.sidebar.active {
+          transform: translateX(0);
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        main.main-content {
+          margin-left: 0;
+          margin-right: 0;
+          padding: 20px;
+          max-width: 100%;
+        }
       }
 
       main.main-content {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px;
-        max-width: 100%;
+        flex-grow: 1;
+        padding: 40px 30px;
+        margin-left: 220px;
+        margin-right: 30px;
+        max-width: calc(100% - 250px);
+        animation: fadeIn 1s ease-in;
       }
-    }
 
-    main.main-content {
-      flex-grow: 1;
-      padding: 40px 30px;
-      margin-left: 220px;
-      margin-right: 30px;
-      max-width: calc(100% - 250px);
-      animation: fadeIn 1s ease-in;
-    }
+      h1, h2 {
+        text-align: center;
+        color: #6d3684;
+      }
 
-    h1, h2 {
-      text-align: center;
-      color: #6d3684;
-    }
+      footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9em;
+        color: #888;
+      }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #888;
-    }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(#e8d0ef 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.2;
+        z-index: -1;
+      }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(#e8d0ef 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.2;
-      z-index: -1;
-    }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar will be loaded here -->
+    <div id="sidebar-placeholder"></div>
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <div id="sidebarContainer"></div>
+    <main class="main-content">
+      <div style="text-align: center;">
+        <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png" alt="Sian Logo" class="logo" style="width: 108px; height: 108px;" />
+      </div>
 
-  <main class="main-content">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png" alt="Sian Logo" style="width: 108px; height: 108px;">
-    </div>
+      <header style="text-align: center;">
+        <img src="https://sian3343.github.io/sian-comic-site/logo-1.png" alt="圖標1" style="width: 93px; height: 90px;" />
+        <img src="https://sian3343.github.io/sian-comic-site/banner.png" alt="標題橫幅" style="width: 246px; height: 131px;" />
+        <img src="https://sian3343.github.io/sian-comic-site/logo-2.png" alt="圖標2" style="width: 92px; height: 94px;" />
+      </header>
 
-    <header style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo-1.png" alt="圖標1" style="width: 93px; height: 90px;">
-      <img src="https://sian3343.github.io/sian-comic-site/banner.png" alt="標題橫幅" style="width: 246px; height: 131px;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo-2.png" alt="圖標2" style="width: 92px; height: 94px;">
-    </header>
+      <h1>關於我｜About Me</h1>
+      <p>
+        嗨，我是 Sian。<br />
+        是用畫筆記錄生活的漫畫創作者，也是一位成人確診 Asperger's。<br />
+        對我而言，世界有些複雜，人與人之間的距離，總讓我難以捉摸。<br />
+        說話不是我的強項，但透過繪畫與書寫，我能更真實地表達內心的聲音。<br /><br />
+        我畫的漫畫，不只是日常的紀錄，也是自我療癒的過程。<br />
+        畫筆是我與世界對話的方式，它幫助我理清思緒，轉化情緒，也讓我在孤單中找到一些理解。<br /><br />
+        這些故事都源自真實生活，沒有誇張與修飾，只是靜靜地訴說那些不被看見的感受。<br />
+        如果你也曾在某些時刻覺得不被理解，或者感到格格不入，<br />
+        希望這裡的每一幅圖，都能給你一點共鳴與陪伴。
+      </p>
 
-    <h1>關於我｜About Me</h1>
-    <p>
-      嗨，我是 Sian。<br>
-      是用畫筆記錄生活的漫畫創作者，也是一位成人確診 Asperger's。<br>
-      對我而言，世界有些複雜，人與人之間的距離，總讓我難以捉摸。<br>
-      說話不是我的強項，但透過繪畫與書寫，我能更真實地表達內心的聲音。<br><br>
+      <p>
+        Hi, I’m Sian.<br />
+        I’m a comic artist who expresses life through drawing, and an adult with Asperger’s Syndrome.<br />
+        The world often feels complex to me, and human interactions can be hard to navigate.<br />
+        Speaking isn’t my strength—but through art and writing, I can share my thoughts more truthfully.<br /><br />
+        My comics are more than daily snapshots; they are part of my journey to heal and understand myself.<br />
+        Drawing is how I connect with the world—it helps me process emotions and find clarity within the chaos.<br /><br />
+        Each story is based on real experiences.<br />
+        There’s no filter, no exaggeration—just quiet expressions of feelings that are often overlooked.<br />
+        If you’ve ever felt misunderstood or out of place,<br />
+        I hope my drawings offer you a sense of resonance and gentle companionship.
+      </p>
+    </main>
 
-      我畫的漫畫，不只是日常的紀錄，也是自我療癒的過程。<br>
-      畫筆是我與世界對話的方式，它幫助我理清思緒，轉化情緒，也讓我在孤單中找到一些理解。<br><br>
+    <script>
+      function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar) {
+          sidebar.classList.toggle("active");
+        }
+      }
 
-      這些故事都源自真實生活，沒有誇張與修飾，只是靜靜地訴說那些不被看見的感受。<br>
-      如果你也曾在某些時刻覺得不被理解，或者感到格格不入，<br>
-      希望這裡的每一幅圖，都能給你一點共鳴與陪伴。
-    </p>
-
-    <p>
-      Hi, I’m Sian.<br>
-      I’m a comic artist who expresses life through drawing, and an adult with Asperger’s Syndrome.<br>
-      The world often feels complex to me, and human interactions can be hard to navigate.<br>
-      Speaking isn’t my strength—but through art and writing, I can share my thoughts more truthfully.<br><br>
-
-      My comics are more than daily snapshots; they are part of my journey to heal and understand myself.<br>
-      Drawing is how I connect with the world—it helps me process emotions and find clarity within the chaos.<br><br>
-
-      Each story is based on real experiences.<br>
-      There’s no filter, no exaggeration—just quiet expressions of feelings that are often overlooked.<br>
-      If you’ve ever felt misunderstood or out of place,<br>
-      I hope my drawings offer you a sense of resonance and gentle companionship.
-    </p>
-  </main>
-
-  <script>
-    function toggleMenu() {
-      const sidebar = document.querySelector("nav.sidebar");
-      sidebar.classList.toggle("active");
-    }
-
-    // 自動載入 sidebar.html
-    fetch("sidebar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("sidebarContainer").innerHTML = data;
-      });
-  </script>
-</body>
+      // Load sidebar.html
+      fetch("sidebar.html")
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("sidebar-placeholder").innerHTML = html;
+        });
+    </script>
+  </body>
 </html>
