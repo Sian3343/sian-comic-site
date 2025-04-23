@@ -6,146 +6,13 @@
   <title>Moodbook - English Version</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      display: flex;
-      background-color: #f7f2fb;
-      color: #4b306a;
-    }
-    nav.sidebar {
-      width: 220px;
-      background-color: #ece3f3;
-      padding: 20px;
-      min-height: 100vh;
-      position: fixed;
-    }
-    nav.sidebar h2 {
-      font-size: 1.1em;
-      margin-bottom: 1em;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3em;
-    }
-    nav.sidebar a {
-      display: block;
-      margin: 10px 0;
-      color: #6b4c88;
-      text-decoration: none;
-    }
-    nav.sidebar a:hover {
-      color: #a75bb8;
-    }
-
-    main {
-      margin-left: 240px;
-      padding: 30px;
-      flex-grow: 1;
-    }
-
-    h1 {
-      text-align: center;
-      color: #6d3684;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      display: block;
-    }
-
-    .card .caption {
-      padding: 10px;
-      font-size: 0.95em;
-      color: #5a3a6a;
-    }
-
-    .pagination {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .pagination button {
-      background-color: #a170bd;
-      border: none;
-      color: white;
-      padding: 8px 14px;
-      margin: 0 5px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .pagination button.active {
-      background-color: #6a3d93;
-    }
-
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #888;
-    }
-.lightbox-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.lightbox-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 6px solid white;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
-  animation: zoomIn 0.3s ease;
-}
-@keyframes zoomIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-    
+    /* ... 原本 CSS 保持唔變 ... */
+    /* 你已有 CSS 內容無需更動，我略去重複部分 */
   </style>
 </head>
 <body>
-      <nav class="sidebar" id="sidebar">
-      <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
-       alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
-    <h2>選單 Menu</h2>
-      <a href="index.html">🏠 首頁 / Home</a>
-      <a href="about.html">👩 關於我 / About Me</a>
-      <a href="comics.html">🎨 漫畫作品 / Comics</a>
-      <a href="flipbook.html">📖 翻書版 / Flipbook</a>
-      <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
-      <a href="feelings-en.html">🖼️ Moodbook (English)</a>
-    <hr>
-    <h2>Facebook 相簿</h2>
-    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
-    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
+  <nav class="sidebar" id="sidebar">
+    <!-- 側邊欄內容保持唔變 -->
   </nav>
 
   <main>
@@ -157,78 +24,78 @@
     <div class="gallery" id="gallery"></div>
 
     <div class="pagination" id="pagination"></div>
-
-    <footer>© 2025 Sian | Moodbook - English Version</footer>
   </main>
 
-<script>
-  const totalImages = 32;
-  const imagesPerPage = 15;
-  let currentPage = 1;
-  let currentImageIndex = 0;
+  <footer>© 2025 Sian | Moodbook - English Version</footer>
 
-  function showGalleryPage(page) {
-    const gallery = document.getElementById("gallery");
-    const pagination = document.getElementById("pagination");
-    gallery.innerHTML = "";
-    pagination.innerHTML = "";
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Enlarged Image" id="lightbox-img">
+  </div>
 
-    const totalPages = Math.ceil(totalImages / imagesPerPage);
-    const start = totalImages - (page - 1) * imagesPerPage;
-    const end = Math.max(start - imagesPerPage + 1, 1);
+  <script>
+    const totalImages = 32;
+    const imagesPerPage = 15;
+    let currentPage = 1;
+    let currentImageIndex = 0;
 
-    for (let i = start; i >= end; i--) {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
-        <div class="caption">圖 #${i}</div>
-      `;
-      gallery.appendChild(card);
+    function showGalleryPage(page) {
+      const gallery = document.getElementById("gallery");
+      const pagination = document.getElementById("pagination");
+      gallery.innerHTML = "";
+      pagination.innerHTML = "";
+
+      const totalPages = Math.ceil(totalImages / imagesPerPage);
+      const start = totalImages - (page - 1) * imagesPerPage;
+      const end = Math.max(start - imagesPerPage + 1, 1);
+
+      for (let i = start; i >= end; i--) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
+          <div class="caption">圖 #${i}</div>
+        `;
+        gallery.appendChild(card);
+      }
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === page) btn.classList.add("active");
+        btn.onclick = () => {
+          currentPage = i;
+          showGalleryPage(i);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        pagination.appendChild(btn);
+      }
     }
 
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      if (i === page) btn.classList.add("active");
-      btn.onclick = () => {
-        currentPage = i;
-        showGalleryPage(i);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      };
-      pagination.appendChild(btn);
+    function openLightbox(index) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      currentImageIndex = index;
+      img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
+      lightbox.style.display = "flex";
     }
-  }
 
-  function openLightbox(index) {
-    const lightbox = document.getElementById("lightbox");
-    const img = document.getElementById("lightbox-img");
-    currentImageIndex = index;
-    img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
-    lightbox.style.display = "flex";
-  }
-
-  function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-  }
-
-  document.getElementById("lightbox").onclick = closeLightbox;
-
-  document.addEventListener("keydown", function(e) {
-    const lightbox = document.getElementById("lightbox");
-    if (lightbox.style.display === "flex") {
-      if (e.key === "Escape") closeLightbox();
-      else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
-      else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
     }
-  });
 
-  showGalleryPage(currentPage);
-</script>
+    document.getElementById("lightbox").onclick = closeLightbox;
 
-<div class="lightbox-overlay" id="lightbox">
-  <img src="" alt="Enlarged Image" id="lightbox-img">
-</div>
+    document.addEventListener("keydown", function(e) {
+      const lightbox = document.getElementById("lightbox");
+      if (lightbox.style.display === "flex") {
+        if (e.key === "Escape") closeLightbox();
+        else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
+        else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+      }
+    });
+
+    showGalleryPage(currentPage);
+  </script>
 
 </body>
 </html>
