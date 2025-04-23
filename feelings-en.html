@@ -102,6 +102,31 @@
       font-size: 0.9em;
       color: #888;
     }
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 6px solid white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  animation: zoomIn 0.3s ease;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+    
   </style>
 </head>
 <body>
@@ -176,7 +201,37 @@
 
 
     showGalleryPage(currentPage);
+
+let currentImageIndex = 0;
+
+function openLightbox(index) {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  currentImageIndex = index;
+img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})"
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+document.getElementById("lightbox").onclick = closeLightbox;
+
+document.addEventListener("keydown", function(e) {
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox.style.display === "flex") {
+    if (e.key === "Escape") closeLightbox();
+    else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
+    else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+  }
+});
+    
   </script>
   <footer>...現有內容...</footer>
+
+  <div class="lightbox-overlay" id="lightbox">
+  <img src="" alt="Enlarged Image" id="lightbox-img">
+</div>
+
 </body>
 </html>
