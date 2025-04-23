@@ -1,227 +1,257 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📖 漫畫翻書版 | Sian 的漫畫世界</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: "Noto Sans TC", sans-serif;
-    display: flex;
-    background-color: #fdf6f0;
-    color: #4b306a;
-  }
-  nav.sidebar {
-    width: 220px;
-    background-color: #f2e5ec;
-    padding: 20px;
-    min-height: 100vh;
-    position: fixed;
-  }
-  nav.sidebar h2 {
-    font-size: 1.1em;
-    margin-bottom: 1em;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 0.3em;
-  }
-  nav.sidebar a {
-    display: block;
-    margin: 10px 0;
-    color: #6b4c88;
-    text-decoration: none;
-  }
-  nav.sidebar a:hover {
-    color: #a75bb8;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📖 漫畫翻書版 | Sian 的漫畫世界</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      display: flex;
+      background-color: #fdf6f0;
+      color: #4b306a;
+    }
+    nav.sidebar {
+      width: 220px;
+      background-color: #f2e5ec;
+      padding: 20px;
+      min-height: 100vh;
+      position: fixed;
+    }
+    nav.sidebar h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
+    }
+    nav.sidebar a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
+    nav.sidebar a:hover {
+      color: #a75bb8;
+    }
 
-  main {
-    margin-left: 240px;
-    padding: 30px;
-    flex-grow: 1;
-  }
+    main {
+      margin-left: 240px;
+      padding: 30px;
+      flex-grow: 1;
+    }
 
-  h1 {
-    text-align: center;
-    color: #6d3684;
-  }
+    h1 {
+      text-align: center;
+      color: #6d3684;
+    }
 
-  .part-selector {
-    text-align: center;
-    margin: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
+    .part-selector {
+      text-align: center;
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
 
-  .part-selector button,
-  .controls button {
-    background-color: #ffd8df;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease;
-  }
+    .part-selector button,
+    .controls button {
+      background-color: #ffd8df;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
 
-  .part-selector button:hover,
-  .controls button:hover {
-    background-color: #fca5b3;
-  }
+    .part-selector button:hover,
+    .controls button:hover {
+      background-color: #fca5b3;
+    }
 
-  .flipbook-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    overflow: hidden;
-  }
+    .flipbook-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
 
-  .page {
-    display: none;
-    width: 100%;
-    max-height: 90vh;
-    height: auto;
-    object-fit: contain;
-    transition: opacity 0.5s ease-in-out;
-  }
+    .page {
+      display: none;
+      width: 100%;
+      max-height: 90vh;
+      height: auto;
+      object-fit: contain;
+      transition: opacity 0.5s ease-in-out;
+      transform-origin: center center;
+    }
 
-  .page.active {
-    display: block;
-  }
+    .page.active {
+      display: block;
+    }
 
-  .controls {
-    text-align: center;
-    margin-top: 20px;
-  }
+    .controls {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
 
-  footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 0.9em;
-    color: #888;
-  }
-</style>
-
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
-    </div>
-    <h2>選單 Menu</h2>
-      <a href="index.html">🏠 首頁 / Home</a>
-      <a href="about.html">👩 關於我 / About Me</a>
-      <a href="comics.html">🎨 漫畫作品 / Comics</a>
-      <a href="flipbook.html">📖 翻書版 / Flipbook</a>
-      <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
-      <a href="feelings-en.html">🖼️ Moodbook (English)</a>
-    <hr>
-    <h2>Facebook 相簿</h2>
-    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
-    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
-  </nav>
+  <nav class="sidebar" id="sidebar">
+    <div style="text-align: center;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+    </div>
+    <h2>選單 Menu</h2>
+    <a href="index.html">🏠 首頁 / Home</a>
+    <a href="about.html">👩 關於我 / About Me</a>
+    <a href="comics.html">🎨 漫畫作品 / Comics</a>
+    <a href="flipbook.html">📖 翻書版 / Flipbook</a>
+    <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
+    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+    <hr>
+    <h2>Facebook 相簿</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
+  </nav>
 
-  <main>
-    <h1>📖 Sian 的漫畫翻書版</h1>
-    <p style="text-align:center; max-width:700px; margin:0 auto 30px;">
-      這是一本可以翻頁的線上漫畫版本，請選擇你想閱讀的版本。<br>
-      A flipbook-style version of Sian’s comics — choose the part you’d like to view!
-    </p>
+  <main>
+    <h1>📖 Sian 的漫畫翻書版</h1>
+    <p style="text-align:center; max-width:700px; margin:0 auto 30px;">
+      這是一本可以翻頁的線上漫畫版本，請選擇你想閱讀的版本。<br>
+      A flipbook-style version of Sian’s comics — choose the part you’d like to view!
+    </p>
 
-    <div class="part-selector">
-      <button onclick="switchPart('images')">中文版 Part 1</button>
-      <button onclick="switchPart('images2')">中文版 Part 2</button>
-      <button onclick="switchPart('images-en')">English Part 1</button>
-      <button onclick="switchPart('images-en2')">English Part 2</button>
-    </div>
+    <div class="part-selector">
+      <button onclick="switchPart('images2')">中文版 Part 2</button> 
+      <button onclick="switchPart('images-en2')">English Part 2</button>     
+      <button onclick="switchPart('images')">中文版 Part 1</button>
+      <button onclick="switchPart('images-en')">English Part 1</button>
+    </div>
 
-    <div class="flipbook-container" id="flipbook"></div>
+    <div class="flipbook-container" id="flipbook"></div>
 
-    <div class="controls">
-      <button onclick="firstPage()">⏮ 回到最前</button>
-      <button onclick="prevPage()">← 上一頁</button>
-      <button onclick="nextPage()">下一頁 →</button>
-      <button onclick="lastPage()">⏭ 跳到最後</button>
-    </div>
+    <div class="controls">
+      <button onclick="firstPage()">⏮ 回到最前</button>
+      <button onclick="prevPage()">← 上一頁</button>
+      <button onclick="nextPage()">下一頁 →</button>
+      <button onclick="lastPage()">⏭ 跳到最後</button>
+      <button onclick="zoomIn()">🔍 放大</button>
+      <button onclick="zoomOut()">🔎 縮細</button>
+      <button onclick="resetZoom()">🔄 重設大小</button>
+    </div>
 
-    <footer>© 2025 Sian | 漫畫翻書版</footer>
-  </main>
+    <footer>© 2025 Sian | 漫畫翻書版</footer>
+  </main>
 
-  <script>
-    const flipbook = document.getElementById("flipbook");
-    let currentPage = 0;
-    let pages = [];
+  <script>
+    const flipbook = document.getElementById("flipbook");
+    let currentPage = 0;
+    let pages = [];
+    let zoomLevel = 1;
 
-    async function loadPages(folder) {
-      currentPage = 0;
-      flipbook.innerHTML = "";
+    async function loadPages(folder) {
+      currentPage = 0;
+      flipbook.innerHTML = "";
 
-      try {
-        // 🔄 加 timestamp 避免 cache，🔃 加 reverse() 改為由新至舊
-        const response = await fetch(`${folder}/manifest.json?timestamp=${Date.now()}`);
-        let imageList = await response.json();
-        imageList.reverse();
+      try {
+        const response = await fetch(`${folder}/manifest.json?timestamp=${Date.now()}`);
+        let imageList = await response.json();
+        imageList.reverse();
 
-        imageList.forEach((file, index) => {
-          const img = document.createElement("img");
-          img.src = `${folder}/${file}`;
-          img.alt = `page ${index + 1}`;
-          img.className = "page" + (index === 0 ? " active" : "");
-          flipbook.appendChild(img);
-        });
+        imageList.forEach((file, index) => {
+          const img = document.createElement("img");
+          img.src = `${folder}/${file}`;
+          img.alt = `page ${index + 1}`;
+          img.className = "page" + (index === 0 ? " active" : "");
+          img.style.transform = `scale(${zoomLevel})`;
+          flipbook.appendChild(img);
+        });
 
-        pages = document.querySelectorAll(".page");
-      } catch (error) {
-        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
-      }
-    }
+        pages = document.querySelectorAll(".page");
+      } catch (error) {
+        flipbook.innerHTML = `<p style="color:red;">載入圖片失敗：${error.message}</p>`;
+      }
+    }
 
-    function showPage(index) {
-      pages.forEach((page, i) => {
-        page.classList.toggle("active", i === index);
-      });
-    }
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle("active", i === index);
+      });
+    }
 
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        showPage(currentPage);
-      }
-    }
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
 
-    function nextPage() {
-      if (currentPage < pages.length - 1) {
-        currentPage++;
-        showPage(currentPage);
-      }
-    }
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
 
-    function firstPage() {
-      currentPage = 0;
-      showPage(currentPage);
-    }
+    function firstPage() {
+      currentPage = 0;
+      showPage(currentPage);
+    }
 
-    function lastPage() {
-      currentPage = pages.length - 1;
-      showPage(currentPage);
-    }
+    function lastPage() {
+      currentPage = pages.length - 1;
+      showPage(currentPage);
+    }
 
-    function switchPart(folder) {
-      loadPages(folder);
-    }
+    function switchPart(folder) {
+      zoomLevel = 1;
+      loadPages(folder);
+    }
 
-    // 預設載入中文版 Part 1
-    loadPages('images');
-  </script>
+    function applyZoom() {
+      pages.forEach((page) => {
+        page.style.transform = `scale(${zoomLevel})`;
+      });
+    }
+
+    function zoomIn() {
+      zoomLevel = Math.min(zoomLevel + 0.1, 2);
+      applyZoom();
+    }
+
+    function zoomOut() {
+      zoomLevel = Math.max(zoomLevel - 0.1, 0.5);
+      applyZoom();
+    }
+
+    function resetZoom() {
+      zoomLevel = 1;
+      applyZoom();
+    }
+
+    // 預設載入中文版 Part 1
+    loadPages('images');
+  </script>
 
 </body>
 </html>
