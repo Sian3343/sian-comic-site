@@ -142,38 +142,38 @@
     const imagesPerPage = 15;
     let currentPage = 1;
 
-    function showGalleryPage(page) {
-      const gallery = document.getElementById("gallery");
-      const pagination = document.getElementById("pagination");
-      gallery.innerHTML = "";
-      pagination.innerHTML = "";
+  function showGalleryPage(page) {
+  const gallery = document.getElementById("gallery");
+  const pagination = document.getElementById("pagination");
+  gallery.innerHTML = "";
+  pagination.innerHTML = "";
 
-      const start = (page - 1) * imagesPerPage + 1;
-      const end = Math.min(start + imagesPerPage - 1, totalImages);
+  const totalPages = Math.ceil(totalImages / imagesPerPage);
+  const start = totalImages - (page - 1) * imagesPerPage;
+  const end = Math.max(start - imagesPerPage + 1, 1);
 
-      for (let i = start; i <= end; i++) {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}">
-          <div class="caption">圖 #${i}</div>
-        `;
-        gallery.appendChild(card);
-      }
+  for (let i = start; i >= end; i--) {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}">
+      <div class="caption">圖 #${i}</div>
+    `;
+    gallery.appendChild(card);
+  }
 
-      const totalPages = Math.ceil(totalImages / imagesPerPage);
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        if (i === page) btn.classList.add("active");
-        btn.onclick = () => {
-          currentPage = i;
-          showGalleryPage(i);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        };
-        pagination.appendChild(btn);
-      }
-    }
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    if (i === page) btn.classList.add("active");
+    btn.onclick = () => {
+      currentPage = i;
+      showGalleryPage(i);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    pagination.appendChild(btn);
+  }
+}
 
     showGalleryPage(currentPage);
   </script>
