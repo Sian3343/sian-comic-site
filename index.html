@@ -208,6 +208,21 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .qr-fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 100px; /* 大小可以改 */
+  height: auto;
+  z-index: 999;
+  opacity: 0.8; /* 少少透明感，更靚 */
+  transition: opacity 0.3s ease;
+}
+
+.qr-fixed:hover {
+  opacity: 1; /* 滑鼠移上去變返清晰 */
+}
+
   </style>
 </head>
 <body>
@@ -327,5 +342,6 @@ I hope my drawings offer you a sense of resonance and gentle companionship.
       document.getElementById("sidebar").classList.toggle("active");
     }
   </script>
+  <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
 </body>
 </html>
