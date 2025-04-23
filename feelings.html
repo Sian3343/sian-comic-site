@@ -102,6 +102,32 @@
       font-size: 0.9em;
       color: #888;
     }
+    /* Lightbox 效果 */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 6px solid white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  animation: zoomIn 0.3s ease;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
   </style>
 </head>
 <body>
@@ -137,46 +163,73 @@
     <footer>© 2025 Sian | 心情畫簿</footer>
   </main>
 
-  <script>
-    const totalImages = 71;
-    const imagesPerPage = 15;
-    let currentPage = 1;
+ <script>
+  const totalImages = 71;
+  const imagesPerPage = 15;
+  let currentPage = 1;
+  let currentImageIndex = 0;
 
   function showGalleryPage(page) {
-  const gallery = document.getElementById("gallery");
-  const pagination = document.getElementById("pagination");
-  gallery.innerHTML = "";
-  pagination.innerHTML = "";
+    const gallery = document.getElementById("gallery");
+    const pagination = document.getElementById("pagination");
+    gallery.innerHTML = "";
+    pagination.innerHTML = "";
+    currentPage = page;
 
-  const totalPages = Math.ceil(totalImages / imagesPerPage);
-  const start = totalImages - (page - 1) * imagesPerPage;
-  const end = Math.max(start - imagesPerPage + 1, 1);
+    const start = (page - 1) * imagesPerPage + 1;
+    const end = Math.min(start + imagesPerPage - 1, totalImages);
 
-  for (let i = start; i >= end; i--) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}">
-      <div class="caption">圖 #${i}</div>
-    `;
-    gallery.appendChild(card);
+    for (let i = start; i <= end; i++) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
+        <div class="caption">圖 #${i}</div>
+      `;
+      gallery.appendChild(card);
+    }
+
+    const totalPages = Math.ceil(totalImages / imagesPerPage);
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      if (i === page) btn.classList.add("active");
+      btn.onclick = () => showGalleryPage(i);
+      pagination.appendChild(btn);
+    }
   }
 
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    if (i === page) btn.classList.add("active");
-    btn.onclick = () => {
-      currentPage = i;
-      showGalleryPage(i);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-    pagination.appendChild(btn);
+  function openLightbox(index) {
+    const lightbox = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    currentImageIndex = index;
+    img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
+    lightbox.style.display = "flex";
   }
-}
 
-    showGalleryPage(currentPage);
-  </script>
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  document.getElementById("lightbox").onclick = closeLightbox;
+
+  // 鍵盤控制：Esc / ← / →
+  document.addEventListener("keydown", function(e) {
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox.style.display === "flex") {
+      if (e.key === "Escape") closeLightbox();
+      else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
+      else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+    }
+  });
+
+  showGalleryPage(currentPage);
+</script>
+
   <footer>...現有內容...</footer>
+  <!-- Lightbox 彈出放大圖 -->
+<div class="lightbox-overlay" id="lightbox">
+  <img src="" alt="放大圖片" id="lightbox-img">
+</div>
 </body>
 </html>
