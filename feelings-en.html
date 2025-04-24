@@ -222,7 +222,7 @@
       document.getElementById("sidebar").classList.toggle("active");
     }
 
-    const totalImages = 72;
+    const totalImages = 33;
     const imagesPerPage = 15;
     let currentPage = 1;
     let currentImageIndex = 0;
@@ -261,7 +261,7 @@
       const lightbox = document.getElementById("lightbox");
       const img = document.getElementById("lightbox-img");
       currentImageIndex = index;
-      img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
+      img.src = `feelinge/${String(index).padStart(2, '0')}.jpg`;
       lightbox.style.display = "flex";
     }
 
