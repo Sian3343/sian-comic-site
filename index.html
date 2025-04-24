@@ -1,35 +1,45 @@
 <!DOCTYPE html> 
 <html lang="zh-Hant">
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="sian_logo.png">
-  <meta name="theme-color" content="#f8f8f8">
-  <title>Sian 漫畫記錄 Asperger's の日常</title>
-  <!-- ✅ SEO & 說明 -->
-  <meta name="description" content="Sian 的漫畫記錄 Asperger's 的日常，分享生活點滴與心情畫作。">
-  <meta name="keywords" content="Sian, 漫畫, Asperger's, Sian Asperger's,  心情畫簿, 日常生活">
-  <meta name="author" content="Sian">
-  <!-- ✅ Open Graph / Twitter Cards -->
-  <meta property="og:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
-  <meta property="og:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
-  <meta property="og:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
-  <meta property="og:url" content="https://sian3343.github.io/sian-comic-site/index.html">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
-  <meta name="twitter:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
-  <meta name="twitter:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="sian_logo.png">
+    <meta name="theme-color" content="#f8f8f8">
+    <title>Sian 漫畫記錄 Asperger's の日常</title>
+    <!-- ✅ SEO & 說明 -->
+    <meta name="description" content="Sian 的漫畫記錄 Asperger's 的日常，分享生活點滴與心情畫作。">
+    <meta name="keywords" content="Sian, 漫畫, Asperger's, Sian Asperger's,  心情畫簿, 日常生活">
+    <meta name="description" content="Sian 原創 Asperger's 漫畫記錄生活感受，手繪插畫呈現真摯心情與共鳴。">
+    <meta name="keywords" content="漫畫, 插畫, Asperger, 亞斯柏加症, Sian, 情感漫畫, 原創, 畫作">
+    <meta name="author" content="Sian">
+    <!-- ✅ Open Graph Meta Tags for Facebook / LINE / WhatsApp -->
+    <meta property="og:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
+    <meta property="og:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
+    <meta property="og:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
+    <meta property="og:url" content="https://sian3343.github.io/sian-comic-site/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <!-- 🐦 Twitter 分享卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
+    <meta name="twitter:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
+    <meta name="twitter:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
+    <!-- 🔖 網站 icon -->
+    <link rel="icon" href="https://sian3343.github.io/sian-comic-site/favicon.ico"
 
-  <!-- 🔖 icon & 字型 -->
-  <link rel="icon" href="https://sian3343.github.io/sian-comic-site/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+      type="image/x-icon">
+    <!-- 🌸 網頁字型 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap"
 
-  <!-- 🔢 GoatCounter -->
-  <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+      rel="stylesheet">
+    <!-- 🔢 GoatCounter 簡單統計 -->
+    <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count" async=""
 
-  <!-- ✅ CSS -->
-  <style>
+src="//gc.zgo.at/count.js"></script>
+    <!-- ✅ CSS 已內嵌保持不變 -->
+    <style>
+    /* 原本嘅 CSS 保持唔變 */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -197,69 +207,86 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .qr-fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 100px; /* 大小可以改 */
+  height: auto;
+  z-index: 999;
+  opacity: 0.8; /* 少少透明感，更靚 */
+  transition: opacity 0.3s ease;
+}
 
-    /* ✅ QR Code Responsive Styling */
-    #qrcode-container {
-      width: 100px;
-    }
+.qr-fixed:hover {
+  opacity: 1; /* 滑鼠移上去變返清晰 */
+}
+@media (max-width: 768px) {
+  main.main-content {
+    max-width: 100%;
+    padding: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
 
-    @media screen and (min-width: 768px) {
-      #qrcode-container {
-        position: static;
-        margin-top: 30px;
-      }
-    }
+  .comic-grid img,
+  header img,
+  .logo {
+    max-width: 100%;
+    height: auto;
+  }
 
-    @media screen and (max-width: 767px) {
-      #qrcode-container {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        background: white;
-        padding: 8px;
-        box-shadow: 0 0 8px rgba(0,0,0,0.2);
-        z-index: 100;
-      }
-      #qrcode-container img {
-        width: 100px;
-        height: auto;
-      }
-    }
+  body {
+    overflow-x: hidden;
+  }
+}
+.qr-fixed {
+  position: fixed;
+  bottom: 10px;
+  right: 10px; /* 改左由右邊對齊 */
+  width: 100px;
+  height: auto;
+  z-index: 999;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.qr-fixed:hover {
+  opacity: 1;
+}
   </style>
-</head>
+  </head>
+  <body>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="sidebar" id="sidebar">
+      <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
 
-<body>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+          alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
+      <h2>選單 Menu</h2>
+      <a href="#">🏠 首頁 / Home</a> <a href="#about">👩 關於我 / About Me</a> <a href="#works">🎨
+        漫畫作品 / Comics</a> <a href="#flipbook">📖 翻書版 / Flipbook</a> <a href="feelings.html">🖼️
+        心情畫簿 / Moodbook</a> <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+      <div style="margin-top: 30px; font-size: 0.85em; color: #666;">
+        <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;"> <strong
 
-  <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
-    </div>
-    <h2>選單 Menu</h2>
-    <a href="#">🏠 首頁 / Home</a>
-    <a href="#about">👩 關於我 / About Me</a>
-    <a href="#works">🎨 漫畫作品 / Comics</a>
-    <a href="#flipbook">📖 翻書版 / Flipbook</a>
-    <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
-    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+          style="color: #4b306a;">📷 更多內容可瀏覽：</strong>
+        <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1511257358975699&amp;type=3"
 
-    <div style="margin-top: 30px; font-size: 0.85em; color: #666;">
-      <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">
-      <strong style="color: #4b306a;">📷 更多內容可瀏覽：</strong>
-      <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
-        <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1511257358975699&amp;type=3" target="_blank">📘 中文版 Part 1</a></li>
-        <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270966126338128&amp;type=3" target="_blank">📗 中文版 Part 2</a></li>
-        <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1499170603517708&amp;type=3" target="_blank">📙 English Part 1</a></li>
-        <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270963689671705&amp;type=3" target="_blank">📕 English Part 2</a></li>
-      </ul>
+              target="_blank">📘 中文版 Part 1</a></li>
+          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270966126338128&amp;type=3"
 
-      <!-- ✅ QR code container -->
-      <div id="qrcode-container">
-        <img src="sian_qr.png" alt="Sian QR Code">
+              target="_blank">📗 中文版 Part 2</a></li>
+          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1499170603517708&amp;type=3"
+
+              target="_blank">📙 English Part 1</a></li>
+          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270963689671705&amp;type=3"
+
+              target="_blank">📕 English Part 2</a></li>
+        </ul>
       </div>
-    </div>
-  </nav>
-
+    </nav>
     <main class="main-content"> <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png"
 
         alt="Sian Logo" class="logo">
@@ -329,11 +356,10 @@
         Unauthorized reproduction or redistribution is strictly prohibited.<br>
       </footer>
     </main>
-
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
     }
-  </script>
-</body>
+  </script>       <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
+  </body>
 </html>
