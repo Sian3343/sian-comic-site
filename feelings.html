@@ -6,215 +6,110 @@
   <title>心情畫簿｜Sian の情思插畫</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
-   body {
-  margin: 0;
-  font-family: "Noto Sans TC", sans-serif;
-  background-color: #fdf6f0;
-  display: flex;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
+      display: flex;
+      box-sizing: border-box;
+    }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
 
-nav {
-  width: 220px;
-  background: #ece3f3;
-  padding: 20px;
-  min-height: 100vh;
-  flex-shrink: 0;
-}
+    nav.sidebar {
+      width: 220px;
+      background: #ece3f3;
+      padding: 20px;
+      min-height: 100vh;
+      flex-shrink: 0;
+    }
 
-nav h2 {
-  font-size: 1.1em;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #ccc;
-}
+    nav h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+    }
 
-nav a {
-  display: block;
-  margin: 10px 0;
-  color: #6b4c88;
-  text-decoration: none;
-}
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
 
-nav a:hover {
-  color: #a75bb8;
-}
+    nav a:hover {
+      color: #a75bb8;
+    }
 
-main {
-  flex-grow: 1;
-  padding: 20px;
-  text-align: center;
-  overflow-x: hidden;
-}
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      text-align: center;
+    }
 
-h1 {
-  color: #6d3684;
-}
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+      background-color: #6b4c88;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 18px;
+      border-radius: 5px;
+    }
 
-.flipbook-container {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
 
-.page {
-  display: none;
-  width: 100%;
-  height: auto;
-}
+      nav.sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100%;
+        background: #ece3f3;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
 
-.page.active {
-  display: block;
-}
+      nav.sidebar.active {
+        transform: translateX(0);
+      }
 
-.controls {
-  margin-top: 15px;
-}
+      .hamburger {
+        display: block;
+      }
 
-.controls button {
-  background-color: #ffd8df;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 16px;
-}
-
-.controls button:hover {
-  background-color: #fca5b3;
-}
-
-/* 手機優化 */
-@media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
-
-  nav {
-    width: 100%;
-    min-height: auto;
-  }
-
-  main {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .flipbook-container {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .page {
-    max-width: 100%;
-    height: auto;
-  }
-}
-    .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.card {
-  width: 180px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-  display: block;
-}
-
-.card .caption {
-  padding: 10px;
-  font-size: 14px;
-  color: #555;
-}
-
-.card:hover {
-  transform: scale(1.03);
-}
-
-.pagination {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.pagination button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: none;
-  background-color: #d8c3e3;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.pagination button.active {
-  background-color: #a37acb;
-  color: #fff;
-}
-
-.lightbox-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.lightbox-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 5px solid #fff;
-  border-radius: 10px;
-}
-
-/* 手機版 gallery 調整 */
-@media (max-width: 768px) {
-  .card {
-    width: 45%;
-  }
-
-  .caption {
-    font-size: 13px;
-  }
-
-  .pagination button {
-    padding: 6px;
-    font-size: 14px;
-  }
-}
-
- </style>
+      main {
+        margin-top: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- 漢堡按鈕 -->
+  <button class="hamburger" onclick="toggleSidebar()">☰ 選單</button>
+
   <nav class="sidebar" id="sidebar">
-      <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
-       alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
+    <div style="text-align: center;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+    </div>
     <h2>選單 Menu</h2>
-      <a href="index.html">🏠 首頁 / Home</a>
-      <a href="about.html">👩 關於我 / About Me</a>
-      <a href="comics.html">🎨 漫畫作品 / Comics</a>
-      <a href="flipbook.html">📖 翻書版 / Flipbook</a>
-      <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
-      <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+    <a href="index.html">🏠 首頁 / Home</a>
+    <a href="about.html">👩 關於我 / About Me</a>
+    <a href="comics.html">🎨 漫畫作品 / Comics</a>
+    <a href="flipbook.html">📖 翻書版 / Flipbook</a>
+    <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
+    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
     <hr>
     <h2>Facebook 相簿</h2>
     <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
@@ -225,19 +120,20 @@ h1 {
 
   <main>
     <h1>🖌️ 心情畫簿 Moodbook</h1>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
-      這裡收錄了我在不同情緒狀態下的插畫作品，也許不是最完美，但都是真實的情感流露。<br>
-      Mood sketches drawn in different moments — not always polished, but always honest.
-    </p>
+    <p>這裡收錄了我在不同情緒狀態下的插畫作品，也許不是最完美，但都是真實的情感流露。</p>
 
     <div class="gallery" id="gallery"></div>
-
     <div class="pagination" id="pagination"></div>
 
     <footer>© 2025 Sian | 心情畫簿</footer>
   </main>
 
-<!-- Lightbox 彈出放大圖 -->
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+ <!-- Lightbox 彈出放大圖 -->
 <div class="lightbox-overlay" id="lightbox">
   <img src="" alt="放大圖片" id="lightbox-img">
 </div>
@@ -290,7 +186,6 @@ h1 {
     document.getElementById("lightbox").style.display = "none";
   }
 
-  // 確保已經 load 好先 add event
   window.onload = () => {
     document.getElementById("lightbox").onclick = closeLightbox;
 
@@ -310,5 +205,6 @@ h1 {
 <div class="lightbox-overlay" id="lightbox">
   <img src="" alt="放大圖片" id="lightbox-img">
 </div>
+  </script>
 </body>
 </html>
