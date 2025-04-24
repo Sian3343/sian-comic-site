@@ -241,7 +241,20 @@ src="//gc.zgo.at/count.js"></script>
     overflow-x: hidden;
   }
 }
+.qr-fixed {
+  position: fixed;
+  bottom: 10px;
+  right: 10px; /* 改左由右邊對齊 */
+  width: 100px;
+  height: auto;
+  z-index: 999;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
 
+.qr-fixed:hover {
+  opacity: 1;
+}
   </style>
   </head>
   <body>
