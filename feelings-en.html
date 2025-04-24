@@ -1,238 +1,216 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moodbook - English Version</title>
+  <title>Moodbook ｜Sian's Emotional Illustrations</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <style>
- body {
-  margin: 0;
-  font-family: "Noto Sans TC", sans-serif;
-  background-color: #fdf6f0;
-  display: flex;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
+      display: flex;
+      box-sizing: border-box;
+    }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
 
-nav {
-  width: 220px;
-  background: #ece3f3;
-  padding: 20px;
-  min-height: 100vh;
-  flex-shrink: 0;
-}
+    nav.sidebar {
+      width: 220px;
+      background: #ece3f3;
+      padding: 20px;
+      min-height: 100vh;
+      flex-shrink: 0;
+    }
 
-nav h2 {
-  font-size: 1.1em;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #ccc;
-}
+    nav h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+    }
 
-nav a {
-  display: block;
-  margin: 10px 0;
-  color: #6b4c88;
-  text-decoration: none;
-}
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
 
-nav a:hover {
-  color: #a75bb8;
-}
+    nav a:hover {
+      color: #a75bb8;
+    }
 
-main {
-  flex-grow: 1;
-  padding: 20px;
-  text-align: center;
-  overflow-x: hidden;
-}
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      text-align: center;
+    }
 
-h1 {
-  color: #6d3684;
-}
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+      background-color: #6b4c88;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 18px;
+      border-radius: 5px;
+    }
 
-.flipbook-container {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
 
-.page {
-  display: none;
-  width: 100%;
-  height: auto;
-}
+      nav.sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100%;
+        background: #ece3f3;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
 
-.page.active {
-  display: block;
-}
+      nav.sidebar.active {
+        transform: translateX(0);
+      }
 
-.controls {
-  margin-top: 15px;
-}
+      .hamburger {
+        display: block;
+      }
 
-.controls button {
-  background-color: #ffd8df;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 16px;
-}
+      main {
+        margin-top: 60px;
+      }
+    }
 
-.controls button:hover {
-  background-color: #fca5b3;
-}
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
 
-/* 手機優化 */
-@media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
+    .card {
+      width: 180px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
 
-  nav {
-    width: 100%;
-    min-height: auto;
-  }
+    .card img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      display: block;
+    }
 
-  main {
-    width: 100%;
-    padding: 10px;
-  }
+    .card .caption {
+      padding: 10px;
+      font-size: 14px;
+      color: #555;
+    }
 
-  .flipbook-container {
-    width: 100%;
-    max-width: 100%;
-  }
+    .card:hover {
+      transform: scale(1.03);
+    }
 
-  .page {
-    max-width: 100%;
-    height: auto;
-  }
-}
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-}
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
 
-.card {
-  width: 180px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
+    .pagination button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: none;
+      background-color: #d8c3e3;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-.card img {
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-  display: block;
-}
+    .pagination button.active {
+      background-color: #a37acb;
+      color: #fff;
+    }
 
-.card .caption {
-  padding: 10px;
-  font-size: 14px;
-  color: #555;
-}
+    .lightbox-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
 
-.card:hover {
-  transform: scale(1.03);
-}
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 5px solid #fff;
+      border-radius: 10px;
+    }
 
-.pagination {
-  margin-top: 20px;
-  text-align: center;
-}
+    @media (max-width: 768px) {
+      .card {
+        width: 45%;
+      }
 
-.pagination button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: none;
-  background-color: #d8c3e3;
-  border-radius: 5px;
-  cursor: pointer;
-}
+      .caption {
+        font-size: 13px;
+      }
 
-.pagination button.active {
-  background-color: #a37acb;
-  color: #fff;
-}
-
-.lightbox-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.lightbox-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 5px solid #fff;
-  border-radius: 10px;
-}
-
-/* 手機版 gallery 調整 */
-@media (max-width: 768px) {
-  .card {
-    width: 45%;
-  }
-
-  .caption {
-    font-size: 13px;
-  }
-
-  .pagination button {
-    padding: 6px;
-    font-size: 14px;
-  }
-}
-
+      .pagination button {
+        padding: 6px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="sidebar">
+
+  <!-- Hamburger menu -->
+  <button class="hamburger" onclick="toggleSidebar()">☰ Menu</button>
+
+  <nav class="sidebar" id="sidebar">
     <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian Logo" style="width: 138px; height: 69px;">
     </div>
-    <h2>選單 Menu</h2>
-    <a href="index.html">🏠 首頁 / Home</a>
-    <a href="about.html">👩 關於我 / About Me</a>
-    <a href="comics.html">🎨 漫畫作品 / Comics</a>
-    <a href="flipbook.html">📖 翻書版 / Flipbook</a>
-    <a href="feelings.html">🖼️ 心情畫簿 / Moodbook</a>
-    <a href="feelings-en.html">🖼️ Moodbook (English)</a>
+    <h2>Menu</h2>
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👩 About Me</a>
+    <a href="comics.html">🎨 Comics</a>
+    <a href="flipbook.html">📖 Flipbook</a>
+    <a href="feelings.html">🖼️ Moodbook (中文)</a>
+    <a href="feelings-en.html" style="font-weight:bold;">🖼️ Moodbook (English)</a>
     <hr>
-    <h2>Facebook 相簿</h2>
-    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 中文版 Part 1</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 中文版 Part 2</a>
-    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 英文版 Part 1</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 英文版 Part 2</a>
+    <h2>Facebook Albums</h2>
+    <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘 Chinese Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗 Chinese Part 2</a>
+    <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙 English Part 1</a>
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕 English Part 2</a>
   </nav>
 
   <main>
-    <h1>🖌️Moodbook (English Version)</h1>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
-      Mood sketches drawn in different moments — not always polished, but always honest.
-    </p>
+    <h1>🖌️ Moodbook</h1>
+    <p>This section features illustrations I created during different emotional states. They may not be perfect, but they are real and heartfelt expressions.</p>
 
     <div class="gallery" id="gallery"></div>
     <div class="pagination" id="pagination"></div>
-    <footer>© 2025 Sian | Moodbook - English Version</footer>
+
+    <footer>© 2025 Sian | Moodbook</footer>
   </main>
 
   <div class="lightbox-overlay" id="lightbox">
@@ -240,7 +218,11 @@ h1 {
   </div>
 
   <script>
-    const totalImages = 33;
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    const totalImages = 72;
     const imagesPerPage = 15;
     let currentPage = 1;
     let currentImageIndex = 0;
@@ -250,8 +232,8 @@ h1 {
       const pagination = document.getElementById("pagination");
       gallery.innerHTML = "";
       pagination.innerHTML = "";
+      currentPage = page;
 
-      const totalPages = Math.ceil(totalImages / imagesPerPage);
       const start = totalImages - (page - 1) * imagesPerPage;
       const end = Math.max(start - imagesPerPage + 1, 1);
 
@@ -259,21 +241,18 @@ h1 {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-          <img src="feelinge/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
-          <div class="caption">圖 #${i}</div>
+          <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
+          <div class="caption">Image #${i}</div>
         `;
         gallery.appendChild(card);
       }
 
+      const totalPages = Math.ceil(totalImages / imagesPerPage);
       for (let i = 1; i <= totalPages; i++) {
         const btn = document.createElement("button");
         btn.textContent = i;
         if (i === page) btn.classList.add("active");
-        btn.onclick = () => {
-          currentPage = i;
-          showGalleryPage(i);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        };
+        btn.onclick = () => showGalleryPage(i);
         pagination.appendChild(btn);
       }
     }
@@ -282,7 +261,7 @@ h1 {
       const lightbox = document.getElementById("lightbox");
       const img = document.getElementById("lightbox-img");
       currentImageIndex = index;
-      img.src = `feelinge/${String(index).padStart(2, '0')}.jpg`;
+      img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
       lightbox.style.display = "flex";
     }
 
@@ -290,18 +269,20 @@ h1 {
       document.getElementById("lightbox").style.display = "none";
     }
 
-    document.getElementById("lightbox").onclick = closeLightbox;
+    window.onload = () => {
+      document.getElementById("lightbox").onclick = closeLightbox;
 
-    document.addEventListener("keydown", function(e) {
-      const lightbox = document.getElementById("lightbox");
-      if (lightbox.style.display === "flex") {
-        if (e.key === "Escape") closeLightbox();
-        else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
-        else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
-      }
-    });
+      document.addEventListener("keydown", function(e) {
+        const lightbox = document.getElementById("lightbox");
+        if (lightbox.style.display === "flex") {
+          if (e.key === "Escape") closeLightbox();
+          else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
+          else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+        }
+      });
 
-    showGalleryPage(currentPage);
+      showGalleryPage(currentPage);
+    };
   </script>
 </body>
 </html>
