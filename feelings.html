@@ -63,6 +63,66 @@
       border-radius: 5px;
     }
 
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .card {
+      width: 180px;
+      background: white;
+      border-radius: 8px;
+      padding: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .caption {
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: none;
+      background-color: #6b4c88;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #a75bb8;
+    }
+
+    .lightbox-overlay {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 10000;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
     @media (max-width: 768px) {
       body {
         flex-direction: column;
@@ -96,7 +156,6 @@
 </head>
 <body>
 
-  <!-- 漢堡按鈕 -->
   <button class="hamburger" onclick="toggleSidebar()">☰ 選單</button>
 
   <nav class="sidebar" id="sidebar">
@@ -128,83 +187,78 @@
     <footer>© 2025 Sian | 心情畫簿</footer>
   </main>
 
+  <!-- Lightbox 彈出圖 -->
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="放大圖片" id="lightbox-img">
+  </div>
+
   <script>
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
     }
 
- <!-- Lightbox 彈出放大圖 -->
-<div class="lightbox-overlay" id="lightbox">
-  <img src="" alt="放大圖片" id="lightbox-img">
-</div>
+    const totalImages = 72;
+    const imagesPerPage = 15;
+    let currentPage = 1;
+    let currentImageIndex = 0;
 
-<script>
-  const totalImages = 72;
-  const imagesPerPage = 15;
-  let currentPage = 1;
-  let currentImageIndex = 0;
+    function showGalleryPage(page) {
+      const gallery = document.getElementById("gallery");
+      const pagination = document.getElementById("pagination");
+      gallery.innerHTML = "";
+      pagination.innerHTML = "";
+      currentPage = page;
 
-  function showGalleryPage(page) {
-  const gallery = document.getElementById("gallery");
-  const pagination = document.getElementById("pagination");
-  gallery.innerHTML = "";
-  pagination.innerHTML = "";
-  currentPage = page;
+      const start = totalImages - (page - 1) * imagesPerPage;
+      const end = Math.max(start - imagesPerPage + 1, 1);
 
-  const start = totalImages - (page - 1) * imagesPerPage;
-  const end = Math.max(start - imagesPerPage + 1, 1);
-
-  for (let i = start; i >= end; i--) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
-      <div class="caption">圖 #${i}</div>
-    `;
-    gallery.appendChild(card);
-  }
-
-  const totalPages = Math.ceil(totalImages / imagesPerPage);
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    if (i === page) btn.classList.add("active");
-    btn.onclick = () => showGalleryPage(i);
-    pagination.appendChild(btn);
-  }
-}
-
-  function openLightbox(index) {
-    const lightbox = document.getElementById("lightbox");
-    const img = document.getElementById("lightbox-img");
-    currentImageIndex = index;
-    img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
-    lightbox.style.display = "flex";
-  }
-
-  function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-  }
-
-  window.onload = () => {
-    document.getElementById("lightbox").onclick = closeLightbox;
-
-    document.addEventListener("keydown", function(e) {
-      const lightbox = document.getElementById("lightbox");
-      if (lightbox.style.display === "flex") {
-        if (e.key === "Escape") closeLightbox();
-        else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
-        else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+      for (let i = start; i >= end; i--) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="feelings/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
+          <div class="caption">圖 #${i}</div>
+        `;
+        gallery.appendChild(card);
       }
-    });
 
-    showGalleryPage(currentPage);
-  };
-</script>
-  <!-- Lightbox 彈出放大圖 -->
-<div class="lightbox-overlay" id="lightbox">
-  <img src="" alt="放大圖片" id="lightbox-img">
-</div>
+      const totalPages = Math.ceil(totalImages / imagesPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === page) btn.classList.add("active");
+        btn.onclick = () => showGalleryPage(i);
+        pagination.appendChild(btn);
+      }
+    }
+
+    function openLightbox(index) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      currentImageIndex = index;
+      img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    window.onload = () => {
+      document.getElementById("lightbox").onclick = closeLightbox;
+
+      document.addEventListener("keydown", function(e) {
+        const lightbox = document.getElementById("lightbox");
+        if (lightbox.style.display === "flex") {
+          if (e.key === "Escape") closeLightbox();
+          else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
+          else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+        }
+      });
+
+      showGalleryPage(currentPage);
+    };
   </script>
+
 </body>
 </html>
