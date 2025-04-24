@@ -6,42 +6,117 @@
   <title>📘 中文版 Part 1 - 漫畫翻書版</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 <style>
-    body { margin: 0; font-family: "Noto Sans TC", sans-serif; background-color: #fdf6f0; display: flex; }
-    nav { width: 220px; background: #ece3f3; padding: 20px; min-height: 100vh; }
-    nav h2 { font-size: 1.1em; margin-bottom: 1em; border-bottom: 1px solid #ccc; }
-    nav a { display: block; margin: 10px 0; color: #6b4c88; text-decoration: none; }
-    nav a:hover { color: #a75bb8; }
-    main { flex-grow: 1; padding: 20px; text-align: center; }
-    h1 { color: #6d3684; }
-    .flipbook-container { width: 90%; max-width: 600px; margin: 20px auto; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
-    .page { display: none; width: 100%; }
-    .page.active { display: block; }
-    .controls { margin-top: 15px; }
-    .controls button {
-      background-color: #ffd8df; border: none; padding: 10px 15px; border-radius: 10px;
-      cursor: pointer; margin: 5px; font-size: 16px;
-    }
-    .controls button:hover { background-color: #fca5b3; }
-    @media (max-width: 768px) {
-  main.main-content {
-    max-width: 100%;
-    padding: 20px;
-    margin-left: 0;
-    margin-right: 0;
-    overflow-x: hidden;
+  body {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #fdf6f0;
+  display: flex;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+nav {
+  width: 220px;
+  background: #ece3f3;
+  padding: 20px;
+  min-height: 100vh;
+  flex-shrink: 0;
+}
+
+nav h2 {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+nav a {
+  display: block;
+  margin: 10px 0;
+  color: #6b4c88;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #a75bb8;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1 {
+  color: #6d3684;
+}
+
+.flipbook-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.page {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.page.active {
+  display: block;
+}
+
+.controls {
+  margin-top: 15px;
+}
+
+.controls button {
+  background-color: #ffd8df;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.controls button:hover {
+  background-color: #fca5b3;
+}
+
+/* 手機優化 */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
   }
 
-  .comic-grid img,
-  header img,
-  .logo {
+  nav {
+    width: 100%;
+    min-height: auto;
+  }
+
+  main {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .flipbook-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .page {
     max-width: 100%;
     height: auto;
   }
+}
 
-  body {
-    overflow-x: hidden;
-  }
-    }
     
   </style>
 </head>
