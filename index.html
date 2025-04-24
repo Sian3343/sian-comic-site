@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="sian_logo.png">
-    <meta name="theme-color" content="#f8f8f8">
-    <title>Sian 漫畫記錄 Asperger's の日常</title>
-    <!-- ✅ SEO & 說明 -->
-    <meta name="description" content="Sian 的漫畫記錄 Asperger's 的日常，分享生活點滴與心情畫作。">
-    <meta name="keywords" content="Sian, 漫畫, Asperger's, Sian Asperger's,  心情畫簿, 日常生活">
-    <meta name="description" content="Sian 原創 Asperger's 漫畫記錄生活感受，手繪插畫呈現真摯心情與共鳴。">
-    <meta name="keywords" content="漫畫, 插畫, Asperger, 亞斯柏加症, Sian, 情感漫畫, 原創, 畫作">
-    <meta name="author" content="Sian">
-    <!-- ✅ Open Graph Meta Tags for Facebook / LINE / WhatsApp -->
-    <meta property="og:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
-    <meta property="og:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
-    <meta property="og:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
-    <meta property="og:url" content="https://sian3343.github.io/sian-comic-site/index.html">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="zh_TW">
-    <!-- 🐦 Twitter 分享卡片 -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
-    <meta name="twitter:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
-    <meta name="twitter:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
-    <!-- 🔖 網站 icon -->
-    <link rel="icon" href="https://sian3343.github.io/sian-comic-site/favicon.ico"
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="sian_logo.png">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Sian 漫畫記錄 Asperger's の日常</title>
+  <!-- ✅ SEO -->
+  <meta name="description" content="Sian 原創 Asperger's 漫畫記錄生活感受，手繪插畫呈現真摯心情與共鳴。">
+  <meta name="keywords" content="漫畫, 插畫, Asperger, 亞斯柏加症, Sian, 情感漫畫, 原創, 畫作">
+  <meta name="author" content="Sian">
 
-      type="image/x-icon">
-    <!-- 🌸 網頁字型 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap"
+  <!-- ✅ Open Graph / Facebook / WhatsApp -->
+  <meta property="og:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
+  <meta property="og:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
+  <meta property="og:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
+  <meta property="og:url" content="https://sian3343.github.io/sian-comic-site/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
 
-      rel="stylesheet">
-    <!-- 🔢 GoatCounter 簡單統計 -->
-    <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count" async=""
+  <!-- ✅ Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sian の情思插畫網站 | Sian's Comic Diary">
+  <meta name="twitter:description" content="原創手繪插畫與漫畫，描繪情緒與生活點滴。">
+  <meta name="twitter:image" content="https://sian3343.github.io/sian-comic-site/logo.png">
 
-src="//gc.zgo.at/count.js"></script>
-    <!-- ✅ CSS 已內嵌保持不變 -->
-    <style>
-    /* 原本嘅 CSS 保持唔變 */
+  <!-- ✅ 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <!-- ✅ 統計 -->
+  <script data-goatcounter="https://sianaspergerlife.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -207,146 +200,79 @@ src="//gc.zgo.at/count.js"></script>
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     .qr-fixed {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  width: 100px; /* 大小可以改 */
-  height: auto;
-  z-index: 999;
-  opacity: 0.8; /* 少少透明感，更靚 */
-  transition: opacity 0.3s ease;
-}
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      width: 100px;
+      height: auto;
+      z-index: 999;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
 
-.qr-fixed:hover {
-  opacity: 1; /* 滑鼠移上去變返清晰 */
-}
-@media (max-width: 768px) {
-  main.main-content {
-    max-width: 100%;
-    padding: 20px;
-    margin-left: 0;
-    margin-right: 0;
-    overflow-x: hidden;
-  }
+    .qr-fixed:hover {
+      opacity: 1;
+    }
 
-  .comic-grid img,
-  header img,
-  .logo {
-    max-width: 100%;
-    height: auto;
-  }
+    @media (max-width: 768px) {
+      main.main-content {
+        max-width: 100%;
+        padding: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: hidden;
+      }
 
-  body {
-    overflow-x: hidden;
-  }
-}
+      .comic-grid img,
+      header img,
+      .logo {
+        max-width: 100%;
+        height: auto;
+      }
 
+      body {
+        overflow-x: hidden;
+      }
+    }
+
+    /* ✅ ✅ 新加：電腦版 QR code 放右邊，避免遮 sidebar */
+    @media (min-width: 769px) {
+      .qr-fixed {
+        left: auto;
+        right: 30px;
+        bottom: 40px;
+      }
+    }
   </style>
-  </head>
-  <body>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <nav class="sidebar" id="sidebar">
-      <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
+</head>
+<body>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav class="sidebar" id="sidebar">
+    <!-- Sidebar 內容（你原本的） -->
+    <!-- ...略去中間內容... -->
+    <div style="margin-top: 30px; font-size: 0.85em; color: #666;">
+      <hr>
+      <strong style="color: #4b306a;">📷 更多內容可瀏覽：</strong>
+      <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+        <!-- 連結略 -->
+      </ul>
+    </div>
+  </nav>
 
-          alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
-      <h2>選單 Menu</h2>
-      <a href="#">🏠 首頁 / Home</a> <a href="#about">👩 關於我 / About Me</a> <a href="#works">🎨
-        漫畫作品 / Comics</a> <a href="#flipbook">📖 翻書版 / Flipbook</a> <a href="feelings.html">🖼️
-        心情畫簿 / Moodbook</a> <a href="feelings-en.html">🖼️ Moodbook (English)</a>
-      <div style="margin-top: 30px; font-size: 0.85em; color: #666;">
-        <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;"> <strong
+  <main class="main-content">
+    <!-- 網站主要內容略 -->
+  </main>
 
-          style="color: #4b306a;">📷 更多內容可瀏覽：</strong>
-        <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
-          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1511257358975699&amp;type=3"
+  <!-- QR Code 圖片 -->
+  <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
 
-              target="_blank">📘 中文版 Part 1</a></li>
-          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270966126338128&amp;type=3"
-
-              target="_blank">📗 中文版 Part 2</a></li>
-          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1499170603517708&amp;type=3"
-
-              target="_blank">📙 English Part 1</a></li>
-          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270963689671705&amp;type=3"
-
-              target="_blank">📕 English Part 2</a></li>
-        </ul>
-      </div>
-    </nav>
-    <main class="main-content"> <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png"
-
-        alt="Sian Logo" class="logo">
-      <header style="text-align: center;"> <img src="logo_banner.png"
- alt="" style="width: 466px; height: 132px;">&nbsp; </header>
-      
-      <h1>Sian の 情思漫畫</h1>
-      <h2>Sian's Comic Confessions with Asperger's Life</h2>
-      <section id="about">
-        <h2>關於我｜About Me</h2>
-        <p> 嗨，我是 Sian。<br>
-          是用畫筆記錄生活的漫畫創作者，也是一位成人確診 Asperger's。<br>
-          對我而言，世界有些複雜，人與人之間的距離，總讓我難以捉摸。<br>
-          說話不是我的強項，但透過繪畫與書寫，我能更真實地表達內心的聲音。<br>
-          <br>
-          我畫的漫畫，不只是日常的紀錄，也是自我療癒的過程。<br>
-          畫筆是我與世界對話的方式，它幫助我理清思緒，轉化情緒，也讓我在孤單中找到一些理解。<br>
-          <br>
-          這些故事都源自真實生活，沒有誇張與修飾，只是靜靜地訴說那些不被看見的感受。<br>
-          如果你也曾在某些時刻覺得不被理解，或者感到格格不入，<br>
-          希望這裡的每一幅圖，都能給你一點共鳴與陪伴。 </p>
-        <p> Hi, I’m Sian.<br>
-          I’m a comic artist who expresses life through drawing, and an adult
-          with Asperger’s Syndrome.<br>
-          The world often feels complex to me, and human interactions can be
-          hard to navigate.<br>
-          Speaking isn’t my strength—but through art and writing, I can share my
-          thoughts more truthfully.<br>
-          <br>
-          My comics are more than daily snapshots; they are part of my journey
-          to heal and understand myself.<br>
-          Drawing is how I connect with the world—it helps me process emotions
-          and find clarity within the chaos.<br>
-          <br>
-          Each story is based on real experiences.<br>
-          There’s no filter, no exaggeration—just quiet expressions of feelings
-          that are often overlooked.<br>
-          If you’ve ever felt misunderstood or out of place,<br>
-          I hope my drawings offer you a sense of resonance and gentle
-          companionship. </p>
-      </section>
-      <section id="works">
-        <h2>🎨 漫畫作品｜Comic Works</h2>
-        <div class="comic-grid"> <a href="comic-c2.html"> 📗 中文版 Part 2 <img src="images2/91.jpg"
-
-              alt="中文版 Part 2 封面"> </a> <a href="comic-e2.html"> 📕 English
-            Part 2 <img src="images-en2/91.jpg" alt="English Part 2 Cover"> </a>
-          <a href="comic-c1.html"> 📘 中文版 Part 1 <img src="webside-C.jpg" alt="中文版 Part 1 封面">
-          </a> <a href="comic-e1.html"> 📙 English Part 1 <img src="webside-E.jpg"
-
-              alt="English Part 1 Cover"> </a> </div>
-      </section>
-      <section id="flipbook">
-        <h2>📖 翻書版｜Flipbook Version</h2>
-        <div class="flipbook-link"> <a href="flipbook.html">點我進入翻書版漫畫 →</a> </div>
-      </section>
-      <section id="moodbook"> <a href="feelings.html" target="_self">
-          <h2>🖌️ 心情畫簿｜Moodbook</h2>
-        </a>
-        <p>這一區會不定期更新畫作、塗鴉、或任何反映我當時情緒的小作品。<br>
-          有時不是為了畫好，只係為了釋放情感。</p>
-        <p>This section features casual illustrations or mood sketches I create
-          spontaneously — not always polished, but deeply personal.</p>
-      </section>
-      <footer> © 2025 Sian. 本網站內所有漫畫內容及圖片均為原創，未經授權不得轉載。<br>
-        All comics and images on this website are original works by Sian.
-        Unauthorized reproduction or redistribution is strictly prohibited.<br>
-      </footer>
-    </main>
-    <script>
+  <!-- 切換側欄 script -->
+  <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
     }
-  </script>        <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
-  </body>
+  </script>
+</body>
 </html>
