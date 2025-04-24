@@ -116,6 +116,92 @@ h1 {
     height: auto;
   }
 }
+    .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.card {
+  width: 180px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  display: block;
+}
+
+.card .caption {
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #d8c3e3;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #a37acb;
+  color: #fff;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 5px solid #fff;
+  border-radius: 10px;
+}
+
+/* 手機版 gallery 調整 */
+@media (max-width: 768px) {
+  .card {
+    width: 45%;
+  }
+
+  .caption {
+    font-size: 13px;
+  }
+
+  .pagination button {
+    padding: 6px;
+    font-size: 14px;
+  }
+}
+
  </style>
 </head>
 <body>
