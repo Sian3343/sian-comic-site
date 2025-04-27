@@ -2,50 +2,50 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>關於我｜About Me - Sian 的漫畫世界</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
-      margin: 0;
       font-family: 'Noto Sans TC', sans-serif;
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       min-height: 100vh;
+      overflow-x: hidden;
       color: #4b306a;
-      position: relative;
     }
-    nav.sidebar {
-      background-color: #f7f2fb;
+    .sidebar {
+      background: #f7f2fb;
       width: 220px;
       min-height: 100vh;
       padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 998;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease;
+      z-index: 1000;
     }
-    nav.sidebar h2 {
+    .sidebar h2 {
       font-size: 1.2em;
       margin-bottom: 1em;
       border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3em;
+      padding-bottom: 0.5em;
     }
-    nav.sidebar a {
+    .sidebar a {
       display: block;
       margin: 10px 0;
       text-decoration: none;
       color: #6b4c88;
       transition: 0.3s;
     }
-    nav.sidebar a:hover {
+    .sidebar a:hover {
       color: #a75bb8;
     }
     .hamburger {
@@ -53,9 +53,9 @@
       position: fixed;
       top: 15px;
       left: 15px;
-      font-size: 24px;
+      font-size: 28px;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 1100;
       background: rgba(255,255,255,0.8);
       padding: 8px 12px;
       border-radius: 5px;
@@ -68,39 +68,27 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.3);
-      z-index: 997;
+      z-index: 900;
     }
-    @media (max-width: 768px) {
-      nav.sidebar {
-        transform: translateX(-100%);
-      }
-      nav.sidebar.active {
-        transform: translateX(0);
-      }
-      .hamburger {
-        display: block;
-      }
-      main.main-content {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px;
-        max-width: 100%;
-      }
-      body {
-        overflow-x: hidden;
-      }
-    }
-    main.main-content {
+    .main-content {
       flex-grow: 1;
       padding: 40px 30px;
       margin-left: 220px;
-      margin-right: 30px;
-      max-width: calc(100% - 250px);
+      width: calc(100% - 220px);
       animation: fadeIn 1s ease-in;
     }
-    h1, h2 {
+    .main-content img {
+      display: block;
+      margin: 0 auto 20px;
+    }
+    h1 {
       text-align: center;
+      margin-bottom: 20px;
       color: #6d3684;
+    }
+    p {
+      margin-bottom: 1.5em;
+      line-height: 1.8;
     }
     footer {
       text-align: center;
@@ -124,16 +112,32 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .hamburger {
+        display: block;
+      }
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <div class="hamburger" onclick="toggleSidebar()">☰</div>
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
   <nav class="sidebar" id="sidebar">
     <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian Logo" style="width: 138px; height: 69px;">
     </div>
     <h2>選單 Menu</h2>
     <a href="index.html">🏠&nbsp;首頁 / Home</a>
@@ -143,23 +147,17 @@
     <a href="feelings.html">🖼️&nbsp;心語 / Mood</a>
     <a href="feelings-en.html">🖼️&nbsp;Mood (English)</a>
     <a href="index.html#comments">💬&nbsp;留言區 / Message</a>
-
     <hr>
     <h2>Facebook 相簿</h2>
     <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗&nbsp;中文版 Part 2</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕&nbsp;英文版 Part 2</a>    
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕&nbsp;英文版 Part 2</a>
     <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘&nbsp;中文版 Part 1</a>
     <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙&nbsp;英文版 Part 1</a>
   </nav>
 
   <main class="main-content">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png" alt="Sian Logo" class="logo" style="width: 108px; height: 108px;">
-    </div>
-
-    <header style="text-align: center;">
-      <img src="logo_banner.png" alt="" style="width: 466px; height: 132px;">&nbsp;
-    </header>
+    <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png" alt="Sian Logo" style="width: 108px; height: 108px;">
+    <img src="logo_banner.png" alt="Banner" style="width: 466px; height: 132px;">
 
     <h1>關於我｜About Me</h1>
 
@@ -191,17 +189,23 @@
       If you’ve ever felt misunderstood or out of place,<br>
       I hope my drawings offer you a sense of resonance and gentle companionship.
     </p>
+
+    <footer>
+      &copy; 2025 Sian 的漫畫世界
+    </footer>
   </main>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("overlay").style.display = document.getElementById("sidebar").classList.contains("active") ? "block" : "none";
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+      document.getElementById('overlay').style.display = 
+        document.getElementById('sidebar').classList.contains('active') ? 'block' : 'none';
     }
-    function closeMenu() {
-      document.getElementById("sidebar").classList.remove("active");
-      document.getElementById("overlay").style.display = "none";
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+      document.getElementById('overlay').style.display = 'none';
     }
   </script>
+
 </body>
 </html>
