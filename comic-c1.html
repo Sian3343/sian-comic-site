@@ -13,22 +13,11 @@
       display: flex;
       overflow-x: hidden;
       box-sizing: border-box;
+      position: relative;
     }
 
     *, *::before, *::after {
       box-sizing: inherit;
-    }
-
-    .hamburger {
-      display: none;
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: none;
-      border: none;
-      font-size: 30px;
-      cursor: pointer;
-      z-index: 999;
     }
 
     nav {
@@ -38,6 +27,7 @@
       min-height: 100vh;
       flex-shrink: 0;
       transition: transform 0.3s ease;
+      z-index: 1000;
     }
 
     nav h2 {
@@ -62,6 +52,8 @@
       padding: 20px;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -103,6 +95,43 @@
       background-color: #fca5b3;
     }
 
+    /* 漢堡按鈕 */
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 30px;
+      height: 25px;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 4px;
+      background-color: #6d3684;
+      border-radius: 2px;
+    }
+
+    /* 遮罩 */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 500;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
     /* 手機優化 */
     @media (max-width: 768px) {
       body {
@@ -110,25 +139,26 @@
       }
 
       .hamburger {
-        display: block;
+        display: flex;
       }
 
       nav {
-        width: 100%;
-        min-height: auto;
-        transform: translateY(-100%);
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
+        transform: translateX(-100%);
+        height: 100vh;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       }
 
-      nav.active {
-        transform: translateY(0);
+      nav.open {
+        transform: translateX(0);
       }
 
       main {
         width: 100%;
         padding: 10px;
+        margin-top: 60px;
       }
 
       .flipbook-container {
@@ -144,12 +174,18 @@
   </style>
 </head>
 <body>
-  <button class="hamburger" id="hamburger">&#9776;</button>
+
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
 
   <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
-    </div>
+    <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
+      alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
     <h2>選單 Menu</h2>
     <a href="index.html">🏠&nbsp;首頁 / Home</a>
     <a href="about.html">👩&nbsp;關於我 / About Me</a>
@@ -162,7 +198,7 @@
     <hr>
     <h2>Facebook 相簿</h2>
     <a href="https://www.facebook.com/media/set/?set=a.4270966126338128" target="_blank">📗&nbsp;中文版 Part 2</a>
-    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕&nbsp;英文版 Part 2</a>    
+    <a href="https://www.facebook.com/media/set/?set=a.4270963689671705" target="_blank">📕&nbsp;英文版 Part 2</a>   
     <a href="https://www.facebook.com/media/set/?set=a.1511257358975699" target="_blank">📘&nbsp;中文版 Part 1</a>
     <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙&nbsp;英文版 Part 1</a>
   </nav>
@@ -180,8 +216,22 @@
   </main>
 
   <script>
-    const folder = "images"; // 圖片資料夾
-    const totalPages = 159;  // 總頁數
+    // 漢堡功能同遮罩控制
+    const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function toggleSidebar() {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("active");
+    }
+
+    hamburger.addEventListener("click", toggleSidebar);
+    overlay.addEventListener("click", toggleSidebar);
+
+    // flipbook 功能
+    const folder = "images"; // 📂 你嘅圖像資料夾
+    const totalPages = 159;  // 📄 總頁數，按需要修改
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
@@ -228,14 +278,6 @@
     }
 
     loadPages();
-
-    // Hamburger 控制
-    const hamburger = document.getElementById("hamburger");
-    const sidebar = document.getElementById("sidebar");
-
-    hamburger.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-    });
   </script>
 </body>
 </html>
