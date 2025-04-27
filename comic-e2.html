@@ -12,50 +12,68 @@
       background-color: #fdf6f0;
       display: flex;
     }
+
     nav {
       width: 220px;
       background: #ece3f3;
       padding: 20px;
       min-height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      transition: transform 0.3s ease;
     }
+
     nav h2 {
       font-size: 1.1em;
       margin-bottom: 1em;
       border-bottom: 1px solid #ccc;
     }
+
     nav a {
       display: block;
       margin: 10px 0;
       color: #6b4c88;
       text-decoration: none;
     }
+
     nav a:hover {
       color: #a75bb8;
     }
+
     main {
       flex-grow: 1;
       padding: 20px;
       text-align: center;
+      margin-left: 220px;
+      transition: margin-left 0.3s ease;
     }
+
     h1 {
       color: #6d3684;
     }
+
     .flipbook-container {
       width: 90%;
       max-width: 600px;
       margin: 20px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
     .page {
       display: none;
       width: 100%;
     }
+
     .page.active {
       display: block;
     }
+
     .controls {
       margin-top: 15px;
     }
+
     .controls button {
       background-color: #ffd8df;
       border: none;
@@ -65,23 +83,44 @@
       margin: 5px;
       font-size: 16px;
     }
+
     .controls button:hover {
       background-color: #fca5b3;
     }
+
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
-      main.main-content {
-        max-width: 100%;
-        padding: 20px;
-        margin-left: 0;
-        margin-right: 0;
-        overflow-x: hidden;
+      nav {
+        transform: translateX(-220px);
       }
+
+      nav.open {
+        transform: translateX(0);
+      }
+
+      main {
+        margin-left: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
       .comic-grid img,
       header img,
       .logo {
         max-width: 100%;
         height: auto;
       }
+
       body {
         overflow-x: hidden;
       }
@@ -90,6 +129,10 @@
 </head>
 
 <body>
+  <!-- Hamburger Icon -->
+  <div class="hamburger" id="hamburger">&#9776;</div>
+
+  <!-- Sidebar -->
   <nav class="sidebar" id="sidebar">
     <div style="text-align: center;">
       <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
@@ -112,6 +155,7 @@
     <a href="https://www.facebook.com/media/set/?set=a.1499170603517708" target="_blank">📙&nbsp;英文版 Part 1</a>
   </nav>
 
+  <!-- Main Content -->
   <main>
     <h1>📕 English Part 2</h1>
     <div class="flipbook-container" id="flipbook"></div>
@@ -148,31 +192,39 @@
       });
     }
 
-    function nextPage() {
-      if (currentPage < pages.length - 1) {
-        currentPage++;
-        showPage(currentPage);
-      }
+    function nextPage() { 
+      if (currentPage < pages.length - 1) { 
+        currentPage++; 
+        showPage(currentPage); 
+      } 
     }
 
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        showPage(currentPage);
-      }
+    function prevPage() { 
+      if (currentPage > 0) { 
+        currentPage--; 
+        showPage(currentPage); 
+      } 
     }
 
-    function firstPage() {
-      currentPage = 0;
-      showPage(currentPage);
+    function firstPage() { 
+      currentPage = 0; 
+      showPage(currentPage); 
     }
 
-    function lastPage() {
-      currentPage = pages.length - 1;
-      showPage(currentPage);
+    function lastPage() { 
+      currentPage = pages.length - 1; 
+      showPage(currentPage); 
     }
 
     loadPages();
+
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
   </script>
 </body>
 </html>
