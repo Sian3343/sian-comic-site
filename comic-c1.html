@@ -5,126 +5,152 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>📘 中文版 Part 1 - 漫畫翻書版</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-<style>
-  body {
-  margin: 0;
-  font-family: "Noto Sans TC", sans-serif;
-  background-color: #fdf6f0;
-  display: flex;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
+      display: flex;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
 
-nav {
-  width: 220px;
-  background: #ece3f3;
-  padding: 20px;
-  min-height: 100vh;
-  flex-shrink: 0;
-}
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 999;
+    }
 
-nav h2 {
-  font-size: 1.1em;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #ccc;
-}
+    nav {
+      width: 220px;
+      background: #ece3f3;
+      padding: 20px;
+      min-height: 100vh;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
 
-nav a {
-  display: block;
-  margin: 10px 0;
-  color: #6b4c88;
-  text-decoration: none;
-}
+    nav h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+    }
 
-nav a:hover {
-  color: #a75bb8;
-}
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
 
-main {
-  flex-grow: 1;
-  padding: 20px;
-  text-align: center;
-  overflow-x: hidden;
-}
+    nav a:hover {
+      color: #a75bb8;
+    }
 
-h1 {
-  color: #6d3684;
-}
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-.flipbook-container {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
+    h1 {
+      color: #6d3684;
+    }
 
-.page {
-  display: none;
-  width: 100%;
-  height: auto;
-}
+    .flipbook-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
 
-.page.active {
-  display: block;
-}
+    .page {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
 
-.controls {
-  margin-top: 15px;
-}
+    .page.active {
+      display: block;
+    }
 
-.controls button {
-  background-color: #ffd8df;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 16px;
-}
+    .controls {
+      margin-top: 15px;
+    }
 
-.controls button:hover {
-  background-color: #fca5b3;
-}
+    .controls button {
+      background-color: #ffd8df;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 16px;
+    }
 
-/* 手機優化 */
-@media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
+    .controls button:hover {
+      background-color: #fca5b3;
+    }
 
-  nav {
-    width: 100%;
-    min-height: auto;
-  }
+    /* 手機優化 */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
 
-  main {
-    width: 100%;
-    padding: 10px;
-  }
+      .hamburger {
+        display: block;
+      }
 
-  .flipbook-container {
-    width: 100%;
-    max-width: 100%;
-  }
+      nav {
+        width: 100%;
+        min-height: auto;
+        transform: translateY(-100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
 
-  .page {
-    max-width: 100%;
-    height: auto;
-  }
-}
+      nav.active {
+        transform: translateY(0);
+      }
 
-    
+      main {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .flipbook-container {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .page {
+        max-width: 100%;
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body>
+  <button class="hamburger" id="hamburger">&#9776;</button>
+
   <nav class="sidebar" id="sidebar">
-  <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
-       alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
-          <h2>選單 Menu</h2>
+    <div style="text-align: center;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+    </div>
+    <h2>選單 Menu</h2>
     <a href="index.html">🏠&nbsp;首頁 / Home</a>
     <a href="about.html">👩&nbsp;關於我 / About Me</a>
     <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
@@ -154,8 +180,8 @@ h1 {
   </main>
 
   <script>
-    const folder = "images"; // 📂 你嘅圖像資料夾
-    const totalPages = 159;  // 📄 總頁數，按需要修改
+    const folder = "images"; // 圖片資料夾
+    const totalPages = 159;  // 總頁數
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
     let pages = [];
@@ -202,7 +228,14 @@ h1 {
     }
 
     loadPages();
+
+    // Hamburger 控制
+    const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+
+    hamburger.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
   </script>
 </body>
 </html>
-
