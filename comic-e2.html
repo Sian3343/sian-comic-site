@@ -114,13 +114,6 @@
         display: block;
       }
 
-      .comic-grid img,
-      header img,
-      .logo {
-        max-width: 100%;
-        height: auto;
-      }
-
       body {
         overflow-x: hidden;
       }
@@ -221,9 +214,15 @@
     // Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');
     const sidebar = document.getElementById('sidebar');
+    const main = document.querySelector('main');
 
     hamburger.addEventListener('click', () => {
       sidebar.classList.toggle('open');
+      if (sidebar.classList.contains('open')) {
+        main.style.marginLeft = '220px';
+      } else {
+        main.style.marginLeft = '0';
+      }
     });
   </script>
 </body>
