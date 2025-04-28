@@ -403,29 +403,6 @@ src="//gc.zgo.at/count.js"></script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
     }
-  </script>       
-  <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
-
-  <!-- 你的原始內容... -->
-  
-  <!-- 這是往上和往下按鈕 -->
-  <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
-  <button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
-
-  <script>
-    // 收回選單功能
-    document.addEventListener('click', function(event) {
-      var sidebar = document.getElementById('sidebar');
-      var hamburger = document.querySelector('.hamburger');
-      
-      // 如果點擊的不是菜單或hamburger，則關閉菜單
-      if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-        sidebar.classList.remove('active');
-      }
-    });
-
-   
-  </style>
-  
+  </script>       <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
   </body>
 </html>
