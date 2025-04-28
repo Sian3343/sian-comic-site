@@ -4,132 +4,179 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>關於我｜About Me - Sian 的漫畫世界</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: #4b306a;
-    }
-    .sidebar {
-      background: #f7f2fb;
-      width: 220px;
-      min-height: 100vh;
-      padding: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      transition: transform 0.3s ease;
-      z-index: 1000;
-    }
-    .sidebar h2 {
-      font-size: 1.2em;
-      margin-bottom: 1em;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.5em;
-    }
-    .sidebar a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: #6b4c88;
-      transition: 0.3s;
-    }
-    .sidebar a:hover {
-      color: #a75bb8;
-    }
-    .hamburger {
-      display: none;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 28px;
-      cursor: pointer;
-      z-index: 1100;
-      background: rgba(255,255,255,0.8);
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 900;
-    }
-    .main-content {
-      flex-grow: 1;
-      padding: 40px 30px;
-      margin-left: 220px;
-      width: calc(100% - 220px);
-      animation: fadeIn 1s ease-in;
-    }
-    .main-content img {
-      display: block;
-      margin: 0 auto 20px;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #6d3684;
-    }
-    p {
-      margin-bottom: 1.5em;
-      line-height: 1.8;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #888;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(#e8d0ef 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.2;
-      z-index: -1;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-      .sidebar.active {
-        transform: translateX(0);
-      }
-      .hamburger {
-        display: block;
-      }
-      .main-content {
-        margin-left: 0;
-        width: 100%;
-      }
-    }
-  </style>
-</head>
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <style>
+      * { box-sizing: border-box; }
 
+      body {
+        margin: 0;
+        font-family: 'Noto Sans TC', sans-serif;
+        background: url('background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        min-height: 100vh;
+        color: #4b306a;
+      }
+
+      nav.sidebar {
+        background-color: #f7f2fb;
+        width: 220px;
+        min-height: 100vh;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 998;
+      }
+
+      nav.sidebar h2 {
+        font-size: 1.2em;
+        margin-bottom: 1em;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 0.3em;
+      }
+
+      nav.sidebar a {
+        display: block;
+        margin: 10px 0;
+        text-decoration: none;
+        color: #6b4c88;
+        transition: 0.3s;
+      }
+
+      nav.sidebar a:hover {
+        color: #a75bb8;
+      }
+
+      .hamburger {
+        display: none;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 999;
+        background: rgba(255,255,255,0.8);
+        padding: 8px 12px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        nav.sidebar {
+          transform: translateX(-100%);
+          transition: transform 0.3s ease-in-out;
+        }
+
+        nav.sidebar.active {
+          transform: translateX(0);
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        main.main-content {
+          margin-left: 0;
+          padding: 20px;
+          max-width: 100%;
+        }
+      }
+
+      main.main-content {
+        flex-grow: 1;
+        padding: 40px 30px;
+        margin-left: 220px;
+        max-width: calc(100% - 250px);
+        animation: fadeIn 1s ease-in;
+      }
+
+      h1 {
+        text-align: center;
+        color: #6d3684;
+      }
+
+      .comic-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .comic-card {
+        background: rgba(255,255,255,0.95);
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        overflow: hidden;
+        width: 220px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        text-decoration: none;
+        color: #4b306a;
+      }
+
+      .comic-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .comic-card img {
+        width: 100%;
+        height: auto;
+      }
+
+      .comic-card h3 {
+        font-size: 1.1em;
+        margin: 10px 0 5px;
+        color: #5a3475;
+      }
+
+      .comic-card p {
+        font-size: 0.85em;
+        color: #777;
+        margin-bottom: 12px;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(#e8d0ef 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.2;
+        z-index: -1;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (max-width: 768px) {
+  main.main-content {
+    max-width: 100%;
+    padding: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
+
+  .comic-grid img,
+  header img,
+  .logo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+      }
+      
+    </style>
+  </head>
 <body>
 
   <div class="hamburger" onclick="toggleSidebar()">☰</div>
