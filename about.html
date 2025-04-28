@@ -207,5 +207,43 @@
     }
   </script>
 
+    // 控制頁面滾動
+function scrollPage(direction) {
+  if (direction === 'up') {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // 滑動去最頂
+     } else if (direction === 'down') {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 滑動去最底
+  }
+    }
+  </script>
+
+  <style>
+    /* 按鈕的樣式 */
+    .scroll-button {
+      position: fixed;
+      right: 10px;
+      z-index: 999;
+      font-size: 24px;
+      background-color: #6d3684;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s;
+    }
+
+    .scroll-button:hover {
+      background-color: #a75bb8;
+    }
+
+    #scroll-up {
+      bottom: 80px; /* 放置於螢幕右下方，向上的按鈕 */
+    }
+
+    #scroll-down {
+      bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
+    }
+  
 </body>
 </html>
