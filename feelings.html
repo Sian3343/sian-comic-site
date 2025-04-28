@@ -282,12 +282,12 @@
     }
   });
 
-  // 控制頁面滾動
+  // 控制頁面滾動（直接上頂或者落底）
   function scrollPage(direction) {
     if (direction === 'up') {
-      window.scrollBy(0, -200); // 向上滾動200px
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滾到最上面
     } else if (direction === 'down') {
-      window.scrollBy(0, 200); // 向下滾動200px
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 平滑滾到最下面
     }
   }
 </script>
