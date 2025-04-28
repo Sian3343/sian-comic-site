@@ -290,5 +290,62 @@
       showGalleryPage(currentPage);
     };
   </script>
+
+<!-- 在<body>標籤下新增以下內容 -->
+<!-- 這是往上和往下按鈕 -->
+<button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
+<button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
+
+<script>
+  // 收回選單功能
+  document.addEventListener('click', function(event) {
+    var sidebar = document.getElementById('sidebar');
+    var hamburger = document.querySelector('.hamburger');
+    
+    // 如果點擊的不是菜單或hamburger，則關閉菜單
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+
+  // 控制頁面滾動
+  function scrollPage(direction) {
+    if (direction === 'up') {
+      window.scrollBy(0, -200); // 向上滾動200px
+    } else if (direction === 'down') {
+      window.scrollBy(0, 200); // 向下滾動200px
+    }
+  }
+</script>
+
+<style>
+  /* 按鈕的樣式 */
+  .scroll-button {
+    position: fixed;
+    right: 10px;
+    z-index: 999;
+    font-size: 24px;
+    background-color: #6d3684;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+  }
+
+  .scroll-button:hover {
+    background-color: #a75bb8;
+  }
+
+  #scroll-up {
+    bottom: 80px; /* 放置於螢幕右下方，向上的按鈕 */
+  }
+
+  #scroll-down {
+    bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
+  }
+</style>
+      
 </body>
 </html>
