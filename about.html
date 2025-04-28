@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>關於我｜About Me - Sian 的漫畫世界</title>
-     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <style>
       * { box-sizing: border-box; }
 
@@ -177,15 +177,13 @@
       
     </style>
   </head>
-<body>
+  <body>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <div class="hamburger" onclick="toggleSidebar()">☰</div>
-  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
-  <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian Logo" style="width: 138px; height: 69px;">
-    </div>
+    <nav class="sidebar" id="sidebar">
+      <div style="text-align: center;">
+        <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+      </div>
     <h2>選單 Menu</h2>
     <a href="index.html">🏠&nbsp;首頁 / Home</a>
     <a href="about.html">👩&nbsp;關於我 / About Me</a>
@@ -242,7 +240,7 @@
     </footer>
   </main>
 
-  <script>
+    <script>
       function toggleMenu() {
         document.getElementById("sidebar").classList.toggle("active");
       }
@@ -265,12 +263,12 @@
     }
   });
 
-  // 控制頁面滾動（直接上頂或者落底）
+  // 控制頁面滾動
   function scrollPage(direction) {
     if (direction === 'up') {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滾到最上面
+      window.scrollBy(0, -200); // 向上滾動200px
     } else if (direction === 'down') {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 平滑滾到最下面
+      window.scrollBy(0, 200); // 向下滾動200px
     }
   }
 </script>
@@ -303,5 +301,6 @@
     bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
   }
 </style>    
+    
 </body>
 </html>
