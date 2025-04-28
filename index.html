@@ -407,10 +407,19 @@ src="//gc.zgo.at/count.js"></script>
   <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
 <!-- 在<body>標籤下新增以下內容 -->
 <!-- 這是往上和往下按鈕 -->
-<button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
-<button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
+<button onclick="scrollPage('up')">上去 ↑</button>
+<button onclick="scrollPage('down')">落去 ↓</button>
 
 <script>
+function scrollPage(direction) {
+  if (direction === 'up') {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // 去最頂
+  } else if (direction === 'down') {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 去最底
+  }
+}
+</script>
+
   // 收回選單功能
   document.addEventListener('click', function(event) {
     var sidebar = document.getElementById('sidebar');
