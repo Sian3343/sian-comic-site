@@ -400,9 +400,20 @@ src="//gc.zgo.at/count.js"></script>
       </footer>
     </main>
   <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-  </script>       <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
+
+  document.querySelectorAll('nav.sidebar a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.remove("active");
+      }
+    });
+  });
+</script>
+
+  
+  <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
   </body>
 </html>
