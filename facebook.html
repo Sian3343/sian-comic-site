@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sian のFacebook BackUp</title>
+  <meta name="description" content="這是一個由心出發的個人漫畫網站，分享 Asperger 生活點滴，也是靜靜灌潤心靈的角落，感受孤獨與溫暖交織的世界。">
+  <meta name="keywords" content="漫畫, Asperger, 個人故事, 情感, 自我療癒">
+  <meta name="author" content="Sian">
+
+
+  <!-- 手寫字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+
+section p {
+  padding: 10px 0;
+}
+
+section {
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 900px;
+  animation: fadeIn 2s ease-in;
+  text-align: left; /* 讓內文更似文章風格 */
+  line-height: 1.8em; /* 增加行距 */
+  font-size: 1.2em;   /* 適中字體 */
+}
+
+a {
+  color: #c06;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+    
+    body {
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      font-family: 'Dancing Script', cursive;
+      color: #555;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      animation: bodyFadeIn 2s ease;
+      overflow-x: hidden;
+    }
+
+    /* logo區 */
+    .logo-container {
+      margin: 20px auto;
+      padding: 10px 40px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50px;
+      width: fit-content;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      height: 80px;
+    }
+
+    /* 介紹文字 */
+    .intro {
+      margin: 30px auto;
+      padding: 30px 40px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      display: inline-block;
+      max-width: 90%;
+      animation: fadeIn 2s ease-in;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+
+    h2 {
+  text-align: center;
+}
+
+.center-title {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+    
+    p {
+      font-size: 1.3em;
+      line-height: 1.6em;
+    }
+
+    /* section區塊 */
+    section {
+      background: rgba(255, 255, 255, 0.5);
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 900px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    /* 飄落花瓣 */
+    .petal {
+      position: fixed;
+      top: -10px;
+      color: pink;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    /* 上下按鈕 */
+    .scroll-buttons {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 999;
+    }
+    .scroll-buttons button {
+      background: rgba(255, 192, 203, 0.7);
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: #555;
+    }
+    .scroll-buttons button:hover {
+      background: rgba(255, 105, 180, 0.8);
+    }
+    .home-button {
+      font-size: 12px;
+    }
+
+    /* 淡入動畫 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes bodyFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* 頁腳 */
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+
+ <nav style="background-color: rgba(255, 255, 255, 0.7); padding: 10px; text-align: center; font-family: sans-serif;">
+  <a href="https://sian3343.github.io/sian-comic-site/" style="margin: 0 15px;">🏠nbsp;漫畫區首頁</a>
+  <a href="index.html" style="margin: 0 15px;">🌸nbsp;秘密花園</a>
+   <a href="" style="margin: 0 15px;">ⓕ&nbsp; Facebook 備份</a> 
+
+</nav> 
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="slogo.png" alt="Sian Logo" class="logo">
+  </div>
+
+      <div style="margin-top: 30px; font-size: 0.85em; color: #666;">
+        <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;"> 
+        
+
+          
+        </ul>
+      </div>
+  
+  <!-- 介紹文字 -->
+  <div class="intro">
+
+     <h2>Faceook Backup</h2>
+        <strong style="color: #4b306a;">ⓕ&nbsp; Facebook 備份：</strong>
+        <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+          <li style="margin: 5px 0;">
+            <a href="https://www.facebook.com/media/set/?set=a.4270966126338128&amp;type=3"
+              target="_blank">📗&nbsp;中文版 Part 2</a></li>
+
+           <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.4270963689671705&amp;type=3"
+              target="_blank">📕&nbsp;English Part 2</a></li>          
+          
+          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1511257358975699&amp;type=3"
+              target="_blank">📘&nbsp;中文版 Part 1</a></li>
+          
+          <li style="margin: 5px 0;"><a href="https://www.facebook.com/media/set/?set=a.1499170603517708&amp;type=3"
+              target="_blank">📙&nbsp;English Part 1</a></li>
+  </div>
+
+  
+
+  <!-- 花瓣效果 -->
+  <script>
+    const numberOfPetals = 30;
+    for (let i = 0; i < numberOfPetals; i++) {
+      let petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+      petal.style.opacity = Math.random();
+      petal.style.fontSize = (10 + Math.random() * 20) + 'px';
+      petal.innerHTML = '❀';
+      document.body.appendChild(petal);
+    }
+  </script>
+
+  <!-- 上下按鈕 -->
+  <div class="scroll-buttons">
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+    <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});">↓</button>
+    <button onclick="location.href='index.html';" class="home-button">🏠</button>
+  </div>
+
+  <!-- 頁腳 -->
+  <footer>© 2025 Sian's | 所有文章均屬原創，請勿轉載!</footer>
+
+</body>
+</html>
