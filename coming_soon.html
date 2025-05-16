@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sian のFacebook BackUp</title>
+    <meta name="description" content="這是一個由心出發的個人漫畫網站，分享 Asperger 生活點滴，也是靜靜灌潤心靈的角落，感受孤獨與溫暖交織的世界。">
+    <meta name="keywords" content="漫畫, Asperger, 個人故事, 情感, 自我療癒">
+    <meta name="author" content="Sian">
+    <meta charset="UTF-8">
+    <title>Sian のFacebook BackUp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+      margin: 0;
+      background-image: url("bg.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: #ffe4e1; /* 柔粉色 */
+      font-family: "Noto Sans TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2em;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* logo區 */
+    .logo-container {
+      margin: 20px auto;
+      padding: 10px 40px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50px;
+      width: fit-content;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      height: 80px;
+    }
+
+
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #d46a6a;
+      margin-bottom: 1em;
+    }
+
+    .entry {
+      margin-bottom: 3em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      color: #ff6b81;
+      display: flex;
+      align-items: center;
+    }
+
+    h2::before {
+      content: "💖";
+      margin-right: 0.5em;
+    }
+
+    .date {
+      font-size: 0.9em;
+      color: #888;
+      margin-bottom: 1em;
+    }
+
+    pre {
+      background: #fff0f5;
+      padding: 1em;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 1.2em; /* 只改呢度，放大日記文字 */
+      color: #555;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #ff6b81;
+      font-weight: bold;
+    }
+
+    /* 往最上、往最下button */
+    .top-button, .bottom-button {
+      position: fixed;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #ffb6c1;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 100;
+    }
+
+    .top-button {
+      bottom: 80px;
+    }
+
+    .bottom-button {
+      bottom: 20px;
+    }
+
+    .top-button:hover, .bottom-button:hover {
+      background-color: #ff6b81;
+    }
+  </style>
+  </head>
+  <body>
+    <!-- Logo -->
+    <div class="logo-container"> <img src="slogo.png" alt="Sian Logo" class="logo">
+    </div>
+    <div class="container">
+      <h1>Coming Soon</h1>
+      <div class="intro" id="entries">
+        <main class="main-content">
+          <div style="text-align: center;"><img src="images-en3/Coming Soon.jpg"
+
+              alt="Sian Logo" class="logo" style="width: 316px; height: 211px;"></div>
+          <header style="text-align: center;"> <img src="logo_banner.png" alt="Banner"
+
+              class="banner"> </header>
+        </main>
+      </div>
+      <div class="container">
+        <div class="intro" id="entries">
+          <nav style="background-color: rgba(255, 255, 255, 0.7); padding: 10px; font-family: sans-serif;">
+            <h6 style="text-align: center;"> <br>
+            </h6>
+            <div style="text-align: center;">
+              <footer>© 2025 Sian's | 所有文章均屬原創，請勿轉載!</footer>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <button onclick="scrollToTop()" class="top-button">↑</button> <button onclick="scrollToBottom()"
+
+        class="bottom-button">↓</button>
+      <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToBottom() {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    fetch('sweetheart.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('entries');
+        data.forEach(entry => {
+          const div = document.createElement('div');
+          div.className = 'entry';
+          div.innerHTML = `
+            <h2>${entry.title}</h2>
+            <div class="date">${entry.date}</div>
+            <pre>${entry.content}</pre>
+          `;
+          container.appendChild(div);
+        });
+      });
+  </script> </div>
+  </body>
+</html>
