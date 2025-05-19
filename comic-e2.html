@@ -11,76 +11,75 @@
       font-family: "Noto Sans TC", sans-serif;
       background-color: #fdf6f0;
       display: flex;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      position: relative;
     }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
     nav {
       width: 220px;
       background: #ece3f3;
       padding: 20px;
       min-height: 100vh;
+      flex-shrink: 0;
       transition: transform 0.3s ease;
-      position: fixed;
-      top: 0;
-      left: 0;
-      transform: translateX(0);
       z-index: 1000;
     }
-    nav.hidden {
-      transform: translateX(-100%);
-    }
+
     nav h2 {
       font-size: 1.1em;
       margin-bottom: 1em;
       border-bottom: 1px solid #ccc;
     }
+
     nav a {
       display: block;
       margin: 10px 0;
       color: #6b4c88;
       text-decoration: none;
     }
+
     nav a:hover {
       color: #a75bb8;
     }
-    .menu-toggle {
-      display: none;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      background-color: #6b4c88;
-      border: none;
-      color: white;
-      font-size: 24px;
-      padding: 10px;
-      border-radius: 5px;
-      z-index: 1100;
-      cursor: pointer;
-    }
+
     main {
       flex-grow: 1;
       padding: 20px;
       text-align: center;
-      margin-left: 220px;
-      transition: margin-left 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
+
     h1 {
       color: #6d3684;
     }
+
     .flipbook-container {
       width: 90%;
       max-width: 600px;
       margin: 20px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
     .page {
       display: none;
       width: 100%;
+      height: auto;
     }
+
     .page.active {
       display: block;
     }
+
     .controls {
       margin-top: 15px;
     }
+
     .controls button {
       background-color: #ffd8df;
       border: none;
@@ -90,26 +89,89 @@
       margin: 5px;
       font-size: 16px;
     }
+
     .controls button:hover {
       background-color: #fca5b3;
     }
+
+    /* 漢堡按鈕 */
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 30px;
+      height: 25px;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 4px;
+      background-color: #6d3684;
+      border-radius: 2px;
+    }
+
+    /* 遮罩 */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 500;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* 手機版調整 */
     @media (max-width: 768px) {
-      nav {
-        transform: translateX(-100%);
+      body {
+        flex-direction: column;
       }
-      nav.show {
+
+      .hamburger {
+        display: flex;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        height: 100vh;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      }
+
+      nav.open {
         transform: translateX(0);
       }
-      .menu-toggle {
-        display: block;
-      }
+
       main {
-        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+        margin-top: 60px;
+      }
+
+      .flipbook-container {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .page {
+        max-width: 100%;
+        height: auto;
       }
     }
   </style>
 </head>
-
 <body>
   <button class="menu-toggle" id="menu-toggle">☰</button>
 
@@ -148,7 +210,21 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
   </main>
 
   <script>
-    const folder = "images-en2";
+    // 漢堡功能同遮罩控制
+    const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function toggleSidebar() {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("active");
+    }
+
+    hamburger.addEventListener("click", toggleSidebar);
+    overlay.addEventListener("click", toggleSidebar);
+
+    // flipbook 功能
+    const folder = "images-en2"; // 注意！Part 2 資料夾係 images2
     const totalPages = 99;
     const flipbook = document.getElementById("flipbook");
     let currentPage = 0;
@@ -171,46 +247,12 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
       });
     }
 
-    function nextPage() {
-      if (currentPage < pages.length - 1) {
-        currentPage++;
-        showPage(currentPage);
-      }
-    }
-
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        showPage(currentPage);
-      }
-    }
-
-    function firstPage() {
-      currentPage = 0;
-      showPage(currentPage);
-    }
-
-    function lastPage() {
-      currentPage = pages.length - 1;
-      showPage(currentPage);
-    }
+    function nextPage() { if (currentPage < pages.length - 1) { currentPage++; showPage(currentPage); } }
+    function prevPage() { if (currentPage > 0) { currentPage--; showPage(currentPage); } }
+    function firstPage() { currentPage = 0; showPage(currentPage); }
+    function lastPage() { currentPage = pages.length - 1; showPage(currentPage); }
 
     loadPages();
-
-    // Hamburger 控制
-    const sidebar = document.getElementById('sidebar');
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainContent = document.getElementById('main-content');
-
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('show');
-    });
-
-    mainContent.addEventListener('click', () => {
-      if (window.innerWidth <= 768 && sidebar.classList.contains('show')) {
-        sidebar.classList.remove('show');
-      }
-    });
   </script>
 </body>
 </html>
