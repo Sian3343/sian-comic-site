@@ -173,20 +173,20 @@
     }
   </style>
 </head>
-
 <body>
-  <!-- Hamburger Icon -->
-  <div class="hamburger" id="hamburger">&#9776;</div>
 
-  <!-- Overlay -->
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
   <div class="overlay" id="overlay"></div>
 
-  <!-- Sidebar -->
   <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
-    </div>
-    <h2>Menu</h2>
+    <div style="text-align: center;"><img src="https://sian3343.github.io/sian-comic-site/logo.png"
+      alt="Sian 的 Logo" style="width: 138px; height: 69px;"></div>
+    <h2>選單 Menu</h2>
     <a href="index.html">🏠&nbsp;首頁 / Home</a>
     <a href="about.html">👩&nbsp;關於我 / About Me</a>
     <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
@@ -196,7 +196,6 @@
     <a href="index.html#comments">💬&nbsp;留言區 / Message</a>
 
     <hr>
-
     <h2>Facebook</h2>
 <a href="https://www.facebook.com/AspergerlifeMoments"
 target="_blank" style="text-decoration:none;"> 
@@ -267,23 +266,19 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
 
     loadPages();
 
-    // Hamburger Menu Toggle + Overlay
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
+    // 漢堡功能同遮罩控制
+    const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
 
-    function openSidebar() {
-      sidebar.classList.add('open');
-      overlay.classList.add('show');
+    function toggleSidebar() {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("active");
     }
 
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-    }
+    hamburger.addEventListener("click", toggleSidebar);
+    overlay.addEventListener("click", toggleSidebar);
 
-    hamburger.addEventListener('click', openSidebar);
-    overlay.addEventListener('click', closeSidebar);
   </script>
 </body>
 </html>
