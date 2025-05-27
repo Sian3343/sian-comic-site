@@ -274,6 +274,13 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
     // 預設載入中文版 Part 3
     loadPages("images3");
   </script>
+  
+    <script>
+      function toggleMenu() {
+        document.getElementById("sidebar").classList.toggle("active");
+      }
+    </script>
+
 <!-- 在<body>標籤下新增以下內容 -->
 <!-- 這是往上和往下按鈕 -->
 <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
@@ -291,12 +298,12 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
     }
   });
 
-  // 控制頁面滾動（直接上頂或者落底）
+  // 控制頁面滾動
   function scrollPage(direction) {
     if (direction === 'up') {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滾到最上面
+      window.scrollBy(0, -200); // 向上滾動200px
     } else if (direction === 'down') {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 平滑滾到最下面
+      window.scrollBy(0, 200); // 向下滾動200px
     }
   }
 </script>
@@ -328,7 +335,7 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
   #scroll-down {
     bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
   }
-</style>
-  
+</style>    
+    
 </body>
 </html>
