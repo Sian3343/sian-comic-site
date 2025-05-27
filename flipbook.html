@@ -259,24 +259,27 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
     <!-- 這是往上和往下按鈕 -->
     <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
     <button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
-    <script>
-  // 收回選單功能
+<script>
+  // 控制手機版：點擊空白處關閉選單
   document.addEventListener('click', function(event) {
-    var sidebar = document.getElementById('sidebar');
-    var hamburger = document.querySelector('.hamburger');
-    
-    // 如果點擊的不是菜單或hamburger，則關閉菜單
-    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
-      sidebar.classList.remove('active');
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = document.getElementById('toggleSidebar');
+
+    // 僅在手機寬度下觸發
+    if (window.innerWidth <= 768) {
+      // 如果點擊的不是 sidebar 或 toggle 按鈕，就收起選單
+      if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+        sidebar.classList.remove('show');
+      }
     }
   });
 
   // 控制頁面滾動（直接上頂或者落底）
   function scrollPage(direction) {
     if (direction === 'up') {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滾到最上面
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (direction === 'down') {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 平滑滾到最下面
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   }
 </script>
