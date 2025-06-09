@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心情畫簿 2｜Sian の情思插畫</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fdf6f0;
+      display: flex;
+      box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    nav.sidebar {
+      width: 220px;
+      background: #ece3f3;
+      padding: 20px;
+      min-height: 100vh;
+      flex-shrink: 0;
+    }
+
+    nav h2 {
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+    }
+
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #6b4c88;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #a75bb8;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+      background-color: #A37ACB;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .card {
+      width: 180px;
+      background: white;
+      border-radius: 8px;
+      padding: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .caption {
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: none;
+      background-color: #6b4c88;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #a75bb8;
+    }
+
+    .lightbox-overlay {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 10000;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+    .feedings-link {
+      text-align: center;
+      margin-top: 2em;
+    }
+    .feedings-link a:hover {
+      background-color: #B48DCB;
+    }    
+
+    .feedings-link a {
+      display: inline-block;
+      background-color: #a170bd;
+      color: white;
+      text-decoration: none;
+      padding: 0.6em 1.5em;
+      border-radius: 8px;
+      font-size: 1.1em;
+      transition: 0.3s;
+    }
+      
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      nav.sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100%;
+        background: #ece3f3;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      nav.sidebar.active {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      main {
+        margin-top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="hamburger" onclick="toggleSidebar()">☰ </button>
+
+  <nav class="sidebar" id="sidebar">
+    <div style="text-align: center;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+    </div>
+          <h2>選單 Menu</h2>
+    <a href="index.html">🏠&nbsp;首頁 / Home</a>
+    <a href="about.html">👩🏻&nbsp;關於我 / About Me</a>
+    <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
+    <a href="flipbook.html">🌿&nbsp;小誌選集 / Zine</a>
+    <a href="feelings.html">🖼️&nbsp;心語 / Mood</a>
+    <a href="feelings-en.html">🖼️&nbsp;Mood (English)</a>
+    <a href="index.html#comments">💬&nbsp;留言區 / Message</a>
+
+    <hr>
+    <h2>Facebook</h2>
+<a href="https://www.facebook.com/AspergerlifeMoments"
+target="_blank" style="text-decoration:none;"> 
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook Page </a>
+  </nav>
+
+  <main>
+      <div style="text-align: center;">
+        <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png" alt="Sian Logo" class="logo" style="width: 108px; height: 108px;">
+      </div>
+    
+    <h1>🖌️ 心情畫簿 Moodbook</h1>
+    <p>這裡收錄了我在不同情緒狀態下的插畫作品，也許不是最完美，但都是真實的情感流露。</p>
+
+      <section id="feelings">
+        <h2>🖌️ &nbsp;Part 1</h2>
+        <div class="about-link"> <a href="feelings.html">點我進入🖌️ &nbsp;Part 2 →</a> </div>
+    
+    <div class="gallery" id="gallery"></div>
+    <div class="pagination" id="pagination"></div>
+
+    <footer>© 2025 Sian | 心情畫簿</footer>
+  </main>
+
+  <!-- Lightbox 彈出圖 -->
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="放大圖片" id="lightbox-img">
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    const totalImages = 01;
+    const imagesPerPage = 15;
+    let currentPage = 1;
+    let currentImageIndex = 0;
+
+    function showGalleryPage(page) {
+      const gallery = document.getElementById("gallery");
+      const pagination = document.getElementById("pagination");
+      gallery.innerHTML = "";
+      pagination.innerHTML = "";
+      currentPage = page;
+
+      const start = totalImages - (page - 1) * imagesPerPage;
+      const end = Math.max(start - imagesPerPage + 1, 1);
+
+      for (let i = start; i >= end; i--) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="feelings2/${String(i).padStart(2, '0')}.jpg" alt="Mood ${i}" onclick="openLightbox(${i})">
+          <div class="caption">圖 #${i}</div>
+        `;
+        gallery.appendChild(card);
+      }
+
+      const totalPages = Math.ceil(totalImages / imagesPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === page) btn.classList.add("active");
+        btn.onclick = () => showGalleryPage(i);
+        pagination.appendChild(btn);
+      }
+    }
+
+    function openLightbox(index) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      currentImageIndex = index;
+      img.src = `feelings/${String(index).padStart(2, '0')}.jpg`;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    window.onload = () => {
+      document.getElementById("lightbox").onclick = closeLightbox;
+
+      document.addEventListener("keydown", function(e) {
+        const lightbox = document.getElementById("lightbox");
+        if (lightbox.style.display === "flex") {
+          if (e.key === "Escape") closeLightbox();
+          else if (e.key === "ArrowLeft" && currentImageIndex > 1) openLightbox(currentImageIndex - 1);
+          else if (e.key === "ArrowRight" && currentImageIndex < totalImages) openLightbox(currentImageIndex + 1);
+        }
+      });
+
+      showGalleryPage(currentPage);
+    };
+  </script>
+<!-- 在<body>標籤下新增以下內容 -->
+<!-- 這是往上和往下按鈕 -->
+<button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
+<button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
+
+<script>
+  // 收回選單功能
+  document.addEventListener('click', function(event) {
+    var sidebar = document.getElementById('sidebar');
+    var hamburger = document.querySelector('.hamburger');
+    
+    // 如果點擊的不是菜單或hamburger，則關閉菜單
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+
+  // 控制頁面滾動（直接上頂或者落底）
+  function scrollPage(direction) {
+    if (direction === 'up') {
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滾到最上面
+    } else if (direction === 'down') {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // 平滑滾到最下面
+    }
+  }
+</script>
+
+<style>
+  /* 按鈕的樣式 */
+  .scroll-button {
+    position: fixed;
+    right: 10px;
+    z-index: 999;
+    font-size: 24px;
+    background-color: #6d3684;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+  }
+
+  .scroll-button:hover {
+    background-color: #a75bb8;
+  }
+
+  #scroll-up {
+    bottom: 80px; /* 放置於螢幕右下方，向上的按鈕 */
+  }
+
+  #scroll-down {
+    bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
+  }
+</style>
+
+      
+</body>
+</html>
