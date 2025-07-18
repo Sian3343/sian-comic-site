@@ -228,8 +228,30 @@ src="//gc.zgo.at/count.js"></script>
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .qr-fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 60px; /* 大小可以改 */
+  height: 60px;
+  z-index: 999;
+  opacity: 0.8; /* 少少透明感，更靚 */
+  transition: opacity 0.3s ease;
+}
 
-      .comic-grid img,
+.qr-fixed:hover {
+  opacity: 1; /* 滑鼠移上去變返清晰 */
+}
+@media (max-width: 768px) {
+  main.main-content {
+    max-width: 100%;
+    padding: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
+
+  .comic-grid img,
   header img,
   .logo {
     max-width: 100%;
@@ -240,7 +262,25 @@ src="//gc.zgo.at/count.js"></script>
     overflow-x: hidden;
   }
 }
+.qr-fixed {
+  position: fixed;
+  bottom: 10px;
+  right: 10px; /* 改左由右邊對齊 */
+  width: 100px;
+  height: auto;
+  z-index: 999;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
 
+.qr-fixed:hover {
+  opacity: 1;
+}
+@media screen and (min-width: 768px) {
+  #qrcode-container {
+    position: static;
+    margin-top: 30px;
+  }
     html {
       scroll-behavior: smooth;
     }
@@ -291,12 +331,9 @@ src="//gc.zgo.at/count.js"></script>
             <h1>Sian の 情思漫畫</h1>
       <h2>Sian's Comic Confessions with Asperger's Life</h2>
       
-      <div style="text-align: center;">
-        <img src="logoK.png"
- alt="Sian Logo" style="width: 98px; height: 135px;">&nbsp; 
-        <img src="sian_logo.png"
-alt="Piguko Logo" style="width: 119px; height: 125px;"></div>
-      
+      <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png"
+
+        alt="Sian Logo" class="logo">
       <header style="text-align: center;"> <img src="logo_banner.png" alt="Banner"
 
           class="banner"> </header>
@@ -315,8 +352,8 @@ If you'd like to know more, head over to “About Me” 👩🏻</p>
         <h2>🎨&nbsp;漫畫作品｜Comic Works</h2>
         <div class="comic-grid"> 
           
-          <a href="comic-c3.html"> 📔 &nbsp;中文版 Part 3 <img src="webside-pig3.jpg" alt="中文版 Part 3 封面"> </a>
-          <a href="comic-e3.html"> 📓&nbsp;English Part 3 <img src="webside-pigE3.jpg" alt="English Part 3 Cover"> </a>       
+          <a href="comic-c3.html"> 📔 &nbsp;中文版 Part 3 <img src="images3/14.jpg" alt="中文版 Part 3 封面"> </a>
+          <a href="comic-e3.html"> 📓&nbsp;English Part 3 <img src="images-en3/14.jpg" alt="English Part 3 Cover"> </a>       
           <a href="comic-c2.html"> 📗&nbsp;中文版 Part 2 <img src="webside-C2.jpg" alt="中文版 Part 2 封面"> </a>
           <a href="comic-e2.html"> 📕&nbsp;English Part 2 <img src="webside-E2.jpg" alt="English Part 2 Cover"> </a>
           <a href="comic-c1.html"> 📘&nbsp;中文版 Part 1 <img src="webside-C.jpg" alt="中文版 Part 1 封面"></a>
@@ -412,6 +449,6 @@ issue-term="title" theme="github-light" crossorigin="anonymous" async="">
   #scroll-down {
     bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
   }
-</style>
+</style> <img src="sian_qr.png" alt="QR Code" class="qr-fixed">
   </body>
 </html>
