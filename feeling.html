@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>漫畫作品｜Comics - Sian の漫畫世界</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      min-height: 100vh;
+      color: #4b306a;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(#e8d0ef 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    nav.sidebar {
+      background-color: #f7f2fb;
+      width: 220px;
+      min-height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 998;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav.sidebar h2 {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
+    }
+
+    nav.sidebar a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #6b4c88;
+      transition: 0.3s;
+    }
+
+    nav.sidebar a:hover {
+      color: #a75bb8;
+    }
+
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 999;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    main.main-content {
+      flex-grow: 1;
+      padding: 40px 30px;
+      margin-left: 220px;
+      max-width: calc(100% - 220px);
+      animation: fadeIn 1s ease-in;
+    }
+
+    h1 {
+      text-align: center;
+      color: #6d3684;
+    }
+
+    .comic-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .comic-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      color: #4b306a;
+    }
+
+    .comic-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .comic-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .comic-card h3 {
+      font-size: 1.1em;
+      margin: 10px 0;
+      color: #5a3475;
+    }
+
+    .scroll-button {
+      position: fixed;
+      right: 10px;
+      z-index: 999;
+      font-size: 24px;
+      background-color: #6d3684;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    #scroll-up { bottom: 80px; }
+    #scroll-down { bottom: 20px; }
+
+    @media (max-width: 768px) {
+      nav.sidebar {
+        transform: translateX(-100%);
+      }
+
+      nav.sidebar.active {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      main.main-content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <nav class="sidebar" id="sidebar">
+    <div style="text-align:center;">
+      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian Logo" style="width:138px;">
+    </div>
+
+    <h2>選單 Menu</h2>
+    <a href="index.html">🏠 首頁 / Home</a>
+    <a href="about.html">👩 關於我 / About</a>
+    <a href="comics.html">🎨 漫畫作品 / Comics</a>
+    <a href="feelings2.html">🖼 心語 / Mood</a>
+    <a href="feelings-en.html">🖼 Mood (English)</a>
+
+    <hr>
+    <h2>Facebook</h2>
+    <a href="https://www.facebook.com/profile.php?id=61577391951909" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" style="width:24px;vertical-align:middle;">
+      Facebook Page
+    </a>
+  </nav>
+
+  <main class="main-content">
+    <div style="text-align:center;">
+      <img src="sian_logo.png" alt="Sian Logo" style="width:184px;">
+    </div>
+
+    <header style="text-align:center;">
+      <img src="logo_banner.png" alt="" style="width:466px;">
+    </header>
+
+    <h1>🎨 漫畫作品 / Comics</h1>
+
+    <div class="comic-grid">
+      <a href="feelings.html" class="comic-card">
+        <img src="feelingC.jpg" alt="心情畫簿">
+        <h3>📘 心情畫簿</h3>
+      </a>
+
+      <a href="feelings-en.html" class="comic-card">
+        <img src="feelingE.jpg" alt="Moodbook">
+        <h3>📙 Moodbook</h3>
+      </a>
+    </div>
+  </main>
+
+  <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
+  <button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    document.addEventListener('click', function(e) {
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.querySelector('.hamburger');
+      if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    function scrollPage(dir) {
+      window.scrollTo({
+        top: dir === 'up' ? 0 : document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>
