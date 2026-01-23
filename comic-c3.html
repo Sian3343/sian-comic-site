@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📔 中文版 Part 3 - Sian の漫畫世界</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-  <style>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sian 漫畫記錄 Asperger's の日常</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap"
+
+      rel="stylesheet">
+    <style>
     body {
       margin: 0;
       font-family: "Noto Sans TC", sans-serif;
@@ -171,48 +173,40 @@
       }
     }
   </style>
-</head>
-<body>
-
-  <div class="hamburger" id="hamburger">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <div class="overlay" id="overlay"></div>
-
-  <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+  </head>
+  <body>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <h2>選單 Menu</h2>
-    <a href="index.html">🏠&nbsp;首頁 / Home</a>
-    <a href="about.html">👩🏻&nbsp;關於我 / About Me</a>
-    <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
-    <a href="feelings2.html">🖼️&nbsp;心語 / Mood</a>
-    <a href="feelings-en.html">🖼️&nbsp;Mood (English)</a>
-    <hr>
-    <h2>Facebook</h2>
-<a href="https://www.facebook.com/profile.php?id=61577391951909"
-target="_blank" style="text-decoration:none;"> 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook Page </a>
-  </nav>
+    <div class="overlay" id="overlay"></div>
+    <nav class="sidebar" id="sidebar">
+      <div style="text-align: center;"> <img src="https://sian3343.github.io/sian-comic-site/logo.png"
 
-  <main>
-    <h1>📔 中文版 Part 3</h1>
-    <div class="flipbook-container" id="flipbook"></div>
+          alt="Sian 的 Logo" style="width: 138px; height: 69px;"> </div>
+      <h2>選單 Menu</h2>
+      <a href="index.html">🏠&nbsp;首頁 / Home</a> <a href="about.html">👩
+        🏻&nbsp;關於我 / About Me</a> <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
+      <a href="feelings2.html">🖼️&nbsp;心語 / Mood</a> <a href="feelings-en.html">🖼️&nbsp;Mood
+        (English)</a>
+      <hr>
+      <h2>Facebook</h2>
+      <a href="https://www.facebook.com/profile.php?id=61577391951909" target="_blank"
 
-    <div class="controls">
-      <button onclick="firstPage()">⏮ 回到最前</button>
-      <button onclick="prevPage()">← 上一頁</button>
-      <button onclick="nextPage()">下一頁 →</button>
-      <button onclick="lastPage()">⏭ 跳到最後</button>
-    </div>
-  </main>
+        style="text-decoration:none;"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
 
-  <script>
+          alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook
+        Page </a> </nav>
+    <main>
+      <h1>📔 中文版 Part 3</h1>
+      <div class="flipbook-container" id="flipbook"></div>
+      <div class="controls"> <button onclick="firstPage()">⏮ 回到最前</button> <button
+
+          onclick="prevPage()">← 上一頁</button> <button onclick="nextPage()">下一頁
+          →</button> <button onclick="lastPage()">⏭ 跳到最後</button> </div>
+    </main>
+    <script>
     // 漢堡功能同遮罩控制
     const hamburger = document.getElementById("hamburger");
     const sidebar = document.getElementById("sidebar");
@@ -257,5 +251,5 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
 
     loadPages();
   </script>
-</body>
+  </body>
 </html>

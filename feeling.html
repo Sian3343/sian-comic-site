@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>心情畫簿｜Moodbook - Sian の漫畫世界</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sian 漫畫記錄 Asperger's の日常</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap"
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
-  <style>
+      rel="stylesheet">
+    <style>
     * { box-sizing: border-box; }
 
     body {
@@ -171,59 +171,43 @@
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
-</head>
+  </head>
+  <body>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="sidebar" id="sidebar">
+      <div style="text-align:center;"> <img src="https://sian3343.github.io/sian-comic-site/logo.png"
 
-<body>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+          alt="Sian Logo" style="width:138px;"> </div>
+      <h2>選單 Menu</h2>
+      <a href="index.html">🏠 首頁 / Home</a> <a href="about.html">👩 關於我 / About</a>
+      <a href="comics.html">🎨 漫畫作品 / Comics</a> <a href="feelings2.html">🖼 心語
+        / Mood</a> <a href="feelings-en.html">🖼 Mood (English)</a>
+      <hr>
+      <h2>Facebook</h2>
+      <a href="https://www.facebook.com/profile.php?id=61577391951909" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
 
-  <nav class="sidebar" id="sidebar">
-    <div style="text-align:center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian Logo" style="width:138px;">
-    </div>
+          style="width:24px;vertical-align:middle;"> Facebook Page </a> </nav>
+    <main class="main-content">
+      <div style="text-align:center;"> <img src="sian_logo.png" alt="Sian Logo"
 
-    <h2>選單 Menu</h2>
-    <a href="index.html">🏠 首頁 / Home</a>
-    <a href="about.html">👩 關於我 / About</a>
-    <a href="comics.html">🎨 漫畫作品 / Comics</a>
-    <a href="feelings2.html">🖼 心語 / Mood</a>
-    <a href="feelings-en.html">🖼 Mood (English)</a>
+          style="width:184px;"> </div>
+      <header style="text-align:center;"> <img src="logo_banner.png" alt="" style="width:466px;">
+      </header>
+      <h1>📖 心情畫簿｜Moodbook</h1>
+      <div class="comic-grid"> <a href="feelings2.html" class="comic-card"> <img
 
-    <hr>
-    <h2>Facebook</h2>
-    <a href="https://www.facebook.com/profile.php?id=61577391951909" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" style="width:24px;vertical-align:middle;">
-      Facebook Page
-    </a>
-  </nav>
+            src="feelingC.jpg" alt="心情畫簿">
+          <h3>📘 心情畫簿</h3>
+        </a> <a href="feelings-en.html" class="comic-card"> <img src="feelingE.jpg"
 
-  <main class="main-content">
-    <div style="text-align:center;">
-      <img src="sian_logo.png" alt="Sian Logo" style="width:184px;">
-    </div>
-
-    <header style="text-align:center;">
-      <img src="logo_banner.png" alt="" style="width:466px;">
-    </header>
-
-    <h1>📖  心情畫簿｜Moodbook</h1>
-
-    <div class="comic-grid">
-      <a href="feelings2.html" class="comic-card">
-        <img src="feelingC.jpg" alt="心情畫簿">
-        <h3>📘 心情畫簿</h3>
-      </a>
-
-      <a href="feelings-en.html" class="comic-card">
-        <img src="feelingE.jpg" alt="Moodbook">
-        <h3>📙 Moodbook</h3>
-      </a>
-    </div>
-  </main>
-
-  <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
-  <button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
-
-  <script>
+            alt="Moodbook">
+          <h3>📙 Moodbook</h3>
+        </a> </div>
+    </main>
+    <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
+    <button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
+    <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
     }
@@ -243,5 +227,6 @@
       });
     }
   </script>
-</body>
+    
+  </body>
 </html>

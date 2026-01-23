@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>心情畫簿｜Sian の情思插畫</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-  <style>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sian 漫畫記錄 Asperger's の日常</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap"
+
+      rel="stylesheet">
+    <style>
     body {
       margin: 0;
       font-family: "Noto Sans TC", sans-serif;
@@ -153,50 +155,40 @@
       }
     }
   </style>
-</head>
-<body>
+  </head>
+  <body> <button class="hamburger" onclick="toggleSidebar()">☰ </button>
+    <nav class="sidebar" id="sidebar">
+      <div style="text-align: center;"> <img src="https://sian3343.github.io/sian-comic-site/logo.png"
 
-  <button class="hamburger" onclick="toggleSidebar()">☰ </button>
+          alt="Sian 的 Logo" style="width: 138px; height: 69px;"> </div>
+      <h2>選單 Menu</h2>
+      <a href="index.html">🏠&nbsp;首頁 / Home</a> <a href="about.html">👩
+        🏻&nbsp;關於我 / About Me</a> <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
+      <a href="feelings2.html">🖼️&nbsp;心語 / Mood</a> <a href="feelings-en.html">🖼️&nbsp;Mood
+        (English)</a>
+      <hr>
+      <h2>Facebook</h2>
+      <a href="https://www.facebook.com/profile.php?id=61577391951909" target="_blank"
 
-  <nav class="sidebar" id="sidebar">
-    <div style="text-align: center;">
-      <img src="https://sian3343.github.io/sian-comic-site/logo.png" alt="Sian 的 Logo" style="width: 138px; height: 69px;">
+        style="text-decoration:none;"> <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+
+          alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook
+        Page </a> </nav>
+    <main>
+      <div style="text-align: center;"> <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png"
+
+          alt="Sian Logo" class="logo" style="width: 323px; height: 185px;"> </div>
+      <h1>🖌️ 心情畫簿 Moodbook<br>
+        Part 1</h1>
+      <p>這裡收錄了我在不同情緒狀態下的插畫作品，也許不是最完美，但都是真實的情感流露。</p>
+      <div class="gallery" id="gallery"></div>
+      <div class="pagination" id="pagination"></div>
+      <footer>© 2025 Sian | 心情畫簿</footer>
+    </main>
+    <!-- Lightbox 彈出圖 -->
+    <div class="lightbox-overlay" id="lightbox"> <img src="" alt="放大圖片" id="lightbox-img">
     </div>
-          <h2>選單 Menu</h2>
-    <a href="index.html">🏠&nbsp;首頁 / Home</a>
-    <a href="about.html">👩🏻&nbsp;關於我 / About Me</a>
-    <a href="comics.html">🎨&nbsp;漫畫作品 / Comics</a>
-    <a href="feelings2.html">🖼️&nbsp;心語 / Mood</a>
-    <a href="feelings-en.html">🖼️&nbsp;Mood (English)</a>
-   <hr>
-    <h2>Facebook</h2>
-<a href="https://www.facebook.com/profile.php?id=61577391951909"
-target="_blank" style="text-decoration:none;"> 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook Page </a>
-  </nav>
-
-  <main>
-      <div style="text-align: center;">
-        <img src="https://sian3343.github.io/sian-comic-site/sian_logo.png" alt="Sian Logo" class="logo" style="width: 323px; height: 185px;">
-      </div>
-    
-    <h1>🖌️ 心情畫簿 Moodbook<br>
-         Part 1</h1>
-    <p>這裡收錄了我在不同情緒狀態下的插畫作品，也許不是最完美，但都是真實的情感流露。</p>
-
-    <div class="gallery" id="gallery"></div>
-    <div class="pagination" id="pagination"></div>
-
-    <footer>© 2025 Sian | 心情畫簿</footer>
-  </main>
-
-  <!-- Lightbox 彈出圖 -->
-  <div class="lightbox-overlay" id="lightbox">
-    <img src="" alt="放大圖片" id="lightbox-img">
-  </div>
-
-  <script>
+    <script>
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
     }
@@ -263,12 +255,11 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
       showGalleryPage(currentPage);
     };
   </script>
-<!-- 在<body>標籤下新增以下內容 -->
-<!-- 這是往上和往下按鈕 -->
-<button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
-<button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
-
-<script>
+    <!-- 在<body>標籤下新增以下內容 -->
+    <!-- 這是往上和往下按鈕 -->
+    <button id="scroll-up" class="scroll-button" onclick="scrollPage('up')">↑</button>
+    <button id="scroll-down" class="scroll-button" onclick="scrollPage('down')">↓</button>
+    <script>
   // 收回選單功能
   document.addEventListener('click', function(event) {
     var sidebar = document.getElementById('sidebar');
@@ -289,8 +280,7 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
     }
   }
 </script>
-
-<style>
+    <style>
   /* 按鈕的樣式 */
   .scroll-button {
     position: fixed;
@@ -318,7 +308,5 @@ alt="Facebook" style="width:24px; height:24px; vertical-align:middle;">Facebook 
     bottom: 20px; /* 放置於螢幕右下方，向下的按鈕 */
   }
 </style>
-
-      
-</body>
+  </body>
 </html>
